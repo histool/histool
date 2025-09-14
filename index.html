@@ -192,13 +192,16 @@
         }
         
         .hero-title {
-            font-size: clamp(150px, 30vw, 400px); /* 标题字体大小：可以调整clamp()中的三个数值 */
+            font-size: clamp(80px, 15vw, 200px); /* 标题字体大小：调整clamp()数值，确保Mac上完整显示 */
             font-weight: 300; /* 字体粗细：300为较细，可以改为400(正常)或700(粗体) */
-            letter-spacing: -0.02em; /* 字母间距：负值让字母更紧凑，可以调整这个数值 */
-            line-height: 0.8; /* 行高：0.8让文字更紧凑，可以调整这个数值 */
+            letter-spacing: -0.01em; /* 字母间距：减少负值，让字母间距更宽松 */
+            line-height: 0.9; /* 行高：增加行高，让文字更宽松 */
             margin: 0; /* 外边距：0表示无外边距 */
             white-space: nowrap; /* 不换行：确保标题在一行显示 */
             width: auto; /* 宽度：自动适应内容 */
+            max-width: 90vw; /* 最大宽度：限制为视口宽度的90%，防止溢出 */
+            overflow: hidden; /* 隐藏溢出内容 */
+            text-overflow: ellipsis; /* 溢出时显示省略号 */
         }
         
         .scroll-indicator {
@@ -327,6 +330,19 @@
             font-size: 24px;
             font-weight: 500;
             margin-bottom: 20px;
+        }
+        
+        .sub-category-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin: 30px 0 15px 0;
+            color: #333;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 8px;
+        }
+        
+        .sub-category-title:first-of-type {
+            margin-top: 0;
         }
         
         .tool-list {
@@ -685,7 +701,8 @@
             }
             
             .hero-title {
-                font-size: clamp(80px, 20vw, 180px);
+                font-size: clamp(60px, 12vw, 120px); /* 移动端字体大小：进一步减小确保完整显示 */
+                max-width: 95vw; /* 移动端最大宽度：95%视口宽度 */
             }
             
             .intro-description {
@@ -759,8 +776,8 @@
                     <div class="intro-content">
                         <div class="intro-description">
                             祂的工具箱是一个从艺术实践者视角出发的工具平台，以开放共享为原则，绝大部分内容可供'零成本获取'。<br><br>
-                            平台主要通过具体的艺术或设计项目展开基础的软件教学，并辅以作者在高校教学过程中录制的技术课程视频。同时，部分文章与研究文本也将同步发布。<br><br>
-                            平台的设立旨在推动艺术教育中工具使用的开放化，并为大学生及初学者在培养批判性与学术化思考方面提供新的渠道。<br><br>
+                            平台主要提供精选的免费在线工具、文献资料和外部优质教程资源，同时包含少量由作者在高校期间亲自录制的技术课程视频。<br><br>
+                            平台的设立旨在为艺术设计学习者提供便捷的资源整合服务，减少信息搜索成本，提高学习效率。<br><br>
                             与此同时，平台亦设有少量付费课程，其收入将用于支持网站的长期维护与更新，并为能祂的个人创作提供必要的支持。
                         </div>
                         <div class="intro-dot"></div>
@@ -775,7 +792,6 @@
 
             <!-- 资源库内容 -->
             <div id="tools" class="page-content">
-                <h1 class="page-title">资源库</h1>
                 <div class="hero-dot"></div>
 
                 <div class="tools-grid">
@@ -807,10 +823,56 @@
                     
                     <div class="tool-category">
                         <h3>文献区</h3>
+                        
+                        <h4 class="sub-category-title">最近更新的书</h4>
                         <ul class="tool-list">
                             <li class="tool-item">
-                                <div class="tool-name">等待更新</div>
-                                <div class="tool-description">更多文献资源即将上线</div>
+                                <div class="tool-name">《数字时代的艺术创作》</div>
+                                <div class="tool-description">探讨数字技术与艺术创作的关系，2024年最新出版</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name">《设计思维与方法论》</div>
+                                <div class="tool-description">系统介绍设计思维的理论基础和实践应用</div>
+                            </li>
+                        </ul>
+                        
+                        <h4 class="sub-category-title">书籍区</h4>
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <div class="tool-name">艺术理论经典</div>
+                                <div class="tool-description">经典艺术理论著作和研究论文</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name">设计方法论</div>
+                                <div class="tool-description">设计思维和创作方法论相关文献</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name">技术研究</div>
+                                <div class="tool-description">数字艺术和媒体技术研究资料</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name">教育研究</div>
+                                <div class="tool-description">艺术教育和教学方法研究</div>
+                            </li>
+                        </ul>
+                        
+                        <h4 class="sub-category-title">文章区</h4>
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <div class="tool-name">学术论文</div>
+                                <div class="tool-description">最新学术研究成果和理论探讨</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name">案例分析</div>
+                                <div class="tool-description">具体项目案例分析和经验总结</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name">技术教程</div>
+                                <div class="tool-description">技术实现方法和操作指南</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name">行业报告</div>
+                                <div class="tool-description">行业发展趋势和数据分析</div>
                             </li>
                         </ul>
                     </div>
@@ -847,8 +909,6 @@
 
             <!-- 教程区内容 -->
             <div id="tutorials" class="page-content">
-                <h1 class="page-title">教程区</h1>
-                <p class="page-description">从基础到进阶的完整学习路径</p>
                 <div class="hero-dot"></div>
 
                 <div class="tutorials-grid">
@@ -901,8 +961,6 @@
 
             <!-- 关于页面内容 -->
             <div id="about" class="page-content">
-                <h1 class="page-title">About</h1>
-                <p class="page-description">关于祂的工具箱 - 艺术学习的共享入口</p>
                 <div class="hero-dot"></div>
 
                 <div class="about-grid">
@@ -955,8 +1013,6 @@
 
             <!-- 付费课程内容 -->
             <div id="paid-courses" class="page-content">
-                <h1 class="page-title">付费课程</h1>
-                <p class="page-description">专业深度学习和实践指导，小班教学，提供完整学习资料</p>
                 <div class="hero-dot"></div>
 
                 <div class="course-detail-layout">
@@ -977,11 +1033,11 @@
                         <div class="course-option" data-course="portfolio">
                             <div class="course-card">
                                 <div class="course-title">作品集辅导</div>
-                                <div class="course-description">专业指导艺术设计作品集制作，提升申请成功率</div>
+                                <div class="course-description">1对1专业指导，专注海内外硕士升学</div>
                                 <ul class="course-features">
-                                    <li>一对一专业指导</li>
+                                    <li>1对1专业指导</li>
+                                    <li>海内外硕士升学</li>
                                     <li>作品集结构优化</li>
-                                    <li>视觉呈现提升</li>
                                     <li>申请策略制定</li>
                                 </ul>
                                 <div class="course-price">¥5,000</div>
