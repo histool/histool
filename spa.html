@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>祂的工具箱 - 艺术学习的共享入口</title>
+    <meta name="description" content="为艺术实践者提供高质量的工具资源、教程内容和学术支持">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* 隐藏可能的进度条效果 */
+        ::-webkit-progress-bar {
+            display: none;
+        }
+        
+        progress {
+            display: none;
+        }
+        
+        /* 防止任何闪烁效果 */
+        * {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        
+        html {
+            width: 100%;
+            height: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.4;
+            background: white;
+            color: #000;
+            letter-spacing: -0.01em;
+            width: 100%;
+            min-height: 100vh;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* 主布局 */
+        .container {
+            width: 100%;
+            padding: 0 40px;
+        }
+        
+        /* 顶部导航 */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .nav a {
+            font-size: 16px;
+            font-weight: 400;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .nav a:hover {
+            opacity: 0.6;
+        }
+        
+        .nav a.active {
+            opacity: 0.6;
+        }
+        
+        .nav-subdued {
+            opacity: 0.4;
+        }
+        
+        .nav-subdued:hover {
+            opacity: 0.6 !important;
+        }
+        
+        #paid-courses-link {
+            display: none;
+            opacity: 0;
+        }
+        
+        .toggle-switch {
+            background-color: #e0e0e0;
+        }
+        
+        .toggle-switch.active {
+            background-color: #007bff;
+        }
+        
+        .toggle-circle {
+            transform: translateX(0);
+        }
+        
+        .toggle-switch.active .toggle-circle {
+            transform: translateX(20px);
+        }
+        
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-left: 40px;
+        }
+        
+        /* 切换开关 */
+        .toggle-switch {
+            width: 40px;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .toggle-switch.active {
+            background: #007bff;
+        }
+        
+        .toggle-circle {
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            transition: transform 0.3s ease;
+        }
+        
+        .toggle-switch.active .toggle-circle {
+            transform: translateX(-20px);
+        }
+        
+        .control-dot {
+            width: 8px;
+            height: 8px;
+            background: #000;
+            border-radius: 50%;
+        }
+        
+        /* 主要内容区域 */
+        .main-content {
+            min-height: 100vh;
+            padding-top: 100px;
+        }
+        
+        /* 页面内容 */
+        .page-content {
+            display: none;
+        }
+        
+        .page-content.active {
+            display: block;
+        }
+        
+        /* 首页样式 */
+        .hero-page {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            text-align: center;
+            padding-top: 26vh; /* 标题位置：可以调整这个值来改变标题的垂直位置 */
+        }
+        
+        .hero-title {
+            font-size: clamp(150px, 30vw, 400px); /* 标题字体大小：可以调整clamp()中的三个数值 */
+            font-weight: 300; /* 字体粗细：300为较细，可以改为400(正常)或700(粗体) */
+            letter-spacing: -0.02em; /* 字母间距：负值让字母更紧凑，可以调整这个数值 */
+            line-height: 0.8; /* 行高：0.8让文字更紧凑，可以调整这个数值 */
+            margin: 0; /* 外边距：0表示无外边距 */
+            white-space: nowrap; /* 不换行：确保标题在一行显示 */
+            width: auto; /* 宽度：自动适应内容 */
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 150px; /* 箭头位置：可以调整这个值来改变箭头的垂直位置 */
+            left: 50%;
+            transform: translateX(-50%); /* 水平居中 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bounce 2s infinite; /* 弹跳动画：2秒循环，可以调整时长 */
+        }
+        
+        .scroll-arrow {
+            width: 24px; /* 箭头宽度：可以调整这个值来改变箭头大小 */
+            height: 24px; /* 箭头高度：可以调整这个值来改变箭头大小 */
+            border-right: 2px solid #333; /* 右边框：形成箭头形状 */
+            border-bottom: 2px solid #333; /* 下边框：形成箭头形状 */
+            transform: rotate(45deg); /* 旋转45度：让边框形成向下箭头 */
+            margin-bottom: 8px; /* 下边距：箭头与文字的距离 */
+        }
+        
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+        
+        .intro-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .intro-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .intro-description {
+            font-size: clamp(18px, 4vw, 26px); /* 字体大小：可以调整clamp()中的三个数值来改变字体大小 */
+            line-height: 1.8; /* 行高：可以调整这个数值来改变行间距，1.8表示行高是字体大小的1.8倍 */
+            margin-bottom: 60px; /* 下边距：可以调整这个数值来改变与下方元素的距离 */
+            font-weight: 300; /* 字体粗细：可以改为400(正常)或700(粗体) */
+            text-align: center; /* 居中对齐：可以改为left(左对齐)或right(右对齐) */
+            letter-spacing: 0.5px; /* 字母间距：可以调整这个数值来改变字母之间的间距 */
+            word-spacing: 2px; /* 单词间距：可以调整这个数值来改变单词之间的间距 */
+        }
+        
+        .intro-dot {
+            width: 8px;
+            height: 8px;
+            background: #000;
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+        
+        .welcome-symbol {
+            text-align: center;
+            padding: 20px 0; /* 减少上下内边距，让内容往上移动 */
+        }
+        
+        .welcome-symbol span {
+            font-size: 48px;
+            color: #000;
+            font-weight: 300;
+        }
+        
+        
+        /* 其他页面样式 */
+        .page-title {
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .page-description {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+            text-align: center;
+        }
+        
+        .hero-dot {
+            width: 8px;
+            height: 8px;
+            background: #007AFF;
+            border-radius: 50%;
+            margin: 0 auto 60px;
+        }
+        
+        /* 工具库样式 */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .tool-category {
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-category:hover {
+            border-color: #000;
+            transform: translateY(-2px);
+        }
+        
+        .tool-category h3 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        .tool-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .tool-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .tool-item:last-child {
+            border-bottom: none;
+        }
+        
+        .tool-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .tool-name a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .tool-name a:hover {
+            text-decoration: underline;
+        }
+        
+        .tool-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        /* 教程区样式 */
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .tutorial-column {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .tutorial-column:hover {
+            border-color: #000;
+            transform: translateY(-2px);
+        }
+        
+        .tutorial-column h3 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 30px;
+        }
+        
+        .tutorial-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .tutorial-item:last-child {
+            border-bottom: none;
+        }
+        
+        .tutorial-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .tutorial-title a {
+            color: #007bff;
+        }
+        
+        .tutorial-title a:hover {
+            text-decoration: underline;
+        }
+        
+        .tutorial-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .tutorial-image {
+            margin-top: 10px;
+        }
+        
+        .tutorial-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        /* 关于页面样式 */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .about-column {
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .about-column:hover {
+            border-color: #000;
+            transform: translateY(-2px);
+        }
+        
+        .content-section {
+            margin-bottom: 60px;
+        }
+        
+        .content-section h2 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+        
+        .content-section p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .contact-item {
+            text-align: center;
+        }
+        
+        .contact-item h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .contact-item p {
+            color: #666;
+        }
+        
+        /* 付费课程样式 */
+        .course-detail-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .course-sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+        
+        .course-option {
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .course-card {
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .course-option.active .course-card {
+            border-color: #007bff;
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+        }
+        
+        .course-option:hover .course-card {
+            transform: translateY(-2px);
+        }
+        
+        .course-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .course-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .course-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .course-features li {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .course-features li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #007bff;
+        }
+        
+        .course-price {
+            font-size: 24px;
+            font-weight: 600;
+            color: #007bff;
+        }
+        
+        .content-box {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 30px;
+            min-height: 600px;
+            transition: all 0.3s ease;
+        }
+        
+        .content-box:hover {
+            border-color: #000;
+            transform: translateY(-2px);
+        }
+        
+        .course-content-section {
+            display: none;
+        }
+        
+        .course-content-section.active {
+            display: block;
+        }
+        
+        .course-section {
+            margin-bottom: 40px;
+        }
+        
+        .course-section h2 {
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        
+        .course-section h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 30px 0 15px;
+        }
+        
+        .course-section p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .course-section ul {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .course-section li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .back-link {
+            position: fixed;
+            top: 120px;
+            left: 40px;
+            z-index: 999;
+            color: #007bff;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 1px solid #007bff;
+            border-radius: 20px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: #007bff;
+            color: white;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .tutorials-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .course-detail-layout {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .course-sidebar {
+                position: static;
+                order: 2;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .nav {
+                gap: 24px;
+            }
+            
+            .nav-controls {
+                margin-left: 0;
+            }
+            
+            .hero-title {
+                font-size: clamp(80px, 20vw, 180px);
+            }
+            
+            .intro-description {
+                font-size: 18px;
+            }
+            
+            .page-title {
+                font-size: 36px;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .tutorials-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .contact-info {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .back-link {
+                position: static;
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 顶部导航 -->
+        <header class="header">
+            <nav class="nav">
+                <a href="#" class="nav-link" data-page="home">Home</a>
+                <a href="#" class="nav-link" data-page="tools">资源库</a>
+                <a href="#" class="nav-link" data-page="tutorials">教程区</a>
+                <a href="#" class="nav-link" data-page="about">关于</a>
+                <a href="#" class="nav-link nav-subdued" id="paid-courses-link" data-page="paid-courses">付费课程</a>
+            </nav>
+            
+            <div class="nav-controls">
+                <div class="toggle-switch" id="paid-courses-toggle" onclick="togglePaidCourses(this)">
+                    <div class="toggle-circle"></div>
+                </div>
+                <div class="control-dot"></div>
+            </div>
+        </header>
+
+        <!-- 主要内容 -->
+        <main class="main-content">
+            <!-- 首页内容 -->
+            <div id="home" class="page-content active">
+                <div class="hero-page">
+                    <h1 class="hero-title">祂的工具箱</h1>
+                    <div class="scroll-indicator">
+                        <div class="scroll-arrow"></div>
+                    </div>
+                </div>
+                <div class="intro-page">
+                    <div class="intro-content">
+                        <div class="intro-description">
+                            祂的工具箱是一个从艺术实践者视角出发的工具平台，以开放共享为原则，绝大部分内容可供'零成本获取'。<br><br>
+                            平台主要通过具体的艺术或设计项目展开基础的软件教学，并辅以作者在高校教学过程中录制的技术课程视频。同时，部分文章与研究文本也将同步发布。<br><br>
+                            平台的设立旨在推动艺术教育中工具使用的开放化，并为大学生及初学者在培养批判性与学术化思考方面提供新的渠道。<br><br>
+                            与此同时，平台亦设有少量付费课程，其收入将用于支持网站的长期维护与更新，并为能祂的个人创作提供必要的支持。
+                        </div>
+                        <div class="intro-dot"></div>
+                    </div>
+                </div>
+                
+                <div class="welcome-symbol">
+                    <span>欢迎 ;)</span>
+                </div>
+                
+            </div>
+
+            <!-- 资源库内容 -->
+            <div id="tools" class="page-content">
+                <h1 class="page-title">资源库</h1>
+                <div class="hero-dot"></div>
+
+                <div class="tools-grid">
+                    <div class="tool-category">
+                        <h3>在线免费工具包</h3>
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://www.photopea.com/" target="_blank">Photopea</a></div>
+                                <div class="tool-description">免费的在线Photoshop替代品，支持PSD格式</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://www.remove.bg/zh/upload" target="_blank">Remove.bg</a></div>
+                                <div class="tool-description">AI智能背景移除工具，一键抠图</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://stephaneginier.com/sculptgl/" target="_blank">SculptGL</a></div>
+                                <div class="tool-description">免费的在线3D雕刻工具</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://www.ilovepdf.com/" target="_blank">ILovePDF</a></div>
+                                <div class="tool-description">全面的PDF在线处理工具集</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://tinypng.com/" target="_blank">TinyPNG</a></div>
+                                <div class="tool-description">智能图片压缩工具，保持质量的同时减小文件大小</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tool-category">
+                        <h3>文献区</h3>
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <div class="tool-name">等待更新</div>
+                                <div class="tool-description">更多文献资源即将上线</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tool-category">
+                        <h3>3D软件教程区</h3>
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://space.bilibili.com/35723238?spm_id_from=333.337.0.0" target="_blank">辣椒酱开源课程</a></div>
+                                <div class="tool-description">专业的3D建模和动画开源教程系列</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name">等待更新</div>
+                                <div class="tool-description">更多3D教程资源即将上线</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tool-category">
+                        <h3>讲座</h3>
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://search.bilibili.com/all?vt=56983877&keyword=%E5%AE%9E%E9%AA%8C%E7%BC%96%E7%A8%8B&from_source=webtop_search&spm_id_from=333.788&search_source=5" target="_blank">实验编程公开课</a></div>
+                                <div class="tool-description">探索编程与艺术结合的创新实践</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name">等待更新</div>
+                                <div class="tool-description">更多讲座内容即将上线</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 教程区内容 -->
+            <div id="tutorials" class="page-content">
+                <h1 class="page-title">教程区</h1>
+                <p class="page-description">从基础到进阶的完整学习路径</p>
+                <div class="hero-dot"></div>
+
+                <div class="tutorials-grid">
+                    <div class="tutorial-column">
+                        <h3>Blender教程</h3>
+                        
+                        <div class="tutorial-item">
+                            <div class="tutorial-title">渲染课程</div>
+                            <div class="tutorial-description">掌握Blender渲染技术和材质制作</div>
+                        </div>
+                        
+                        <div class="tutorial-item">
+                            <div class="tutorial-title"><a href="https://www.bilibili.com/video/BV1Yx421U7g8/?spm_id_from=333.1387.homepage.video_card.click" target="_blank">玉石渲染</a></div>
+                            <div class="tutorial-description">学习玉石材质的渲染技巧和参数设置</div>
+                            <div class="tutorial-image">
+                                <img src="pic/tutorial/rendering/jade rendering.jpg" alt="玉石渲染效果图">
+                            </div>
+                        </div>
+                        
+                        <div class="tutorial-item">
+                            <div class="tutorial-title"><a href="https://www.bilibili.com/video/BV1Yx421U7g8/?spm_id_from=333.1387.homepage.video_card.click" target="_blank">珍珠渲染</a></div>
+                            <div class="tutorial-description">掌握珍珠材质的渲染方法和光泽效果</div>
+                            <div class="tutorial-image">
+                                <img src="pic/tutorial/rendering/pearl rendering.jpg" alt="珍珠渲染效果图">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-column">
+                        <h3>高校课程</h3>
+                        
+                        <div class="tutorial-item">
+                            <div class="tutorial-title">厦门大学 & UCA 网页设计（2025）</div>
+                            <div class="tutorial-description">国际合作的网页设计课程</div>
+                            <div class="tutorial-image">
+                                <div style="width: 100%; height: 200px; background: #f5f5f5; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">课程图片</div>
+                            </div>
+                        </div>
+                        
+                        <div class="tutorial-item">
+                            <div class="tutorial-title">北服/央美（2023-2025）GenAI辅助下的文化遗产训练</div>
+                            <div class="tutorial-description">人工智能在文化遗产保护中的应用</div>
+                            <div class="tutorial-image">
+                                <div style="width: 100%; height: 200px; background: #f5f5f5; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">课程图片</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 关于页面内容 -->
+            <div id="about" class="page-content">
+                <h1 class="page-title">About</h1>
+                <p class="page-description">关于祂的工具箱 - 艺术学习的共享入口</p>
+                <div class="hero-dot"></div>
+
+                <div class="about-grid">
+                    <div class="about-column">
+                        <h2>关于祂的工具箱</h2>
+                        <p>祂的工具箱是一个公益性、开放性、学习友好的艺术学习共享平台。我们致力于为艺术实践者提供高质量的工具资源、教程内容和学术支持。</p>
+                        
+                        <p>平台特色：</p>
+                        <p>工具库：分类整理3D、图像处理、音频、写作等各类创作工具</p>
+                        <p>教程区：从初级到高级的完整学习路径</p>
+                        <p>付费课程：专业深度学习和实践指导</p>
+                        <p>最新动态：实时更新平台活动和内容</p>
+                    </div>
+
+                    <div class="about-column">
+                        <h2>定期活动与内容更新</h2>
+                        <p>工具：每周1-2个新工具推荐</p>
+                        <p>教程：每月2-3个新教程发布</p>
+                        <p>付费课程：专业课程定期更新</p>
+                        <p>特别策划：专题月活动（如"9月——3D月"）</p>
+                        <p>讲座活动：定期举办主题讲座和讨论</p>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>用户互动机制</h2>
+                    <p>最新动态：实时更新平台活动和内容</p>
+                    <p>开放式征集：鼓励公众提交工具/资源</p>
+                    <p>用户投稿区：逐步过渡到"共享型社区"</p>
+                    <p>课程咨询：专业课程咨询和指导</p>
+                </div>
+
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>微信</h3>
+                        <p>mysterych924</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h3>邮箱</h3>
+                        <p>hermeit@outlook.com</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h3>平台</h3>
+                        <p>持续更新中</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 付费课程内容 -->
+            <div id="paid-courses" class="page-content">
+                <h1 class="page-title">付费课程</h1>
+                <p class="page-description">专业深度学习和实践指导，小班教学，提供完整学习资料</p>
+                <div class="hero-dot"></div>
+
+                <div class="course-detail-layout">
+                    <div class="course-sidebar">
+                        <div class="course-option active" data-course="ai-writing">
+                            <div class="course-card">
+                                <div class="course-title">艺术实践者的AI写作入门课程</div>
+                                <div class="course-description">深度整合AI工具到学术写作流程，提升写作效率和质量</div>
+                                <ul class="course-features">
+                                    <li>小班教学，每期不超过10人</li>
+                                    <li>理论与实践相结合</li>
+                                    <li>提供完整的学习资料</li>
+                                    <li>专业导师指导</li>
+                                </ul>
+                                <div class="course-price">¥1,500</div>
+                            </div>
+                        </div>
+                        <div class="course-option" data-course="portfolio">
+                            <div class="course-card">
+                                <div class="course-title">作品集辅导</div>
+                                <div class="course-description">专业指导艺术设计作品集制作，提升申请成功率</div>
+                                <ul class="course-features">
+                                    <li>一对一专业指导</li>
+                                    <li>作品集结构优化</li>
+                                    <li>视觉呈现提升</li>
+                                    <li>申请策略制定</li>
+                                </ul>
+                                <div class="course-price">¥5,000</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-detail-content">
+                        <div class="content-box">
+                            <div id="ai-writing-content" class="course-content-section active">
+                                <section id="course-intro" class="course-section">
+                                    <h2>艺术实践者的AI写作入门课程</h2>
+                                    <p class="course-subtitle">[从基础入门，到专业表达，让你的艺术思考更有力量]</p>
+                                    <p>当我们谈论艺术时，我们谈论的远不止视觉呈现。艺术实践者需要将复杂的创作理念、文化背景、技术手段转化为清晰、有力的文字表达。无论是学术论文、创作陈述、还是项目提案，优秀的写作能力都是艺术实践者不可或缺的核心技能。</p>
+                                    
+                                    <p>然而，传统的写作训练往往与艺术实践脱节，而AI技术的快速发展为艺术写作带来了全新的可能性。本课程将帮助艺术实践者掌握AI辅助写作的核心技能，提升学术表达的专业性和影响力。</p>
+                                </section>
+
+                                <section id="course-objectives" class="course-section">
+                                    <h3>课程目标</h3>
+                                    <ul>
+                                        <li>掌握AI写作工具的核心功能和应用场景</li>
+                                        <li>建立艺术写作的思维框架和表达体系</li>
+                                        <li>提升学术论文和创作陈述的写作质量</li>
+                                        <li>培养批判性思维和学术表达能力</li>
+                                        <li>建立个人化的AI写作工作流程</li>
+                                    </ul>
+                                </section>
+
+                                <section id="course-content" class="course-section">
+                                    <h3>课程内容</h3>
+                                    <h4>模块一：AI写作基础（2周）</h4>
+                                    <ul>
+                                        <li>AI写作工具介绍与选择</li>
+                                        <li>提示词工程基础</li>
+                                        <li>文本生成与编辑技巧</li>
+                                        <li>质量控制与优化策略</li>
+                                    </ul>
+
+                                    <h4>模块二：艺术写作思维（2周）</h4>
+                                    <ul>
+                                        <li>艺术写作的特点与要求</li>
+                                        <li>学术写作规范与标准</li>
+                                        <li>创作陈述的写作技巧</li>
+                                        <li>批判性思维的培养</li>
+                                    </ul>
+
+                                    <h4>模块三：实践应用（2周）</h4>
+                                    <ul>
+                                        <li>学术论文写作实践</li>
+                                        <li>项目提案撰写</li>
+                                        <li>作品集文字说明</li>
+                                        <li>个人写作风格建立</li>
+                                    </ul>
+                                </section>
+
+                                <section id="course-format" class="course-section">
+                                    <h3>课程形式</h3>
+                                    <ul>
+                                        <li>小班教学，每期不超过10人</li>
+                                        <li>每周2次线上课程，每次2小时</li>
+                                        <li>实时互动与个性化指导</li>
+                                        <li>课后作业与同伴互评</li>
+                                        <li>提供完整的学习资料和工具包</li>
+                                    </ul>
+                                </section>
+
+                                <section id="course-requirements" class="course-section">
+                                    <h3>报名要求</h3>
+                                    <ul>
+                                        <li>艺术、设计或相关专业背景</li>
+                                        <li>有一定的写作基础</li>
+                                        <li>对AI技术应用感兴趣</li>
+                                        <li>能够保证课程时间投入</li>
+                                    </ul>
+                                </section>
+
+                                <section id="course-schedule" class="course-section">
+                                    <h3>开课时间</h3>
+                                    <p>2024年春季班：3月15日 - 4月26日</p>
+                                    <p>2024年夏季班：6月10日 - 7月21日</p>
+                                    <p>2024年秋季班：9月16日 - 10月27日</p>
+                                </section>
+
+                                <section id="course-registration" class="course-section">
+                                    <h3>报名方式</h3>
+                                    <p>请发送邮件至：hermeit@outlook.com</p>
+                                    <p>邮件主题：AI写作课程报名</p>
+                                    <p>请在邮件中附上：</p>
+                                    <ul>
+                                        <li>个人简介</li>
+                                        <li>学习背景</li>
+                                        <li>报名动机</li>
+                                        <li>联系方式</li>
+                                    </ul>
+                                </section>
+                            </div>
+                            
+                            <div id="portfolio-content" class="course-content-section">
+                                <section class="course-section">
+                                    <h2>作品集辅导</h2>
+                                    <p>请直接联系本人：</p>
+                                    <p>微信：mysterych924</p>
+                                    <p>邮箱：hermeit@outlook.com</p>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 页面切换功能（全局函数）
+        window.switchPage = function(pageId) {
+            // 隐藏所有页面
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // 显示目标页面
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            // 更新导航状态
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            const activeLink = document.querySelector(`[data-page="${pageId}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        // 导航点击事件
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pageId = this.getAttribute('data-page');
+                    switchPage(pageId);
+                });
+            });
+        });
+
+        // 付费课程开关功能（全局函数）
+        window.togglePaidCourses = function(element) {
+            element.classList.toggle('active');
+            const paidCoursesLink = document.getElementById('paid-courses-link');
+            if (element.classList.contains('active')) {
+                paidCoursesLink.style.display = 'block';
+                paidCoursesLink.style.opacity = '1';
+                localStorage.setItem('paidCoursesEnabled', 'true');
+            } else {
+                paidCoursesLink.style.display = 'none';
+                paidCoursesLink.style.opacity = '0';
+                localStorage.setItem('paidCoursesEnabled', 'false');
+            }
+        }
+
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleSwitch = document.getElementById('paid-courses-toggle');
+            const paidCoursesLink = document.getElementById('paid-courses-link');
+            const toggleCircle = toggleSwitch.querySelector('.toggle-circle');
+            
+            // 从localStorage读取状态，如果没有设置过则默认为false（关闭状态）
+            const isEnabled = localStorage.getItem('paidCoursesEnabled') === 'true';
+            
+            // 确保没有过渡动画
+            paidCoursesLink.style.transition = 'none';
+            toggleCircle.style.transition = 'none';
+            
+            // 直接设置最终状态，不播放动画
+            if (isEnabled) {
+                toggleSwitch.classList.add('active');
+                paidCoursesLink.style.display = 'block';
+                paidCoursesLink.style.opacity = '1';
+            } else {
+                toggleSwitch.classList.remove('active');
+                paidCoursesLink.style.display = 'none';
+                paidCoursesLink.style.opacity = '0';
+            }
+            
+            // 延迟恢复过渡动画，用于后续的点击操作
+            setTimeout(() => {
+                paidCoursesLink.style.transition = 'all 0.3s ease';
+                toggleCircle.style.transition = 'transform 0.3s ease';
+            }, 300);
+            
+            // 显示页面内容，防止闪烁
+            document.body.classList.add('loaded');
+        });
+
+        // 课程切换功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const courseOptions = document.querySelectorAll('.course-option');
+            const contentSections = document.querySelectorAll('.course-content-section');
+            
+            courseOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // 移除所有active类
+                    courseOptions.forEach(opt => opt.classList.remove('active'));
+                    contentSections.forEach(section => section.classList.remove('active'));
+                    
+                    // 添加active类到当前选项
+                    this.classList.add('active');
+                    
+                    // 显示对应内容
+                    const courseType = this.getAttribute('data-course');
+                    const targetSection = document.getElementById(courseType + '-content');
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
