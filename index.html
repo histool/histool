@@ -595,6 +595,133 @@
             font-weight: 500;
         }
         
+        /* 艺术家参考导览样式 */
+        .artist-reference-section {
+            margin-top: 60px;
+            margin-bottom: 40px;
+        }
+        
+        
+        .artist-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .artist-category {
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .artist-category:hover {
+            border-color: #5a7c8a;
+            transform: translateY(-2px);
+        }
+        
+        .artist-category-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #3a5a6b;
+        }
+        
+        .artist-scroll-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        
+        .artist-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .artist-list.expanded {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        
+        .expand-btn {
+            grid-column: 1 / -1;
+            background: transparent;
+            color: #5a7c8a;
+            border: 2px solid #5a7c8a;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            justify-self: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .expand-btn:hover {
+            background: #5a7c8a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(90, 124, 138, 0.3);
+        }
+        
+        .hidden-artist {
+            display: none;
+        }
+        
+        .artist-list.expanded .hidden-artist {
+            display: block;
+        }
+        
+        .artist-item {
+            padding: 20px;
+            border: 1px solid #f0f0f0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            flex: 0 0 350px;
+            min-width: 350px;
+        }
+        
+        .artist-item:hover {
+            border-color: #5a7c8a;
+            transform: translateY(-2px);
+        }
+        
+        .artist-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .artist-name a {
+            color: #4a6b7a;
+            text-decoration: none;
+        }
+        
+        .artist-name a:hover {
+            text-decoration: underline;
+        }
+        
+        .artist-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+        
+        .artist-image {
+            margin-top: 10px;
+        }
+        
+        .artist-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
         /* 付费课程样式 */
         .course-detail-layout {
             display: grid;
@@ -1028,6 +1155,14 @@
                 display: inline-block;
                 margin-bottom: 20px;
             }
+            
+            .artist-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .artist-list.expanded {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -1040,6 +1175,7 @@
                 <a href="#" class="nav-link" data-page="home">Home</a>
                 <a href="#" class="nav-link" data-page="tools">资源库</a>
                 <a href="#" class="nav-link" data-page="tutorials">教程区</a>
+                <a href="#" class="nav-link" data-page="artists">艺术家参考</a>
                 <a href="#" class="nav-link" data-page="about">关于</a>
                 <a href="#" class="nav-link nav-subdued" id="paid-courses-link" data-page="paid-courses">付费课程</a>
             </nav>
@@ -1236,6 +1372,129 @@
                             <div class="tutorial-description">人工智能在文化遗产保护中的应用</div>
                             <div class="tutorial-image">
                                 <div style="width: 100%; height: 200px; background: #f5f5f5; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">课程图片</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 艺术家参考页面内容 -->
+            <div id="artists" class="page-content">
+                <div class="hero-dot"></div>
+
+                <div class="artist-reference-section">
+                    <div class="artist-categories">
+                        <div class="artist-category">
+                            <h4 class="artist-category-title">平面艺术家</h4>
+                            <div class="artist-scroll-container">
+                                <div class="artist-list" id="graphic-artists">
+                                    <div class="artist-item">
+                                        <div class="artist-name"><a href="#" target="_blank">Benoît Bodhuin</a></div>
+                                        <div class="artist-description">法国平面设计师，专注于实验性排版和视觉传达</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/Benoît Bodhuin.jpg" alt="Benoît Bodhuin作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item">
+                                        <div class="artist-name"><a href="#" target="_blank">GDP-DA</a></div>
+                                        <div class="artist-description">德国平面设计工作室，以极简主义和功能性设计著称</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/GDP-DA.jpg" alt="GDP-DA作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item">
+                                        <div class="artist-name"><a href="#" target="_blank">Chantal Jahchan</a></div>
+                                        <div class="artist-description">黎巴嫩平面设计师，专注于文化身份和视觉叙事</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/Chantal Jahchan.jpg" alt="Chantal Jahchan作品">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 隐藏的艺术家项目 -->
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name"><a href="https://naranjoetxeberria.com" target="_blank">Naranjo-Etxeberria</a></div>
+                                        <div class="artist-description">西班牙设计工作室，专注于品牌设计和视觉识别</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/httpsnaranjoetxeberria.com.jpg" alt="Naranjo-Etxeberria作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name"><a href="#" target="_blank">Hubertus Design</a></div>
+                                        <div class="artist-description">德国设计工作室，专注于编辑设计和印刷工艺</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/hubertus-design.jpg" alt="Hubertus Design作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name"><a href="#" target="_blank">Jonas Riemersma</a></div>
+                                        <div class="artist-description">荷兰平面设计师，专注于实验性设计和艺术指导</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/jonasriemersma.jpg" alt="Jonas Riemersma作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name"><a href="#" target="_blank">Marcel Saidov</a></div>
+                                        <div class="artist-description">俄罗斯平面设计师，专注于数字艺术和视觉实验</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/marcelsaidov.jpg" alt="Marcel Saidov作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name"><a href="#" target="_blank">Dolphins</a></div>
+                                        <div class="artist-description">平面设计工作室，专注于创意视觉传达</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/dolphins.jpg" alt="Dolphins作品">
+                                        </div>
+                                    </div>
+                                    <button class="expand-btn" onclick="toggleArtists()">查看更多艺术家</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="artist-category">
+                            <h4 class="artist-category-title">激进艺术</h4>
+                            <div class="artist-scroll-container">
+                                <div class="artist-list" id="radical-artists">
+                                    <div class="artist-item">
+                                        <div class="artist-name"><a href="https://www.boudry-lorenz.de/recent/" target="_blank">Pauline Boudry & Renate Lorenz</a></div>
+                                        <div class="artist-description">德国艺术家组合，专注于酷儿理论和后殖民主义艺术实践</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/激进艺术/Pauline Boudry  Renate Lorenz.jpg" alt="Pauline Boudry & Renate Lorenz作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item">
+                                        <div class="artist-name"><a href="https://paglen.studio/" target="_blank">Trevor Paglen</a></div>
+                                        <div class="artist-description">美国艺术家，专注于监控、数据隐私和人工智能批判</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/激进艺术/Trevor Paglen.jpg" alt="Trevor Paglen作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item">
+                                        <div class="artist-name"><a href="https://zachblas.info/works/" target="_blank">Zach Blas</a></div>
+                                        <div class="artist-description">美国艺术家，专注于技术政治学和数字监控批判</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/激进艺术/Zachblas.jpg" alt="Zach Blas作品">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- 隐藏的艺术家项目 -->
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name"><a href="https://rednoise.org/daniel/" target="_blank">Daniel Howe</a></div>
+                                        <div class="artist-description">美国艺术家，专注于算法艺术和计算美学</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/激进艺术/Daniel Howe.jpg" alt="Daniel Howe作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name"><a href="https://www.walidraad.com/artworks" target="_blank">Walid Raad</a></div>
+                                        <div class="artist-description">黎巴嫩艺术家，专注于档案、历史和记忆政治</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/激进艺术/Walidraaf.jpg" alt="Walid Raad作品">
+                                        </div>
+                                    </div>
+                                    
+                                    <button class="expand-btn" onclick="toggleRadicalArtists()">查看更多艺术家</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1666,6 +1925,39 @@
                 });
             });
         });
+
+        // 艺术家展开/收起功能
+        function toggleArtists() {
+            const artistList = document.getElementById('graphic-artists');
+            const expandBtn = document.querySelector('.expand-btn');
+            
+            if (artistList.classList.contains('expanded')) {
+                // 收起
+                artistList.classList.remove('expanded');
+                expandBtn.textContent = '查看更多艺术家';
+            } else {
+                // 展开
+                artistList.classList.add('expanded');
+                expandBtn.textContent = '收起';
+            }
+        }
+
+        // 激进艺术家展开/收起功能
+        function toggleRadicalArtists() {
+            const artistList = document.getElementById('radical-artists');
+            const expandBtn = artistList.querySelector('.expand-btn');
+            
+            if (artistList.classList.contains('expanded')) {
+                // 收起
+                artistList.classList.remove('expanded');
+                expandBtn.textContent = '查看更多艺术家';
+            } else {
+                // 展开
+                artistList.classList.add('expanded');
+                expandBtn.textContent = '收起';
+            }
+        }
+
     </script>
 </body>
 </html>
