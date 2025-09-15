@@ -140,7 +140,7 @@
         }
         
         .toggle-switch.active {
-            background: #007bff;
+            background: #5a7c8a;
         }
         
         .toggle-circle {
@@ -301,7 +301,7 @@
         .hero-dot {
             width: 8px;
             height: 8px;
-            background: #007AFF;
+            background: #5a7c8a;
             border-radius: 50%;
             margin: 0 auto 60px;
         }
@@ -309,9 +309,35 @@
         /* 工具库样式 */
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            margin-bottom: 80px;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(6, auto);
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .tool-category:nth-child(1) {
+            grid-column: 1 / 7; /* 在线免费工具包占6列 */
+            grid-row: 1 / 3; /* 占2行 */
+        }
+        
+        .tool-category:nth-child(2) {
+            grid-column: 7 / 13; /* 文献区占6列 */
+            grid-row: 1 / 2; /* 占1行 */
+        }
+        
+        .tool-category:nth-child(3) {
+            grid-column: 1 / 5; /* 3D软件教程区占4列 */
+            grid-row: 3 / 5; /* 占2行 */
+        }
+        
+        .tool-category:nth-child(4) {
+            grid-column: 5 / 9; /* 讲座占4列 */
+            grid-row: 3 / 4; /* 占1行 */
+        }
+        
+        .tool-category:nth-child(5) {
+            grid-column: 9 / 13; /* 交互区占4列 */
+            grid-row: 3 / 5; /* 占2行 */
         }
         
         .tool-category {
@@ -337,8 +363,6 @@
             font-weight: 500;
             margin: 30px 0 15px 0;
             color: #333;
-            border-bottom: 1px solid #e0e0e0;
-            padding-bottom: 8px;
         }
         
         .sub-category-title:first-of-type {
@@ -366,7 +390,7 @@
         }
         
         .tool-name a {
-            color: #007bff;
+            color: #4a6b7a;
             text-decoration: none;
         }
         
@@ -424,7 +448,7 @@
         }
         
         .tutorial-title a {
-            color: #007bff;
+            color: #4a6b7a;
         }
         
         .tutorial-title a:hover {
@@ -449,24 +473,71 @@
         }
         
         /* 关于页面样式 */
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto 80px;
+            line-height: 1.8;
+            padding: 40px;
+            background: #fafafa;
+            border-radius: 12px;
+            border: 1px solid #e8e8e8;
+        }
+        
+        .about-content h2 {
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 25px;
+            color: #2c2c2c;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+        
+        .about-content p {
+            font-size: 16px;
+            margin-bottom: 18px;
+            color: #444;
+            text-align: left;
+            line-height: 1.7;
+        }
+        
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 80px;
+            gap: 30px;
+            margin-bottom: 50px;
         }
         
         .about-column {
-            border: 1px solid #e0e0e0;
-            padding: 30px;
-            border-radius: 8px;
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid #e8e8e8;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
         }
         
         .about-column:hover {
-            border-color: #000;
             transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
         }
+        
+        .about-column h2 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #2c2c2c;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 8px;
+        }
+        
+        .about-column p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
         
         .content-section {
             margin-bottom: 60px;
@@ -486,22 +557,42 @@
         .contact-info {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 40px;
+            gap: 25px;
+            margin-top: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .contact-item {
             text-align: center;
+            padding: 25px 20px;
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .contact-item:hover {
+            border-color: #5a7c8a;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(90,124,138,0.15);
         }
         
         .contact-item h3 {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #2c2c2c;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .contact-item p {
             color: #666;
+            font-size: 14px;
+            font-weight: 500;
         }
         
         /* 付费课程样式 */
@@ -511,6 +602,195 @@
             gap: 40px;
             margin-top: 40px;
             margin-bottom: 80px;
+        }
+
+        /* AI写作课程样式 */
+        .bio {
+            margin-bottom: 2.6vw;
+            font-size: 1.3rem;
+            line-height: 1.6rem;
+            text-align: justify;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            -webkit-hyphenate-limit-after: 1;
+            -webkit-hyphenate-limit-before: 3;
+            -moz-hyphens: auto;
+        }
+
+        .bio .bioname {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            font-size: 2.7rem;
+            line-height: 2.4rem;
+            margin: 0 0 1.5rem 0;
+            color: #3a5a6b;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            letter-spacing: 0.02em;
+        }
+
+        .bio .biobracket {
+            color: #7f8c8d;
+            font-family: 'Arial', sans-serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            letter-spacing: 0.03em;
+            text-align: center;
+        }
+
+        .paragraphs {
+            margin: 1.5rem 0;
+        }
+
+        .paragraph {
+            position: relative;
+            margin: 1.5rem 0;
+        }
+
+        .paragraph p {
+            text-align: justify;
+            text-justify: inter-word;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            -webkit-hyphenate-limit-after: 1;
+            -webkit-hyphenate-limit-before: 3;
+            -moz-hyphens: auto;
+        }
+
+        .paragraph strong {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            color: #3a5a6b;
+            font-size: 1.3rem;
+            letter-spacing: 0.03em;
+            hyphens: none;
+        }
+
+        .highlight-conference {
+            background-color: #f0f4f7;
+            color: #3a5a6b;
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-weight: 500;
+            border-left: 3px solid #a8c4d1;
+        }
+
+        .highlight-question {
+            background-color: #f5f7f9;
+            color: #3a5a6b;
+            padding: 12px 16px;
+            margin: 12px 0;
+            border-radius: 3px;
+            font-weight: 500;
+            border: 1px solid #d8e2e8;
+            border-left: 4px solid #a8c4d1;
+        }
+
+        .conference-note {
+            font-size: 0.7rem;
+            color: #666;
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+        }
+
+        .module-container {
+            margin: 1rem 0;
+        }
+
+        .module {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border: 1px solid #000;
+        }
+
+        .module-content {
+            width: 100%;
+        }
+
+        .module-title {
+            font-family: 'Arial', sans-serif;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #3a5a6b;
+            margin: 0 0 0.8rem 0;
+            line-height: 1.5;
+            letter-spacing: 0.03em;
+        }
+
+        .module-description {
+            font-family: 'Arial', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+            margin: 0 0 0.8rem 0;
+            letter-spacing: 0.02em;
+        }
+
+        .module-subsection {
+            font-family: 'Arial', sans-serif;
+            padding: 0.8rem 0;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: #666;
+            letter-spacing: 0.02em;
+        }
+
+        .module-subsection strong {
+            color: #2c3e50;
+            font-weight: bold;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .course-schedule {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-family: 'Arial', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .course-schedule th,
+        .course-schedule td {
+            border: 1px solid #000;
+            padding: 0.5rem;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .course-schedule th {
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            color: #3a5a6b;
+            font-size: 1.1rem;
+            letter-spacing: 0.03em;
+        }
+
+        .course-schedule td:nth-child(1) {
+            width: 8%;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .course-schedule td:nth-child(2) {
+            width: 25%;
+            font-weight: bold;
+            color: #3a5a6b;
+        }
+
+        .course-schedule td:nth-child(3) {
+            width: 8%;
+            text-align: center;
+        }
+
+        .course-schedule td:nth-child(4) {
+            width: 35%;
+        }
+
+        .course-schedule td:nth-child(5) {
+            width: 24%;
         }
         
         .course-sidebar {
@@ -533,8 +813,8 @@
         }
         
         .course-option.active .course-card {
-            border-color: #007bff;
-            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+            border-color: #5a7c8a;
+            box-shadow: 0 4px 12px rgba(90, 124, 138, 0.15);
         }
         
         .course-option:hover .course-card {
@@ -571,13 +851,13 @@
             content: "•";
             position: absolute;
             left: 0;
-            color: #007bff;
+            color: #5a7c8a;
         }
         
         .course-price {
             font-size: 24px;
             font-weight: 600;
-            color: #007bff;
+            color: #3a5a6b;
         }
         
         .content-box {
@@ -638,18 +918,18 @@
             top: 120px;
             left: 40px;
             z-index: 999;
-            color: #007bff;
+            color: #5a7c8a;
             font-size: 14px;
             text-decoration: none;
             padding: 10px 15px;
-            border: 1px solid #007bff;
+            border: 1px solid #5a7c8a;
             border-radius: 20px;
             background: white;
             transition: all 0.3s ease;
         }
         
         .back-link:hover {
-            background: #007bff;
+            background: #5a7c8a;
             color: white;
         }
         
@@ -657,7 +937,17 @@
         @media (max-width: 1024px) {
             .tools-grid {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                grid-template-rows: repeat(5, auto);
+                gap: 15px;
+            }
+            
+            .tool-category:nth-child(1),
+            .tool-category:nth-child(2),
+            .tool-category:nth-child(3),
+            .tool-category:nth-child(4),
+            .tool-category:nth-child(5) {
+                grid-column: 1;
+                grid-row: auto;
             }
             
             .tutorials-grid {
@@ -715,7 +1005,7 @@
             
             .tools-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 15px;
             }
             
             .tutorials-grid {
@@ -823,56 +1113,19 @@
                     
                     <div class="tool-category">
                         <h3>文献区</h3>
-                        
-                        <h4 class="sub-category-title">最近更新的书</h4>
+                        <h4 class="sub-category-title">最近更新：Not Here, Not Now, Speculative Thought, Impossibility, and the Design Imagination.</h4>
+                        <h4 class="sub-category-title">书籍区：</h4>
                         <ul class="tool-list">
                             <li class="tool-item">
-                                <div class="tool-name">《数字时代的艺术创作》</div>
-                                <div class="tool-description">探讨数字技术与艺术创作的关系，2024年最新出版</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name">《设计思维与方法论》</div>
-                                <div class="tool-description">系统介绍设计思维的理论基础和实践应用</div>
+                                <div class="tool-name"><a href="https://drive.google.com/drive/folders/1bxg0ec9Kqa4dd_cYmm84KhoJEIEN6_c4?usp=sharing" target="_blank">设计理论文献库</a></div>
+                                <div class="tool-description">包含《Not Here, Not Now》等设计理论经典著作</div>
                             </li>
                         </ul>
-                        
-                        <h4 class="sub-category-title">书籍区</h4>
+                        <h4 class="sub-category-title">论文区：</h4>
                         <ul class="tool-list">
                             <li class="tool-item">
-                                <div class="tool-name">艺术理论经典</div>
-                                <div class="tool-description">经典艺术理论著作和研究论文</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name">设计方法论</div>
-                                <div class="tool-description">设计思维和创作方法论相关文献</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name">技术研究</div>
-                                <div class="tool-description">数字艺术和媒体技术研究资料</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name">教育研究</div>
-                                <div class="tool-description">艺术教育和教学方法研究</div>
-                            </li>
-                        </ul>
-                        
-                        <h4 class="sub-category-title">文章区</h4>
-                        <ul class="tool-list">
-                            <li class="tool-item">
-                                <div class="tool-name">学术论文</div>
-                                <div class="tool-description">最新学术研究成果和理论探讨</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name">案例分析</div>
-                                <div class="tool-description">具体项目案例分析和经验总结</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name">技术教程</div>
-                                <div class="tool-description">技术实现方法和操作指南</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name">行业报告</div>
-                                <div class="tool-description">行业发展趋势和数据分析</div>
+                                <div class="tool-name"><a href="https://drive.google.com/drive/folders/1yv3PPhNlUt6RiohWOeokEIHqJ9r5NXw4?usp=sharing" target="_blank">学术论文分类库</a></div>
+                                <div class="tool-description">技术批判、文化遗产等主题论文</div>
                             </li>
                         </ul>
                     </div>
@@ -881,8 +1134,12 @@
                         <h3>3D软件教程区</h3>
                         <ul class="tool-list">
                             <li class="tool-item">
-                                <div class="tool-name"><a href="https://space.bilibili.com/35723238?spm_id_from=333.337.0.0" target="_blank">辣椒酱开源课程</a></div>
-                                <div class="tool-description">专业的3D建模和动画开源教程系列</div>
+                                <div class="tool-name"><a href="https://space.bilibili.com/35723238?spm_id_from=333.337.0.0" target="_blank">辣椒酱Blender开源课程</a></div>
+                                <div class="tool-description">专业的Blender 3D建模和动画开源教程系列</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://www.bilibili.com/video/BV1vf421S7rF?spm_id_from=333.788.videopod.episodes&vd_source=ee4738dc87d41f1fb918f5345c352da5&p=12" target="_blank">Rhino8 品创设计</a></div>
+                                <div class="tool-description">Rhino8产品设计教程，从基础到高级应用</div>
                             </li>
                             <li class="tool-item">
                                 <div class="tool-name">等待更新</div>
@@ -895,12 +1152,38 @@
                         <h3>讲座</h3>
                         <ul class="tool-list">
                             <li class="tool-item">
-                                <div class="tool-name"><a href="https://search.bilibili.com/all?vt=56983877&keyword=%E5%AE%9E%E9%AA%8C%E7%BC%96%E7%A8%8B&from_source=webtop_search&spm_id_from=333.788&search_source=5" target="_blank">实验编程公开课</a></div>
+                                <div class="tool-name"><a href="https://search.bilibili.com/all?vt=56983877&keyword=%E5%AE%9E%E9%AA%8B%E7%BC%96%E7%A8%8B&from_source=webtop_search&spm_id_from=333.788&search_source=5" target="_blank">实验编程公开课</a></div>
                                 <div class="tool-description">探索编程与艺术结合的创新实践</div>
                             </li>
                             <li class="tool-item">
                                 <div class="tool-name">等待更新</div>
                                 <div class="tool-description">更多讲座内容即将上线</div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tool-category">
+                        <h3>开源项目区</h3>
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://github.com/adafruit/Adafruit_NeoPixel" target="_blank">NeoPixel机械臂</a></div>
+                                <div class="tool-description">开源机械臂项目，支持LED灯带控制</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://github.com/OpenKinect/libfreenect" target="_blank">Kinect交互</a></div>
+                                <div class="tool-description">体感交互设备，用于动作捕捉和手势识别</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://github.com/processing/processing" target="_blank">Processing创意编程</a></div>
+                                <div class="tool-description">艺术与代码结合的交互创作平台</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://github.com/openframeworks/openFrameworks" target="_blank">openFrameworks</a></div>
+                                <div class="tool-description">C++创意编程框架，适合交互艺术创作</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://github.com/arduino/Arduino" target="_blank">Arduino交互</a></div>
+                                <div class="tool-description">开源硬件平台，制作各种交互装置</div>
                             </li>
                         </ul>
                     </div>
@@ -941,10 +1224,10 @@
                         <h3>高校课程</h3>
                         
                         <div class="tutorial-item">
-                            <div class="tutorial-title">厦门大学 & UCA 网页设计（2025）</div>
-                            <div class="tutorial-description">国际合作的网页设计课程</div>
+                            <div class="tutorial-title"><a href="https://www.bilibili.com/video/BV171pKzxEdG?spm_id_from=333.788.videopod.sections&vd_source=ee4738dc87d41f1fb918f5345c352da5" target="_blank">厦门大学 & UCA 网页设计workshop</a></div>
+                            <div class="tutorial-description">使用git上传静态html到GitHub/Gitee</div>
                             <div class="tutorial-image">
-                                <div style="width: 100%; height: 200px; background: #f5f5f5; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">课程图片</div>
+                                <img src="pic/tutorial/web deisgn/web-design.jpg" alt="厦门大学 & UCA 网页设计workshop">
                             </div>
                         </div>
                         
@@ -976,21 +1259,17 @@
                     </div>
 
                     <div class="about-column">
-                        <h2>定期活动与内容更新</h2>
-                        <p>工具：每周1-2个新工具推荐</p>
-                        <p>教程：每月2-3个新教程发布</p>
-                        <p>付费课程：专业课程定期更新</p>
-                        <p>特别策划：专题月活动（如"9月——3D月"）</p>
-                        <p>讲座活动：定期举办主题讲座和讨论</p>
+                        <h2>关于能祂</h2>
+                        <p>能祂是一位从事技术与人类关系研究的跨媒介艺术实践者，其创作建立在批判理论与科技研究的交叉地带，关注当代技术如何介入、影响并重构个体的日常生活经验。</p>
+                        
+                        <p>能祂正从批判性的观察者转向积极的建构者。他提出了一种以普通人类与普通机器之间具有对抗性的协作关系为基础的想象，并计划通过实践进一步验证这一设想，以回应全球化语境下日益加剧的数字异化与科技霸权。</p>
+                        
+                        <p>他的艺术创作涵盖装置、影像、雕塑与首饰等多种媒介，致力于将纸本化的理论研究成果转化为可视化、可感知的表达形式。除艺术创作外，能祂长期深耕于数字艺术与文化传播领域，曾为阿迪达斯国际、中国国家博物馆、阿里巴巴、时尚COSMO等机构提供数字艺术服务。</p>
+                        
+                        <p>2022年，他成为OUTPUT签约数字艺术家。他正在运营实验设计工作室"反观设计R&C Design Studio"，聚焦生成式AI与物质文化交织的设计方法论。此外，能祂曾以客座教师的身份于中央美术学院与北京服装学院教授以技术为基础的艺术设计课程，现在正在厦门大学协助英国UCA的教学团队指导媒体艺术课程。</p>
+                        
+                        <p><strong>个人作品网站：</strong> <a href="https://yangcanhe.com" target="_blank" style="color: #4a6b7a; text-decoration: none;">yangcanhe.com</a></p>
                     </div>
-                </div>
-
-                <div class="content-section">
-                    <h2>用户互动机制</h2>
-                    <p>最新动态：实时更新平台活动和内容</p>
-                    <p>开放式征集：鼓励公众提交工具/资源</p>
-                    <p>用户投稿区：逐步过渡到"共享型社区"</p>
-                    <p>课程咨询：专业课程咨询和指导</p>
                 </div>
 
                 <div class="contact-info">
@@ -1005,8 +1284,8 @@
                     </div>
                     
                     <div class="contact-item">
-                        <h3>平台</h3>
-                        <p>持续更新中</p>
+                        <h3>工作室</h3>
+                        <p>反观设计R&C Design Studio</p>
                     </div>
                 </div>
             </div>
@@ -1047,92 +1326,222 @@
                     <div class="course-detail-content">
                         <div class="content-box">
                             <div id="ai-writing-content" class="course-content-section active">
-                                <section id="course-intro" class="course-section">
-                                    <h2>艺术实践者的AI写作入门课程</h2>
-                                    <p class="course-subtitle">[从基础入门，到专业表达，让你的艺术思考更有力量]</p>
-                                    <p>当我们谈论艺术时，我们谈论的远不止视觉呈现。艺术实践者需要将复杂的创作理念、文化背景、技术手段转化为清晰、有力的文字表达。无论是学术论文、创作陈述、还是项目提案，优秀的写作能力都是艺术实践者不可或缺的核心技能。</p>
-                                    
-                                    <p>然而，传统的写作训练往往与艺术实践脱节，而AI技术的快速发展为艺术写作带来了全新的可能性。本课程将帮助艺术实践者掌握AI辅助写作的核心技能，提升学术表达的专业性和影响力。</p>
-                                </section>
+                                <div class="bio">
+                                    <p class="bioname">
+                                        <span>艺术实践者的AI写作入门课程</span>
+                                    </p>
+                                    <p class="biobracket">[从基础入门，到专业表达，让你的艺术思考更有力量]</p>
+                                    <p>当我们谈论艺术时，我们谈论的远不止视觉呈现，在一些创作背后，往往有一整套观察、分析、阐释和论证的思维系统。学习如何撰写学术性的创作文章，是培养这种思维系统最直接也是最凝练的训练方式。</p>
+                                    <br>
+                                    <br>
+                                    <p><strong>作为创作者，你是否有感觉到：</strong></p>
+                                    <br>
+                                    <p class="highlight-question">1. 一些能够用文字精确表述创作逻辑的创作者，能更好地掌握自己的创作？</p>
+                                    <p class="highlight-question">2. 那些被称为"经典"的作品，似乎都有一套自洽且深刻的理论支撑？</p>
+                                    <p class="highlight-question">3. 在学术场域中，写作能力已经成为检验创作者思考深度的重要标准？</p>
+                                    <p class="highlight-question">4. 无论是海外或国内考研，写作与论述能力都可能成为你脱颖而出的关键？</p>
+                                    <br>
+                                </div>
 
-                                <section id="course-objectives" class="course-section">
-                                    <h3>课程目标</h3>
-                                    <ul>
-                                        <li>掌握AI写作工具的核心功能和应用场景</li>
-                                        <li>建立艺术写作的思维框架和表达体系</li>
-                                        <li>提升学术论文和创作陈述的写作质量</li>
-                                        <li>培养批判性思维和学术表达能力</li>
-                                        <li>建立个人化的AI写作工作流程</li>
-                                    </ul>
-                                </section>
+                                <div class="paragraphs">
+                                    <div class="paragraph">
+                                        <p><strong>课程目标</strong></p>
+                                        <p>本课程将从基础开始，循序渐进地辅助参与者建立学术思维——将感性经验转化为理性认知，将视觉语言翻译为文字论述的能力。通过<span class="highlight-conference">AI工具</span>的深度整合，让学术写作变得更加高效和精准。</p>
+                                        <p>帮助<span class="highlight-conference">刚毕业</span>或<span class="highlight-conference">在读的实践者们</span>掌握<span class="highlight-conference">AI辅助写作</span>技能，提升研究与写作能力，在技术时代保持创作优势。</p>
+                                        <p>尽管有的参与者会是为了完成研究计划（RP）参与我们的课程，但每一个同学的写作结果都能在结束后投递一个与艺术设计相关的会议（如<span class="highlight-conference">Cumulus</span>、<span class="highlight-conference">DRS2026</span>），并被录用<span class="highlight-conference">是我们的目标</span>。</p>
+                                        <p class="conference-note"><strong>PS：</strong>Cumulus（国际艺术、设计与媒体教育联盟）；DRS2026（Design Research Society设计研究学会举办的第2026年度双年会，设计研究领域一个非常重要的国际学术会议）</p>
+                                        <br>
+                                        <p><strong>课程时长：</strong>总计10小时（8小时集体课程 + 2小时一对一辅导）</p>
+                                    </div>
 
-                                <section id="course-content" class="course-section">
-                                    <h3>课程内容</h3>
-                                    <h4>模块一：AI写作基础（2周）</h4>
-                                    <ul>
-                                        <li>AI写作工具介绍与选择</li>
-                                        <li>提示词工程基础</li>
-                                        <li>文本生成与编辑技巧</li>
-                                        <li>质量控制与优化策略</li>
-                                    </ul>
+                                    <div class="paragraph">
+                                        <p><strong>课程特色</strong></p>
+                                        <p>• <span class="highlight-conference">AI工具深度整合</span>——从文献检索到论文润色<br>
+                                        • <span class="highlight-conference">理论与实践结合</span>——真实案例+AI辅助练习<br>
+                                        • <span class="highlight-conference">一对一AI写作指导</span>——个性化AI使用策略<br>
+                                        • <span class="highlight-conference">从创作到论文的完整AI工作流</span></p>
+                                    </div>
+                                </div>
 
-                                    <h4>模块二：艺术写作思维（2周）</h4>
-                                    <ul>
-                                        <li>艺术写作的特点与要求</li>
-                                        <li>学术写作规范与标准</li>
-                                        <li>创作陈述的写作技巧</li>
-                                        <li>批判性思维的培养</li>
-                                    </ul>
+                                <div class="paragraphs">
+                                    <div class="paragraph">
+                                        <p><strong>课程详细内容</strong></p>
+                                        <p>本工坊分为四个核心模块，循序渐进地培养创作者的学术写作能力：</p>
+                                    </div>
 
-                                    <h4>模块三：实践应用（2周）</h4>
-                                    <ul>
-                                        <li>学术论文写作实践</li>
-                                        <li>项目提案撰写</li>
-                                        <li>作品集文字说明</li>
-                                        <li>个人写作风格建立</li>
-                                    </ul>
-                                </section>
+                                    <div class="module-container">
+                                        <div class="module">
+                                            <div class="module-content">
+                                                <h3 class="module-title">模块一：学术写作通识课</h3>
+                                                <p class="module-description">建立学术写作的基础认知，从<span class="highlight-conference">感性创作</span>转向<span class="highlight-conference">理性研究</span>。通过<span class="highlight-conference">AI工具</span>深度分析个人创作脉络，找到独特的<span class="highlight-conference">研究定位</span>，掌握学术资源的高效使用方法，建立系统的知识管理体系。</p>
+                                            </div>
+                                        </div>
 
-                                <section id="course-format" class="course-section">
-                                    <h3>课程形式</h3>
-                                    <ul>
-                                        <li>小班教学，每期不超过10人</li>
-                                        <li>每周2次线上课程，每次2小时</li>
-                                        <li>实时互动与个性化指导</li>
-                                        <li>课后作业与同伴互评</li>
-                                        <li>提供完整的学习资料和工具包</li>
-                                    </ul>
-                                </section>
+                                        <div class="module">
+                                            <div class="module-content">
+                                                <h3 class="module-title">模块二：论述的框架——结构与逻辑的构建</h3>
+                                                <p class="module-description">掌握<span class="highlight-conference">艺术研究</span>的底层逻辑，学会构建自主的论证体系。通过分析优秀案例，掌握文献综述的写作方法，确立个人理论立场。结合<span class="highlight-conference">AI工具</span>进行深度分析，让学术论述更加精准有力。</p>
+                                                <div class="module-subsection">
+                                                    <strong>案例分析环节：</strong>针对<span class="highlight-conference">纯艺类</span>、<span class="highlight-conference">设计类</span>分别开设专项讲解，具体主题由学员课前投票决定，确保内容贴合实际需求。
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                <section id="course-requirements" class="course-section">
-                                    <h3>报名要求</h3>
-                                    <ul>
-                                        <li>艺术、设计或相关专业背景</li>
-                                        <li>有一定的写作基础</li>
-                                        <li>对AI技术应用感兴趣</li>
-                                        <li>能够保证课程时间投入</li>
-                                    </ul>
-                                </section>
+                                        <div class="module">
+                                            <div class="module-content">
+                                                <h3 class="module-title">模块三：技术时代的学术生产——AI与写作的新关系</h3>
+                                                <p class="module-description">探索<span class="highlight-conference">AI时代</span>的学术写作新模式，将AI工具转化为"学术助手"。从文献梳理到语言润色，掌握完整的AI辅助写作流程。在技术辅助下保持<span class="highlight-conference">独立思考</span>，探索真正不可替代的"创造力"。</p>
+                                            </div>
+                                        </div>
 
-                                <section id="course-schedule" class="course-section">
-                                    <h3>开课时间</h3>
-                                    <p>2024年春季班：3月15日 - 4月26日</p>
-                                    <p>2024年夏季班：6月10日 - 7月21日</p>
-                                    <p>2024年秋季班：9月16日 - 10月27日</p>
-                                </section>
+                                        <div class="module">
+                                            <div class="module-content">
+                                                <h3 class="module-title">模块四：从文本到呈现——AI辅助的应用与扩展</h3>
+                                                <p class="module-description">完成从文本到呈现的最后一环，掌握学术写作的规范要求和发表策略。通过<span class="highlight-conference">AI辅助</span>的格式检查、语言润色和投稿优化，学会将研究成果有效传播到不同平台，提升学术影响力。</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                <section id="course-registration" class="course-section">
-                                    <h3>报名方式</h3>
-                                    <p>请发送邮件至：hermeit@outlook.com</p>
-                                    <p>邮件主题：AI写作课程报名</p>
-                                    <p>请在邮件中附上：</p>
-                                    <ul>
-                                        <li>个人简介</li>
-                                        <li>学习背景</li>
-                                        <li>报名动机</li>
-                                        <li>联系方式</li>
-                                    </ul>
-                                </section>
+                                <div class="paragraphs">
+                                    <div class="paragraph">
+                                        <p><strong>详细课程安排表</strong></p>
+                                        <table class="course-schedule">
+                                            <thead>
+                                                <tr>
+                                                    <th>周次</th>
+                                                    <th>模块主题</th>
+                                                    <th>时长</th>
+                                                    <th>主要内容</th>
+                                                    <th>特别环节</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>第1周</td>
+                                                    <td>模块一：学术写作通识课</td>
+                                                    <td>2小时</td>
+                                                    <td>• 研究计划、个人陈述、期刊论文、会议论文、博士论文的区别和特点<br>
+                                                        • 使用AI分析过往作品，找到垂直赛道<br>
+                                                        • 学术资源使用（JSTOR, SAGE, LEONARDO-MIT PRESS等）<br>
+                                                        • 国内考研研究计划书写作</td>
+                                                    <td>使用AI工具为个人作品提出3个研究问题，并建立个人文献库</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>第2周</td>
+                                                    <td>模块二：论述的框架——结构与逻辑的构建</td>
+                                                    <td>2小时</td>
+                                                    <td>• 艺术研究的底层逻辑<br>
+                                                        • 分析优秀艺术论文、创作报告、学术文章<br>
+                                                        • 文献综述写作方法，确立理论立场<br>
+                                                        • 结合AI工具进行文献分析、观点提炼和逻辑结构优化</td>
+                                                    <td>使用AI辅助完成一篇800字文献综述初稿</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>第3周</td>
+                                                    <td>模块三：技术时代的学术生产——AI与写作的新关系</td>
+                                                    <td>2小时</td>
+                                                    <td>• 介绍好用的AI工具的特点和使用场景<br>
+                                                        • 将AI工具转化为"学术助手"<br>
+                                                        • 探索AI时代真正不可替代的"创造力"<br>
+                                                        • 现场演示AI辅助写作的完整流程</td>
+                                                    <td>使用AI工具完善个人研究框架，现场生成写作大纲</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>第4周</td>
+                                                    <td>模块四：从文本到呈现——AI辅助的应用与扩展</td>
+                                                    <td>2小时</td>
+                                                    <td>• 安装插件Zotero<br>
+                                                        • 讲解引用规范<br>
+                                                        • 润色自己的写作<br>
+                                                        • 汇报展示写作成果</td>
+                                                    <td>完成汇报展示，展示自己在课程中的写作成果</td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="paragraphs">
+                                    <div class="paragraph">
+                                        <p><strong>一对一辅导的环节</strong></p>
+                                        <p>我们相信，真正的学习发生在具体的实践中。工作坊将包含两次关键的一对一交流环节：</p>
+                                        
+                                        <div class="module-container">
+                                            <div class="module">
+                                                <div class="module-content">
+                                                    <div class="module-subsection">
+                                                        <strong>第一次（概念打磨，1小时）</strong><br>
+                                                        针对个人的研究主题或创作计划，帮助你厘清核心问题，确立理论框架，无论是RP还是毕业论文选题，都能获得针对性指导。
+                                                    </div>
+                                                    
+                                                    <div class="module-subsection">
+                                                        <strong>第二次（文本讨论，1小时）</strong><br>
+                                                        在你完成初稿后，我们将从学术规范、论证逻辑和表达清晰度三个维度进行专业点评，提出具体的修改建议。
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="module">
+                                                <div class="module-content">
+                                                    <h3 class="module-title">创作者的学术写作：视觉与文字的对话</h3>
+                                                    <p class="module-description">我们的课程拒绝将学术写作简化为机械的格式训练。我们关注的是如何在文字中保留创作者的敏锐感知，如何将视觉思考转化为文字论述，如何在学术规范与个人表达之间找到平衡。通过分析创作者的论文、策展文本和创作自述，你将学会构建属于创作者的独特学术声音。</p>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="module">
+                                                <div class="module-content">
+                                                    <h3 class="module-title">全球视野与本土实践：兼顾国内外学术需求</h3>
+                                                    <p class="module-description">无论你是准备申请海外院校还是国内考研，我们的工作坊都能提供针对性指导。对于海外申请，我们将详细讲解Research Proposal和Personal Statement的写作策略；对于国内考研，我们会重点关注如何符合国内学术规范，如何撰写高质量的研究计划，帮助你在竞争中脱颖而出。</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="paragraphs">
+                                    <div class="paragraph">
+                                        <p><strong>谁适合这门课程？</strong></p>
+                                        <p>• 正在准备<span class="highlight-conference">初审论文</span>，<span class="highlight-conference">毕业论文</span>，以实践为主的艺术设计类在读生</p>
+                                        <p>• 正在申请国际以及部分国内硕士，对<span class="highlight-conference">个人陈述</span>以及<span class="highlight-conference">研究计划</span>感到棘手的申请人</p>
+                                        <p>• 觉得当前的机构整理的RP/PS有限，并且希望<span class="highlight-conference">通过自己的努力</span>提升学术能力的艺术设计类从业者</p>
+                                        <p>• 对视觉文化研究有兴趣，希望掌握<span class="highlight-conference">AI辅助学术写作</span>方法的文化创意领域从业者</p>
+                                        <br>
+                                        <p><strong>特别说明：</strong>为保障名誉，不被挂在小红书，本课程采用限量招生，每期招收7-10名学员。一对一沟通和作业批注需要投入大量精力，我们希望为每位参与者提供个人程度上最优质的交流体验。</p>
+                                    </div>
+
+                                    <div class="paragraph">
+                                        <p><strong>早鸟价格：</strong>￥1200/人（9.14前）</p>
+                                        <p><strong>正常价格：</strong>￥1500/人</p>
+                                        <p><strong>预计开课：</strong>9.20</p>
+                                        <br>
+                                        <p><strong>报名咨询</strong></p>
+                                        <p>添加微信 mysterych924 咨询报名</p>
+                                    </div>
+
+                                    <div class="paragraph">
+                                        <p><strong>主持人介绍</strong></p>
+                                        <p><strong style="color: #333;">CANHE能祂</strong></p>
+                                        <p>硕士毕业于中央圣马丁，实践作品获LVMH集团2025 MAISON/0 THIS EARTH AWARD 提名，学术作品已被期刊Leonardo（MIT PRESS）接收，曾在央美、北服担任客座讲师，教授GenAI与文化遗产创作以及技术基础的创作课程。在CSM就读期间，受纯艺部门讲师Clem Crosby委托，辅导华语学生撰写研究计划，并帮助一名中国籍博士候选人获得ARCH奖学金。</p>
+                                        <p>2024年起，能祂从多媒介创作转向<span class="highlight-conference">艺术研究</span>，将艺术实践作为理论研究的可视化方式。作为<span class="highlight-conference">技术研究</span>的实践者，他深谙实践类学生在面对写作时的困难，然而，他也敏锐地意识到，<span class="highlight-conference">AI工具</span>的引入能够为实践类学生提供强大的支持，不仅能够解决写作的困难，更能帮助他们在表达层面建立另一种<span class="highlight-conference">信心与方法</span>。</p>
+                                        <p>现在，能祂即将加入厦门大学创意与创新学院，协助英国UCA教师团队教授媒体艺术课程。</p>
+                                    </div>
+
+                                    <div class="paragraph">
+                                        <p><strong><span class="highlight-conference">免责声明与补充说明</span></strong></p>
+                                        
+                                        <p><strong><span class="highlight-conference">课程定位：</span></strong><span class="highlight-conference">本工坊并非策展学或艺术批评理论的专业课程，而是面向刚毕业及在读的艺术实践者，帮助大家梳理个人创作脉络、提升写作清晰度，并获取更优质的阅读与研究资源。</span></p>
+                                        
+                                        <p><strong><span class="highlight-conference">非学术认证课程：</span></strong><span class="highlight-conference">本工坊不等同于正规高校的学术写作训练，不提供完整的学科方法论体系。</span></p>
+                                        
+                                        <p><strong><span class="highlight-conference">学习成果差异：</span></strong><span class="highlight-conference">每位学员的收获取决于其个人投入、研究兴趣与写作实践，本工坊无法保证产出符合特定院校或期刊的全部标准。</span></p>
+                                        
+                                        <p><strong><span class="highlight-conference">AI 使用说明：</span></strong><span class="highlight-conference">课程中涉及的 AI 工具（如 ChatGPT、Claude、Qwen、Gemini）仅为辅助方法，学员需对最终成果的逻辑性与学术责任独立负责。ChatGPT、Claude、Gemini为IP在国外的参与者使用，并无教唆国内参与者使用的意图。</span></p>
+                                        
+                                        <p><strong><span class="highlight-conference">非代写声明：</span></strong><span class="highlight-conference">我们不提供任何形式的论文、申请材料代写或代投。本工坊提供的是思路梳理、资源引导与文本修改建议。</span></p>
+                                        
+                                        <p><strong><span class="highlight-conference">版权与隐私：</span></strong><span class="highlight-conference">学员提交的文本与创作内容归学员本人所有，未经许可不会对外公开或使用。</span></p>
+                                    </div>
+                                </div>
                             </div>
                             
                             <div id="portfolio-content" class="course-content-section">
