@@ -1174,8 +1174,7 @@
             <nav class="nav">
                 <a href="#" class="nav-link" data-page="home">Home</a>
                 <a href="#" class="nav-link" data-page="tools">资源库</a>
-                <a href="#" class="nav-link" data-page="tutorials">祂的教程</a>
-                <a href="#" class="nav-link" data-page="preview">本周计划</a>
+                <a href="#" class="nav-link" data-page="tutorials">教程区</a>
                 <a href="#" class="nav-link" data-page="artists">艺术家参考</a>
                 <a href="#" class="nav-link" data-page="about">关于</a>
                 <a href="#" class="nav-link nav-subdued" id="paid-courses-link" data-page="paid-courses">付费课程</a>
@@ -1379,17 +1378,6 @@
                 </div>
             </div>
 
-            <!-- 本周计划页面内容 -->
-            <div id="preview" class="page-content">
-                <div class="hero-dot"></div>
-
-                <div class="about-content" style="text-align: center; max-width: 800px; margin: 0 auto;">
-                    <h2>本周计划</h2>
-                    <p>1. 同步文献区的书籍和论文的内容</p>
-                    <p>2. 更新如何用TRAE/CURSOR制作静态html的教程，和ICI网页工作坊的教学内容进行联合，制作一个自己的网站，将更新在"祂的教程"</p>
-                </div>
-            </div>
-
             <!-- 艺术家参考页面内容 -->
             <div id="artists" class="page-content">
                 <div class="hero-dot"></div>
@@ -1397,7 +1385,7 @@
                 <div class="artist-reference-section">
                     <div class="artist-categories">
                         <div class="artist-category">
-                            <h4 class="artist-category-title">平面艺术家/工作室</h4>
+                            <h4 class="artist-category-title">平面艺术家</h4>
                             <div class="artist-scroll-container">
                                 <div class="artist-list" id="graphic-artists">
                                     <div class="artist-item">
@@ -1521,6 +1509,12 @@
                     <div class="about-column">
                         <h2>关于祂的工具箱</h2>
                         <p>祂的工具箱是一个公益性、开放性、学习友好的艺术学习共享平台。我们致力于为艺术实践者提供高质量的工具资源、教程内容和学术支持。</p>
+                        
+                        <p>平台特色：</p>
+                        <p>工具库：分类整理3D、图像处理、音频、写作等各类创作工具</p>
+                        <p>教程区：从初级到高级的完整学习路径</p>
+                        <p>付费课程：专业深度学习和实践指导</p>
+                        <p>最新动态：实时更新平台活动和内容</p>
                     </div>
 
                     <div class="about-column">
@@ -1574,6 +1568,11 @@
                                 <div class="course-price">¥1,500</div>
                             </div>
                         </div>
+                <div class="course-option" data-course="ai-writing-1">
+                    <div class="course-card">
+                        <div class="course-title">祂的AI写作一期 - 会员入口</div>
+                    </div>
+                </div>
                         <div class="course-option" data-course="portfolio">
                             <div class="course-card">
                                 <div class="course-title">作品集辅导</div>
@@ -1824,6 +1823,19 @@
         </main>
     </div>
 
+    <!-- 密码输入模态框 -->
+    <div id="passwordModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; justify-content: center; align-items: center;">
+        <div style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); max-width: 300px; width: 90%; text-align: center;">
+            <h3 style="margin-bottom: 15px; color: #333;">输入密码</h3>
+            <input type="password" id="passwordInput" placeholder="请输入密码" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 15px; font-size: 16px;">
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button onclick="checkPassword()" style="background: #5a7c8a; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px;">确认</button>
+                <button onclick="closePasswordModal()" style="background: #ccc; color: #333; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px;">取消</button>
+            </div>
+            <div id="passwordError" style="color: #e74c3c; margin-top: 10px; display: none; font-size: 12px;">密码错误</div>
+        </div>
+    </div>
+
     <script>
         // 页面切换功能（全局函数）
         window.switchPage = function(pageId) {
@@ -1915,6 +1927,14 @@
             
             courseOptions.forEach(option => {
                 option.addEventListener('click', function() {
+                    const courseType = this.getAttribute('data-course');
+                    
+                    // 如果是AI写作1期，直接显示密码框
+                    if (courseType === 'ai-writing-1') {
+                        showPasswordModal();
+                        return;
+                    }
+                    
                     // 移除所有active类
                     courseOptions.forEach(opt => opt.classList.remove('active'));
                     contentSections.forEach(section => section.classList.remove('active'));
@@ -1923,7 +1943,6 @@
                     this.classList.add('active');
                     
                     // 显示对应内容
-                    const courseType = this.getAttribute('data-course');
                     const targetSection = document.getElementById(courseType + '-content');
                     if (targetSection) {
                         targetSection.classList.add('active');
@@ -1963,6 +1982,42 @@
                 expandBtn.textContent = '收起';
             }
         }
+
+        // 密码相关功能
+        function showPasswordModal() {
+            document.getElementById('passwordModal').style.display = 'flex';
+            document.getElementById('passwordInput').focus();
+            document.getElementById('passwordError').style.display = 'none';
+        }
+
+        function closePasswordModal() {
+            document.getElementById('passwordModal').style.display = 'none';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordError').style.display = 'none';
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            const correctPassword = '20250921';
+            
+            if (password === correctPassword) {
+                closePasswordModal();
+                // 跳转到新创建的课程页面
+                window.open('ai-writing-course.html', '_blank');
+            } else {
+                document.getElementById('passwordError').style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+            }
+        }
+
+        // 监听回车键
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+        });
 
     </script>
 </body>

@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>祂的AI写作1期 - 艺术写作入门与课程设计</title>
+    <meta name="description" content="基于艺术写作入门与课程设计的专业课程内容">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            background: white;
+            color: #000;
+            letter-spacing: -0.01em;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #5a7c8a;
+        }
+        
+        .header h1 {
+            font-size: 48px;
+            font-weight: 300;
+            color: #3a5a6b;
+            margin-bottom: 20px;
+        }
+        
+        .header .subtitle {
+            font-size: 20px;
+            color: #666;
+            font-weight: 300;
+        }
+        
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+            color: #5a7c8a;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 1px solid #5a7c8a;
+            border-radius: 20px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: #5a7c8a;
+            color: white;
+        }
+        
+        .content-section {
+            margin-bottom: 50px;
+        }
+        
+        .content-section h2 {
+            font-size: 32px;
+            font-weight: 400;
+            color: #3a5a6b;
+            margin-bottom: 25px;
+            border-left: 4px solid #5a7c8a;
+            padding-left: 20px;
+        }
+        
+        .content-section h3 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #2c3e50;
+            margin: 30px 0 15px 0;
+        }
+        
+        .content-section h4 {
+            font-size: 20px;
+            font-weight: 500;
+            color: #34495e;
+            margin: 25px 0 10px 0;
+        }
+        
+        .content-section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        .content-section ul, .content-section ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .content-section li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-left: 4px solid #5a7c8a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .highlight-box h4 {
+            color: #5a7c8a;
+            margin-top: 0;
+        }
+        
+        .course-objectives {
+            background: #e8f4f8;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        .course-objectives h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        
+        .course-objectives ul {
+            margin-top: 15px;
+        }
+        
+        .course-objectives li {
+            font-weight: 500;
+            color: #34495e;
+        }
+        
+        .writing-modes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .writing-mode-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .writing-mode-card:hover {
+            border-color: #5a7c8a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(90, 124, 138, 0.15);
+        }
+        
+        .writing-mode-card h4 {
+            color: #5a7c8a;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 14px;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        
+        .comparison-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .dai-analysis {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .dai-analysis h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+        
+        .dai-step {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid #ffc107;
+        }
+        
+        .dai-step h5 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .dai-steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .dai-step-card {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            height: fit-content;
+        }
+        
+        .dai-step-card:hover {
+            border-color: #5a7c8a;
+            box-shadow: 0 4px 12px rgba(90, 124, 138, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .dai-step-card h5 {
+            color: #5a7c8a;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .step-subtitle {
+            color: #6c757d;
+            font-style: italic;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .dai-step-card p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .dai-step-card ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .dai-step-card li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 1200px) {
+            .dai-steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .dai-steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .upgrade-steps {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .upgrade-step {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .upgrade-step:hover {
+            border-color: #5a7c8a;
+            box-shadow: 0 2px 8px rgba(90, 124, 138, 0.1);
+        }
+        
+        .upgrade-step h5 {
+            color: #5a7c8a;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .upgrade-step p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #6c757d;
+        }
+        
+        .upgrade-step ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .upgrade-step li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 768px) {
+            .upgrade-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .practice-exercise {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .practice-exercise h4 {
+            color: #0c5460;
+            margin-top: 0;
+        }
+        
+        .academic-resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .resource-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            border-color: #5a7c8a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(90, 124, 138, 0.15);
+        }
+        
+        .resource-card h5 {
+            color: #5a7c8a;
+            margin-bottom: 10px;
+        }
+        
+        .resource-card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .resource-card .focus {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .conference-list {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .conference-list h4 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        
+        .conference-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid #5a7c8a;
+        }
+        
+        .conference-item h5 {
+            color: #5a7c8a;
+            margin-bottom: 8px;
+        }
+        
+        .conference-item p {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        
+        .conference-item .suitable-for {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .password-protection {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .password-protection h4 {
+            color: #721c24;
+            margin-bottom: 10px;
+        }
+        
+        .password-protection p {
+            color: #721c24;
+            margin-bottom: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .header h1 {
+                font-size: 36px;
+            }
+            
+            .content-section h2 {
+                font-size: 28px;
+            }
+            
+            .writing-modes {
+                grid-template-columns: 1fr;
+            }
+            
+            .academic-resources {
+                grid-template-columns: 1fr;
+            }
+            
+            .back-link {
+                position: static;
+                display: inline-block;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <a href="index.html" class="back-link">← 返回主页</a>
+    
+    <div class="container">
+        <div class="header">
+            <h1>祂的AI写作1期</h1>
+        </div>
+
+        <div class="content-section">
+            <h2>为什么创作者需要写作</h2>
+            <p>在当代艺术生态中，写作已成为一种不可或缺的核心技能，对职业发展和实践中不可或缺的重要组成部分。这是一种将视觉语言转化为文字论述的过程，探索在个人创作语境中的关键要素。无论是平面设计、装置艺术还是数字媒体，写作能力不仅能成为个人成功的标志，更能推动学习进程和推动专业发展的重要作用。</p>
+            
+            <p>创作者作为一个相对私密的创作空间时代已经过去，创作者越来越需要承担着公共知识传播和专业实践者的角色。对于创作者来说，写作不仅是与公众沟通、传播思想的重要工具，也是参与学术驻留项目、获得奖学金的关键因素。无论是申请研究院校、参与学术会议，还是发表论文，写作能力都是决定成败的关键因素。更重要的是，写作为创作者提供了一个重要的自我反思和深度思考的工具。通过文字梳理作品脉络，创作者能够更清晰地把握自己的创作思路，从而让创作过程更加理性和坚定。</p>
+        </div>
+
+        <div class="course-objectives">
+            <h3>本课程的学习指标：</h3>
+            <ul>
+                <li>了解不同写作模式</li>
+                <li>了解发表/查阅文章的渠道</li>
+                <li>建立/寻找自己的研究问题</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>1. 写作模式概览</h2>
+            <p>艺术写作的方法来源大致分为三个层面：</p>
+            
+            <div class="writing-modes">
+                <div class="writing-mode-card">
+                    <h4>1. 反思性/个人化写作</h4>
+                    <p>以艺术家自述 (Artist Statement) 为代表，这类写作是从创作者的内在视角出发，阐述作品的"为何"与"如何"。</p>
+                </div>
+                
+                <div class="writing-mode-card">
+                    <h4>2. 批评性/分析性写作</h4>
+                    <p>以艺术评论 (Review) 和形式分析 (Formal Analysis) 为代表，目的是从外部观察者的角度，对作品进行客观分析。</p>
+                </div>
+                
+                <div class="writing-mode-card">
+                    <h4>3. 学术性/专业性写作</h4>
+                    <p>如研究计划 (Research Proposal)、会议论文 (Conference Paper) 等，旨在参与广泛学术和专业领域发展对话。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>2. 学术写作类型对比</h2>
+            <h4 style="color: #5a7c8a; margin-bottom: 20px; font-size: 18px;">研究计划包含了未来要做的内容，这些内容拆分下来，将投递会议，期刊，以及完成博士论文</h4>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>类型</th>
+                        <th>研究计划</th>
+                        <th>会议论文</th>
+                        <th>期刊论文</th>
+                        <th>博士论文/学位论文</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>目标</strong></td>
+                        <td>确定研究问题/假设，希望得到导师认可，规划未来研究方向</td>
+                        <td>展示初步研究结果，与学界同行交流，获取反馈</td>
+                        <td>发表研究成果，在某一领域进行深入探讨，理论或实证研究</td>
+                        <td>展示博士研究阶段，完成原创性研究，获得学位论文的核心部分</td>
+                    </tr>
+                    <tr>
+                        <td><strong>读者</strong></td>
+                        <td>导师/研究委员会/资助机构评审员 - 通过希望认为你的计划是合理、有价值、有创新性的</td>
+                        <td>同行或参与者（研究者、学者）</td>
+                        <td>同领域学界网络（期刊读者、学者、研究者）</td>
+                        <td>导师/学校/委员会/外部评审员，学术委员会通过，存档</td>
+                    </tr>
+                    <tr>
+                        <td><strong>内容</strong></td>
+                        <td>研究问题/目标/假设/文献回顾、研究背景、时间安排、资源、问题/挑战、研究计划等</td>
+                        <td>通过研究分析，展示研究结果，讨论研究计划，讨论什么、为什么、如何</td>
+                        <td>非常全面：包括研究背景、文献回顾、方法、结果、讨论、结论以及未来研究方向等，可能包括作品实践、实验等</td>
+                        <td>原创性要求：新发现、新的角度、实践创新、理论贡献，能够推动一个学术领域发展</td>
+                    </tr>
+                    <tr>
+                        <td><strong>长度 & 结构</strong></td>
+                        <td>较短，中等，结构偏假设型，包括：问题、摘要、研究问题/假设/目标、方法、资源、时间安排、预算（如果有）、预期成果、参考文献等</td>
+                        <td>研究计划稍长，中等，需要详细；可能包括摘要页/格式要求，结构类似报告 + 讨论 + 结论</td>
+                        <td>较长，详细格式，图表要求多；方法与方法细节丰富，包括图表、作品记录、实验数据、丰富的参考文献，要求也更高，也可能需要口头展示、实物展示</td>
+                        <td>最长，章节多；内容全面；记录实践数据、作品实践和图表资料、丰富的参考文献，要求也更高，也可能需要口头展示、实物展示</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content-section">
+            <h2>3. 不同专业的写作特点</h2>
+            
+            <div class="writing-modes">
+                <div class="writing-mode-card">
+                    <h4>纯艺术类 (Fine Art)</h4>
+                    <p><strong>主要关注：</strong>通过作品创作、探索、学术研究、理论思考、媒体实验等，探索空间、材料等的关系，强调作品的"形式"、"媒体"、"材料"等要素，以及创作者的个人性。研究可能涉及哲学、美学、文化研究等，也可能需要为作品创作装置、展览等。</p>
+                    
+                    <p><strong>实践成分：</strong>通常很重，作品创作（装置、展览等）是研究的重要组成部分，理论（历史、媒体、文化研究等）部分需要支撑实践，理论分析可能产生学术价值，占据重要地位，需要文献回顾、理论分析、历史研究等。</p>
+                    
+                    <p><strong>实践过程：</strong>不一定需要传统学术实验，可能包括"实践性研究"、"媒体实验"、"空间实验"、"身体实验"等，强调探索性、探索媒体、探索新的表达方式、探索实验。是否有参与者、是否有感官体验、是否有互动性，推荐实践性不强，但需要明确目标。</p>
+                </div>
+
+                <div class="writing-mode-card">
+                    <h4>设计类 (Design)</h4>
+                    <p><strong>主要关注：</strong>强调功能性、用户体验、可用性、形式、媒体，以及解决实际问题；与商业、企业、用户需求、系统等结合较多；设计既要学术也要实用。</p>
+                    
+                    <p><strong>实践 + 理论的成分混合：</strong>实践（原型、产品、界面/系统等）通常是核心，理论（周边分析、用户研究、使用情境、文化背景等）也很重要。</p>
+                    
+                    <p><strong>实践过程：</strong>较长，包括用户研究、原型设计、用户测试、可用性研究等，可能包括访谈、问卷、观察/记录、行为分析等，也涉及可用性测试、A/B测试等。实践一般有比较性，一般有学术实验，可能包括。</p>
+                </div>
+
+                <div class="writing-mode-card">
+                    <h4>HCI / 人机交互研究</h4>
+                    <p><strong>主要关注：</strong>HCI 关注人、系统、社会/文化等多维度。写作在理论分析 / 实践研究中也实践性，用户研究、系统验证等。对用户体验、可用性、系统功能（效率、用户满意度）一般要求，也可能涉及媒体/新技术结合。</p>
+                    
+                    <p><strong>研究内容：</strong>通常包括理论分析 + 实践 HCI / 用户研究 的，实践数据成分可能占很大比例，实践 / 原型设计、实践研究成分也很重。实践 + 实践 + 用户研究 三者缺一不可。</p>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>核心概念：Practice-based / Practice-led / Artistic Research</h4>
+                <p>先介绍几个相关术语，因为很多写作在艺术与设计里都以这些形式出现，它们跟"有没有实验"这个问题密切相关。</p>
+                
+                <p><strong>Practice-based research / Practice-led research / Practice as research / Artistic research：</strong>这些术语都指在学术研究中"实践 /创作"本身不仅是研究背景或辅助，而是研究生成知识的方式之一。实践（艺术创作／设计项目／实验设计／视觉／互动装置等）是研究输出的一部分。</p>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <img src="pic/writing/行文框架.jpg" alt="行文框架" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                </div>
+            </div>
+            
+            <div style="margin-top: 25px;">
+                <h5 style="color: #5a7c8a; margin-bottom: 15px; font-size: 16px;">相关实验室链接：</h5>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="margin-bottom: 10px;">
+                        <a href="https://criticalmedialab.ch/" target="_blank" style="color: #5a7c8a; text-decoration: none; font-weight: 500;">
+                            Critical Media Lab (University of Applied Sciences and Arts Northwestern Switzerland)
+                        </a>
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        <a href="https://sensilab.monash.edu/research/#" target="_blank" style="color: #5a7c8a; text-decoration: none; font-weight: 500;">
+                            莫纳什Sensilab实验室 (Monash SensiLab)
+                        </a>
+                    </li>
+                    <li style="margin-bottom: 10px;">
+                        <a href="https://recfro.github.io" target="_blank" style="color: #5a7c8a; text-decoration: none; font-weight: 500;">
+                            NARRATIVE SPACES (City U)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>4. 为什么一个"没有实验"的理论／概念／反思型文章可以被期刊接受</h2>
+            
+            <div class="highlight-box">
+                <h4>1. 学科传统／领域期望不同</h4>
+                <p>在艺术理论／艺术史／批评理论/非遗等领域，属于纯文科专业，偏重分析、概念发展、哲思／批评／历史研究，而不一定依赖实验或实证研究。理论推断、历史档案研究、文本分析、符号学／媒介分析等在这些领域是常规。并且非遗做不了实验！</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>2. 理论贡献与概念创新本身就是一种价值（极为罕见）</h4>
+                <p>如果一篇文章提出了新的概念框架、新的理论视角／批判性问题／把现有理论结合得新颖／提出对话性质的问题，这些本身就是学术贡献。即使没有实证数据，它可能扩张了思考的边界，提出新的问题／视角。</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>3. 资源与可行性因素</h4>
+                <p>有些论题本身不容易做实验、获取用户样本、或做实地调研。比如历史时期的艺术品、理论／美学反思、档案研究、媒介研究。实验性的研究在时间／成本／伦理／获取参与者等方面可能困难或不合适。</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>4. 期刊或编辑／审稿标准允许概念／理论型文章</h4>
+                <p>有些期刊明确接受理论文章（conceptual / theoretical papers / review / essay 型文章）。它们把"理论创见""批判性思考""文献整合／视角提出"看得很重。比如政治学里的 "International Theory" 还有DIS，CHI这些交互会议里有一栏叫做立场文章。</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>5. 在哪发布，在哪看</h2>
+            
+            <h3>纯艺术论文期刊</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>期刊名称</th>
+                        <th>主要领域/侧重</th>
+                        <th>适合哪种类型文章</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Journal for Artistic Research (JAR)</strong></td>
+                        <td>艺术研究 / Artistic Research / 实践导向艺术</td>
+                        <td>理论＋实践输出／创作 +反思型／实践型强；实验性不一定必须。适合纯艺术项目。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Third Text</strong></td>
+                        <td>当代艺术 +全球艺术 /理论批评／政治／文化研究</td>
+                        <td>偏理论、批评、文化／社会政治视角强的文章；可包含案例分析。适合纯艺术理论与批判。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Visual Resources</strong></td>
+                        <td>艺术史 /视觉艺术 /数字艺术史 /图像学／媒介理论</td>
+                        <td>理论与视觉材料分析型；实验／用户研究成分较少。适合艺术理论／图像分析／媒介研究。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Technoetic Arts: A Journal of Speculative Research</strong></td>
+                        <td>跨艺术 +技术 +意识（mind） +思辨／实验性艺术／技术媒介艺术</td>
+                        <td>非常适合思辨设计／实验艺术／媒介艺术项目；创作 +实验性／反思性兼具。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Journal of Comparative Literature & Aesthetics</strong></td>
+                        <td>美学／文艺理论／审美哲学／文学与艺术批评</td>
+                        <td>纯理论／审美／哲学与艺术关系探讨型；适合理论型文章。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Media Theory</strong></td>
+                        <td>媒介理论／媒体研究／批判理论／文化研究</td>
+                        <td>理论性文章、批判性分析、媒介哲学、文化研究；特别欢迎女性主义理论、酷儿理论、批判种族理论视角的文章</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Design Issues</strong></td>
+                        <td>设计理论与批评／设计史／设计哲学／设计方法学</td>
+                        <td>设计理论研究、设计批评、设计史研究、设计哲学探讨；适合设计理论型文章</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interacting with Computers / Human–Computer Interaction</strong></td>
+                        <td>人机交互研究／交互设计／用户体验／计算机交互</td>
+                        <td>HCI研究、交互设计、用户体验研究、计算机交互系统；适合实证研究和理论分析</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>HCI类会议</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>会议名称</th>
+                        <th>主要领域/主题</th>
+                        <th>适合哪类研究/文章类型</th>
+                        <th>注意事项/审稿要求</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ACM CHI</strong></td>
+                        <td>HCI /交互设计 /用户体验 /技术／交互系统的研究</td>
+                        <td>实验型／用户研究／原型／交互系统 +评估型很适合；理论性或设计实验性的创新项目也可能被接受</td>
+                        <td>高竞争；审稿严格；实证／用户研究设计要坚实；很多论文要提供用户实验或评价数据</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DIS (Designing Interactive Systems)</strong></td>
+                        <td>交互设计 /用户体验设计 /设计方法学 /交互系统设计</td>
+                        <td>设计导向研究、交互设计方法、用户体验研究、设计原型、设计工具和过程</td>
+                        <td>重视设计创新和用户体验；接受理论性和实践性文章；有专门的立场文章(Provocations)栏目</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CSCW</strong></td>
+                        <td>社会技术系统 /协同／社会影响／互动技术</td>
+                        <td>适合人机交互、社会影响、协作系统、设计 +用户研究／现场研究</td>
+                        <td>审稿看重系统设计实用与理论贡献并重；用户实地／参与型研究常见</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HCI International</strong></td>
+                        <td>广泛的 HCI 主题，包括可用性、体验、界面、社会因素等</td>
+                        <td>能做用户研究 +设计 +实验 +理论 +应用型混合项目都行</td>
+                        <td>多 track；可以选择适合自己的主题；注意提前查 Call for Papers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>E&PDE</strong></td>
+                        <td>产品设计／设计教育／设计过程／设计创新</td>
+                        <td>思辨设计／教育实践型／设计过程研究／案例研究经常出现在这类会议。实证或理论皆可</td>
+                        <td>教育与设计实践结合强；如果能带学生反馈／课堂研究／案例分析会比较有力</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>设计会议</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>会议名称</th>
+                        <th>主要领域/主题</th>
+                        <th>适合哪类研究/文章类型</th>
+                        <th>注意事项/审稿要求</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>DRS (Design Research Society)</strong></td>
+                        <td>设计研究 /设计理论 /设计方法学 /设计教育 /跨学科设计研究</td>
+                        <td>设计理论研究、设计方法创新、设计教育研究、思辨设计、设计批评、设计历史</td>
+                        <td>两年一度；重视设计研究的理论贡献；接受各种设计研究方法；有多个track可选择</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cumulus</strong></td>
+                        <td>设计教育 /设计创新 /设计与社会 /可持续设计 /设计管理</td>
+                        <td>设计教育实践、设计与社会责任、可持续设计、设计创新案例、设计管理研究</td>
+                        <td>国际设计院校联盟；重视设计教育和社会影响；适合教育实践型研究</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>算法艺术会议</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>会议名称</th>
+                        <th>地点/时间</th>
+                        <th>主题/方向</th>
+                        <th>投稿类型/适合人群</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>xCoAx</strong></td>
+                        <td>2025年7月在苏格兰Dundee举行</td>
+                        <td>探讨计算工具、媒介、艺术、审美、算法等交叉：艺术 +技术 +文化 +性能/表现形式/交互等</td>
+                        <td>非常适合创作＋理论＋实验／艺术装置 +视觉媒介项目；接受论文＋艺术作品＋表演</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ICCC</strong></td>
+                        <td>在葡萄牙等地有举办</td>
+                        <td>专注于"计算创造力"：生成艺术、算法艺术、音乐／声音／影像设计等</td>
+                        <td>如果有做 AI 算法生成艺术／声音视觉设计／创意系统，这会议非常合适</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Expanded Conference</strong></td>
+                        <td>Linz, 奥地利；2025年9月举办</td>
+                        <td>关注交互艺术／动画／可视化／艺术 +科技 +社会互动/视觉表达在数字与互动媒介中的实验</td>
+                        <td>对想做艺术＋互动／视觉表达／动画实验／媒介实验／展演作品的学生来说非常合适</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EvoMUSART</strong></td>
+                        <td>欧洲多个地点轮流举办；2025年将举办</td>
+                        <td>艺术/声音/音乐/设计领域里机器学习／人工智能／进化计算等技术在创作与分析中的应用</td>
+                        <td>如果学生的项目中含有 AI /算法创作／声音／视频生成／计算主体，这会议很匹配</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>非遗-民族志-美术馆期刊</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>期刊名称</th>
+                        <th>主要方向/领域</th>
+                        <th>是否偏重理论/民族志/实证调研</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Ethnography（SAGE）</strong></td>
+                        <td>社会文化变迁的民族志研究，文化/社会中的生活实践、仪式、民俗等</td>
+                        <td>强民族志/实地调研/质性研究导向</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Journal of Contemporary Ethnography</strong></td>
+                        <td>用现代视角看文化实践；城市生活；文化变迁；仪式/日常实践等</td>
+                        <td>民族志+质性案例研究为主；理论与实证结合</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HAU: Journal of Ethnographic Theory</strong></td>
+                        <td>民族志理论/人类学理论/方法论/文化研究</td>
+                        <td>理论+民族志；可能不总有"实验"但会要方法与概念清晰</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Space and Culture</strong></td>
+                        <td>城市文化/地理文化/文化研究/媒介研究/公共空间/文化与环境相互作用</td>
+                        <td>混合：实证民族志/文化研究案例/理论分析</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Public Culture</strong></td>
+                        <td>全球化文化政治/媒介/文化认同/权力与文化/跨文化研究</td>
+                        <td>多民族志/理论/文化研究导向</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sojourn: Journal of Social Issues in Southeast Asia</strong></td>
+                        <td>东南亚地区社会文化问题；种族/移民/身份/旅游/文化变迁等</td>
+                        <td>地区性+实证+理论结合</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>非遗-民族志-美术馆会议</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>会议名称</th>
+                        <th>地区/组织者/频率</th>
+                        <th>主题/方向/投稿类型</th>
+                        <th>适合哪些项目类型</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>International Conference on Intangible Cultural Heritage (ICICH)</strong></td>
+                        <td>Sri Lanka（斯里兰卡）等地；由大学+文化中心主办。(icich.sjp.ac.lk)</td>
+                        <td>非遗/Intangible Cultural Heritage/民俗/传统工艺/表演/口头传统等；会议接受来自研究者+实践者的摘要/论文。(icich.sjp.ac.lk)</td>
+                        <td>非遗研究+地区/本土文化实践；如果你有做传统民俗/工匠访谈/仪式记录/文化政策研究，这会议很合适。</td>
+                    </tr>
+                    <tr>
+                        <td><strong>International Conference on Intangible Cultural Heritage (other editions)</strong></td>
+                        <td>多地/有联合组织者如UNESCO等参与。(iicas.int)</td>
+                        <td>探讨非遗研究的新方法/保护/传播/地方社会实践等。投稿通常可以是案例研究+政策建议+文化实践。</td>
+                        <td>对于非遗保护/社区参与/本土传统实践的项目非常合适。</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>学术资源与平台</h3>
+            <div class="academic-resources">
+                <div class="resource-card">
+                    <h5>JSTOR</h5>
+                    <p>人文社会科学研究重要数据库</p>
+                    <p class="focus">特别值得关注：Artstor on JSTOR - 提供大量艺术史图像和学术期刊、书籍资料</p>
+                </div>
+                
+                <div class="resource-card">
+                    <h5>SAGE Journals</h5>
+                    <p>科学期刊数据库，提供强大的高级搜索功能</p>
+                    <p class="focus">可根据关键词、作者、期刊名称等多种方式筛选</p>
+                </div>
+                
+                <div class="resource-card">
+                    <h5><a href="https://brand-new-life.org/b-n-l/focus/imagination-as-a-site-of-struggle" target="_blank" style="color: #5a7c8a; text-decoration: none;">Brand New Life</a></h5>
+                    <p>当代艺术与文化研究期刊</p>
+                    <p class="focus">专注于"想象作为斗争场域"等前沿议题，提供批判性文化分析</p>
+                </div>
+                
+                <div class="resource-card">
+                    <h5><a href="http://monumenttotransformation.org/atlas-of-transformation/index.html" target="_blank" style="color: #5a7c8a; text-decoration: none;">Atlas of Transformation</a></h5>
+                    <p>转型地图集 - 艺术与社会变革研究平台</p>
+                    <p class="focus">探索艺术在社会转型中的作用，提供跨学科的研究视角</p>
+                </div>
+                
+                <div class="resource-card">
+                    <h5><a href="https://artsanddemocracy.org/what-we-do/briefing-calls/" target="_blank" style="color: #5a7c8a; text-decoration: none;">Arts & Democracy</a></h5>
+                    <p>艺术与民主研究平台</p>
+                    <p class="focus">关注艺术在社会正义和民主参与中的作用，提供简报和深度分析</p>
+                </div>
+                
+                <div class="resource-card">
+                    <h5><a href="https://www.openhumanitiespress.org/books/titles/the-neganthropocene/" target="_blank" style="color: #5a7c8a; text-decoration: none;">Open Humanities Press</a></h5>
+                    <p>开放人文出版社</p>
+                    <p class="focus">提供《The Neganthropocene》等前沿理论著作，关注后人类时代的研究</p>
+                </div>
+                
+                <div class="resource-card">
+                    <h5><a href="https://www.researchcatalogue.net/portal/journals" target="_blank" style="color: #5a7c8a; text-decoration: none;">Research Catalogue</a></h5>
+                    <p>研究目录 - 艺术研究期刊门户</p>
+                    <p class="focus">提供艺术研究相关的期刊索引和学术资源</p>
+                </div>
+                
+                <div class="resource-card">
+                    <h5><a href="https://www.usaoncanvas.com/include/guide_top_art_magazines.php" target="_blank" style="color: #5a7c8a; text-decoration: none;">USA on Canvas</a></h5>
+                    <p>顶级艺术杂志指南</p>
+                    <p class="focus">提供艺术杂志的详细指南和分类信息</p>
+                </div>
+                
+                <div class="resource-card">
+                    <h5><a href="https://www.lespressesdureel.com/EN/magazines.php?menu=3" target="_blank" style="color: #5a7c8a; text-decoration: none;">Les Presses du Réel</a></h5>
+                    <p>法国艺术出版社杂志平台</p>
+                    <p class="focus">提供当代艺术、设计、建筑等领域的专业杂志和出版物</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>6. 找到自己的研究定位：实用的框架</h2>
+            
+            <div class="dai-analysis">
+                <h4>DAIJ 四步分析法</h4>
+                <p>艺术批评并非仅仅是表达"我喜欢"或"我不喜欢"。它是一个结构化的过程，旨在通过细致的观察和分析，深入理解一件艺术作品。理论家埃德蒙·伯克·费尔德曼（Edmund Burke Feldman）在他的著作《视觉体验的多样性》（Varieties of Visual Experience）中，提出了一个影响深远的四步批评法，为任何背景的学生提供了一个清晰、实用的入门框架。这四个相互关联的阶段是：描述、分析、阐释和评判。这个方法的优点在于，它从客观、易于回答的问题开始，逐步引导至更具思辨性的阐释和评判，从而建立起观看和讨论艺术的信心。</p>
+                
+                <div class="dai-steps-grid">
+                    <div class="dai-step-card">
+                        <h5>1. 描述 (Description)</h5>
+                        <p class="step-subtitle">你看到了什么？</p>
+                        <p>这是客观和观察的阶段，目的是记录作品的所有可见元素，不加入任何主观判断。</p>
+                        <ul>
+                            <li><strong>基本信息：</strong>首先记录作品的基本信息，包括作品标题、创作者、创作时间、尺寸以及媒体（Material）等</li>
+                            <li><strong>视觉元素：</strong>详细列出所有视觉元素，包括形状（直线、曲线、几何形、有机形）、色彩（色相、明度、饱和度）、质感（平滑、粗糙）等</li>
+                            <li><strong>主题内容：</strong>如果作品是具象的，描述主题：人物、风景、静物等</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="dai-step-card">
+                        <h5>2. 分析 (Analysis)</h5>
+                        <p class="step-subtitle">作品是如何组织的？</p>
+                        <p>这一阶段关注作品的形式（Form）构成，分析视觉元素如何组织和安排。</p>
+                        <ul>
+                            <li><strong>构图元素：</strong>元素在画面中如何排列，是否有视觉重点（Emphasis），如何引导视线（Movement）</li>
+                            <li><strong>元素关系：</strong>不同元素之间如何相互作用，例如色彩之间是否存在对比（Contrast），形状排列是否平衡（Balance）等</li>
+                            <li><strong>空间处理：</strong>空间如何被创造，例如通过透视、色彩变化等</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="dai-step-card">
+                        <h5>3. 阐释 (Interpretation)</h5>
+                        <p class="step-subtitle">作品意味着什么？</p>
+                        <p>这是最具创造性和思辨性的部分。在这一阶段，需要基于前面收集的证据，提出一个关于作品概念（Concept）的假设。</p>
+                        <ul>
+                            <li><strong>主题观点：</strong>作品主要表达什么思想、情感或信息</li>
+                            <li><strong>寻找证据：</strong>基于描述和分析阶段观察到的具体视觉证据来支持这个观点</li>
+                            <li><strong>多种可能：</strong>一件作品可能有多种合理的阐释，关键是阐释是否具有说服力，能够被作品视觉信息支持</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="dai-step-card">
+                        <h5>4. 判断 (Judgment)</h5>
+                        <p class="step-subtitle">作品成功吗？</p>
+                        <p>这是最后一个重要步骤，对作品的价值和成败进行判断。判断不应是个人喜好，而应基于一个明确的标准。</p>
+                        <ul>
+                            <li><strong>形式主义 (Formalism)：</strong>从美学角度评判，一件成功作品的形式组织是否统一，各元素之间是否和谐</li>
+                            <li><strong>表现主义 (Expressivism)：</strong>这个标准关注作品在情感中的表达力，作品是否成功地传达了某种情感或思想</li>
+                            <li><strong>工具主义 (Instrumentalism)：</strong>这个标准关注作品在实现某种社会、政治或宗教目的方面的有效性</li>
+                            <li><strong>比较 (Comparison)：</strong>将作品与同一艺术家、同一时期或同一主题的其他作品进行比较，也是一种有效的评判方式</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+            <div class="highlight-box">
+                <h4>寻找研究方向"升级框架：用于自我反思与作品集分析的四步法</h4>
+                <p>费尔德曼的方法不仅适用于分析单件作品，更可以升级为一个强大的自我反思工具，帮助艺术家审视自己的整个作品集（Portfolio），并从中提炼出未来的研究方向。这个过程将批评的焦点从外部转向内部，从"这件作品是什么"转向"我的创作实践是什么"。</p>
+                
+                <div class="upgrade-steps">
+                    <div class="upgrade-step">
+                        <h5>1. 描述 (宏观清单)</h5>
+                        <ul>
+                            <li><strong>一致性媒材：</strong>你最常使用的材料、软件是什么？是油画、数字媒介，还是混合材料？</li>
+                            <li><strong>重复性主题：</strong>哪些主题、图像或符号在你的作品中反复出现？</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="upgrade-step">
+                        <h5>2. 分析 (模式识别)</h5>
+                        <ul>
+                            <li><strong>风格演变：</strong>你的风格是如何随时间变化的？早期的作品和近期的作品在形式和概念上有什么不同？</li>
+                            <li><strong>技术发展：</strong>你的技法/工具是否越来越复杂或越来越简化？你对材料的掌控力有何变化？</li>
+                            <li><strong>主题关联：</strong>不同作品的主题之间是否存在一个潜在的、连贯的叙事线索？是平行叙事还是开始更有深度的叙事？</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="upgrade-step">
+                        <h5>3. 阐释 (提炼核心)</h5>
+                        <ul>
+                            <li><strong>发现核心：</strong>你的作品集整体上在探讨什么核心问题或表达什么核心情感？</li>
+                            <li><strong>明确创作动机：</strong>是什么驱使作者持续创作？是什么让作者对某些特定的主题和形式如此着迷？</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="upgrade-step">
+                        <h5>4. 评判 (规划未来方向)</h5>
+                        <p>这一步不再是评判单件作品的"好坏"，而是基于自我阐释，为未来的创作和研究制定策略。</p>
+                        <ul>
+                            <li><strong>识别优势与盲点：</strong>在你的创作实践中，哪些方面最成熟、最独特？哪些方面是无意识的重复，或是尚未充分探索的领域？在这些创作中，创作的核心是否有推进？和作者类似主题的艺术家有哪些？比作者做的更好的艺术家有哪些？有哪些更加激进和成熟的理论值得借鉴？</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // 简单的页面交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为所有卡片添加点击效果
+            const cards = document.querySelectorAll('.writing-mode-card, .resource-card, .conference-item');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+            
+            // 平滑滚动到锚点
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
