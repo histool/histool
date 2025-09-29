@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>祂的AI写作1期 - 艺术研究路径导读</title>
+    <meta name="description" content="基于艺术研究路径导读的专业课程内容">
+    
+    <!-- 引入jQuery，因为nav-script.js需要它 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- 引入导航脚本 -->
+    <script src="nav-script.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            background: white;
+            color: #000;
+            letter-spacing: -0.01em;
+            overflow-x: hidden;
+        }
+        
+        /* 左侧导航栏样式 - 修改为中间白色带线框 */
+        nav.main {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 16.666%;
+            max-height: 80vh;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #333;
+            padding: 20px;
+            z-index: 998;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav.main.hidden {
+            transform: translate(-100%, -50%);
+        }
+        
+        nav.main h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 400;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            color: #3a5a6b;
+        }
+        
+        nav.main ul {
+            list-style: none;
+        }
+        
+        nav.main li {
+            margin-bottom: 10px;
+        }
+        
+        nav.main a {
+            color: #555;
+            text-decoration: none;
+            display: block;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav.main a:hover,
+        nav.main a.active {
+            background: #f0f0f0;
+            color: #3a5a6b;
+            font-weight: 500;
+        }
+        
+        /* 触发区域样式 */
+        .nav-trigger-left {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 100vh;
+            background: rgba(58, 90, 107, 0.1);
+            z-index: 997;
+            cursor: pointer;
+        }
+        
+        /* 主内容区域样式 - 调整为居中显示 */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px 40px 20px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        /* 当导航栏隐藏时，内容区域保持居中 */
+        .nav-hidden .container {
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #5a7c8a;
+        }
+        
+        .header h1 {
+            font-size: 48px;
+            font-weight: 300;
+            color: #3a5a6b;
+            margin-bottom: 20px;
+        }
+        
+        .header .subtitle {
+            font-size: 20px;
+            color: #666;
+            font-weight: 300;
+        }
+        
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+            color: #5a7c8a;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 1px solid #5a7c8a;
+            border-radius: 20px;
+            background: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* 当导航栏隐藏时，返回链接位置保持不变 */
+        .nav-hidden .back-link {
+            left: 20px;
+        }
+        
+        .back-link:hover {
+            background: #5a7c8a;
+            color: white;
+        }
+        
+        .content-section {
+            margin-bottom: 50px;
+        }
+        
+        .content-section h2 {
+            font-size: 32px;
+            font-weight: 400;
+            color: #3a5a6b;
+            margin-bottom: 25px;
+            border-left: 4px solid #5a7c8a;
+            padding-left: 20px;
+        }
+        
+        .content-section h3 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #2c3e50;
+            margin: 30px 0 15px 0;
+        }
+        
+        .content-section h4 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #34495e;
+            margin: 25px 0 10px 0;
+        }
+        
+        .content-section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            text-align: left;
+            max-width: 100%;
+            display: inline-block;
+        }
+        
+        .content-section ul, .content-section ol {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+        
+        .content-section li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-left: 4px solid #5a7c8a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .highlight-box h4 {
+            color: #5a7c8a;
+            margin-top: 0;
+        }
+        
+        .field-quadrant {
+            background: #e8f4f8;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .field-quadrant h4 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .field-quadrant h4 strong {
+            background: #3a5a6b;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        
+        .research-path {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .research-path h4 {
+            color: #856404;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .research-path h4:before {
+            content: "🔹";
+            margin-right: 10px;
+        }
+        
+        .research-path ul {
+            margin-top: 10px;
+        }
+        
+        .classic-ref {
+            font-style: italic;
+            color: #666;
+            margin-left: 10px;
+        }
+        
+        .recent-ref {
+            font-style: italic;
+            color: #666;
+            margin-left: 10px;
+        }
+        
+        .case-analysis {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .case-analysis h5 {
+            color: #5a7c8a;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            nav.main {
+                width: 200px;
+            }
+            
+            .container {
+                margin-left: 200px;
+            }
+            
+            .back-link {
+                left: 200px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav.main {
+                width: 100%;
+            }
+            
+            .container {
+                padding: 20px 15px;
+                margin-left: 0;
+            }
+            
+            .header h1 {
+                font-size: 36px;
+            }
+            
+            .content-section h2 {
+                font-size: 28px;
+            }
+            
+            .back-link {
+                position: static;
+                display: inline-block;
+                margin-bottom: 20px;
+                left: auto;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 左侧导航栏 -->
+    <nav class="main">
+        <h3>课程导航</h3>
+        <ul>
+            <li><a href="ai-writing-course.html">第一课：艺术写作入门与课程设计</a></li>
+            <li><a href="ai-writing-research.html" class="active">第二课：艺术研究路径导读</a></li>
+        </ul>
+    </nav>
+    
+    <!-- 导航触发区域 -->
+    <div class="nav-trigger-left"></div>
+    
+    <!-- 返回链接 -->
+    <a href="index.html" class="back-link">← 返回主页</a>
+    
+    <div class="container">
+        <div class="header">
+            <h1>祂的AI写作1期</h1>
+            <div class="subtitle">艺术研究路径导读：<a href="https://drive.google.com/drive/folders/1_ggQqUh9qOsBgzR6FVtTEjvJLLFXwviV?usp=drive_link" target="_blank">谷歌云端硬盘链接</a></div>
+        </div>
+
+        <div class="content-section">
+            <h2>Part 1: Research Proposal 的格式</h2>
+            
+            <p>Research Proposal 是学术研究的蓝图，一份完整的研究计划书应包含以下核心部分：</p>
+            
+            <div class="highlight-box">
+                <h4>1. 摘要</h4>
+                <p>简明扼要地概述研究的核心内容、创新点和预期贡献，通常不超过300字。摘要应能够让读者快速了解研究的整体框架和价值。</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>2. 引言</h4>
+                <p>介绍研究背景、研究动机和研究意义，阐述为什么选择这个研究主题，以及该研究对所在领域的潜在贡献。引言应能够吸引读者的兴趣并建立研究的重要性。</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>3. 研究问题，目标</h4>
+                <p>明确提出具体的研究问题（Research Questions）和研究目标（Research Objectives）。研究问题应具有明确性、可研究性和创新性；研究目标应具体、可衡量、可实现、相关且有时限。</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>4. 研究方法</h4>
+                <p>详细描述将采用的研究方法和技术路线，包括数据收集方法、分析方法、研究设计和实施步骤等。方法部分应具有科学性和可行性，能够支持研究问题的解答和研究目标的实现。</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>5. 文献综述</h4>
+                <p>系统梳理与研究主题相关的现有文献，分析已有研究的成果、不足和研究空白，为自己的研究提供理论基础和支撑。文献综述应体现对领域前沿的把握和批判性思维。</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>6. 引用</h4>
+                <p>规范引用所有参考过的文献，确保学术诚信。引用格式应遵循所在领域的标准（如APA、MLA、Chicago等），保持一致性和准确性。</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Part 2: 学术场域的五类逻辑</h2>
+            
+            <p><strong>核心工具：</strong>使用“学术场域二维地图”进行讲解，以“会议 vs. 期刊”为横轴，以“理论优先 vs. 实验优先”为纵轴，定位四种典型的学术场域，并引入第五种核心模式。</p>
+            
+            <div class="field-quadrant">
+                <h4><strong>会议理论：</strong>Embracing Death Processes:
+
+ A Humanistic Inquiry into
+
+ Art, Technology, and HCI
+
+ Keywords</h4>
+                <ul>
+                    <li><strong>典型场域：</strong>ISEA, Ars Electronica</li>
+                    <li><strong>评判标准：</strong>强调观念的原创性、理论框架的深度、以及对社会文化议题的批判性反思。</li>
+                    <li><strong>经典案例：</strong>Oliver Grau, "Media Art Histories" (ISEA 2004 主旨演讲)。</li>
+                </ul>
+            </div>
+            
+            <div class="field-quadrant">
+                <h4><strong>会议实验：</strong>Can AI Prompt Humans? Multimodal Agents Prompt Players?
+
+ Game Actions and Show Consequences to Raise Sustainability
+
+ Awareness</h4>
+                <ul>
+                    <li><strong>典型场域：</strong>SIGGRAPH, CHI (部分Track)</li>
+                    <li><strong>评判标准：</strong>强调技术实现的创新性、实验结果的可复现性、以及对现有技术的显著改进。</li>
+                    <li><strong>经典案例：</strong>Paul Debevec, "Rendering synthetic objects into real scenes" (SIGGRAPH, 1998)。</li>
+                </ul>
+            </div>
+            
+            <div class="field-quadrant">
+                <h4><strong>期刊理论：</strong>Ritual design in digital age: A comprehensive
+
+ analysis of development and trend</h4>
+                <ul>
+                    <li><strong>典型场域：</strong>Leonardo, Theory, Culture & Society</li>
+                    <li><strong>评判标准：</strong>强调论证的严密性、理论体系的完整性、以及对学科历史的深入梳理。</li>
+                    <li><strong>经典案例：</strong>Roy Ascott, "Is There Love in the Telematic Embrace?" (Leonardo, 1990)。</li>
+                </ul>
+            </div>
+            
+            <div class="field-quadrant">
+                <h4><strong>期刊实验：</strong>Story Ribbons: Reimagining Storyline Visualizations with
+
+ Large Language Models</h4>
+                <ul>
+                    <li><strong>典型场域：</strong>ACM Transactions on Graphics (TOG), IEEE Transactions on Visualization and Computer Graphics (TVCG)</li>
+                    <li><strong>评判标准：</strong>强调实验设计的严谨性、数据的详尽性、以及结论的普适性。（注：SIGGRAPH的论文通常直接被 ACM TOG 收录，本质上是同一类成果）。</li>
+                </ul>
+            </div>
+            
+            <div class="field-quadrant">
+                <h4><strong>会议实践：</strong>Where are the media artist
+
+ mothers (and other parents)?
+
+ Embracing Intersectional
+
+ Feminist Perspectives
+
+ in Media Art</h4>
+                <p>这是核心模式。在这里，艺术作品本身就是研究的核心“实验”。知识并非通过传统的科学实验产生，而是在创作过程中被生成和发现的。这种研究模式的最终成果通常是一个双重结构：一件（或一系列）创意作品 + 一篇书面分析（在学术界常被称为“研究阐释”或“Exegesis”）。创意作品是知识的主要载体，而书面部分则负责提供理论语境、阐释创作过程、并论证作品所蕴含的知识贡献。你可以查看<a href="https://jar-online.net/" target="_blank">Journal for Artistic Research (JAR)</a>来了解更多实践型研究的案例。</p>
+                <ul>
+                    <li><strong>典型场域：</strong>Journal for Artistic Research (JAR), Ars Electronica Festival, 以及众多艺术类院校的博士项目。</li>
+                </ul>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>阶段总结：</h4>
+                <p>学术场域的核心差异，在于它们各自的共同体认为什么才能构成“知识贡献”的有效“证据”——它可以是理论论证、实验数据，也可以是一件艺术作品及其深刻的自我阐释。</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Part 3: 三条前沿研究路径</h2>
+            
+            <div class="research-path">
+                <h4>路径 A: 算法：偏见 + 排他性</h4>
+                
+                <h5>经典文献:</h5>
+                <ol>
+                    <li>Safiya Umoja Noble, “Google Search: Hyper-Visibility as a Means of Rendering Black Women and Girls Invisible” <span class="classic-ref">(InVisible Culture, 2012)</span></li>
+                    <li>Ruha Benjamin, “Catching Our Breath: Critical Race STS and the Carceral Imagination” <span class="classic-ref">(Engaging STS, 2016)</span></li>
+                </ol>
+                
+                <h5>新近文献:</h5>
+                <ol start="3">
+                    <li>Kate Crawford & Trevor Paglen, “Excavating AI: The Politics of Images in Machine Learning Training Sets” <span class="recent-ref">(在线文章, 2019)</span></li>
+                    <li>Thilo Hagendorff et al., “Speciesist bias in AI: How AI applications perpetuate discrimination and unfair outcomes against animals” <span class="recent-ref">(AI and Ethics, 2023)</span></li>
+                </ol>
+                
+                <div class="case-analysis">
+                    <h5>案例分析</h5>
+                    <p>ImageNet Roulette (2019), Zach Blas 的 Facial Weaponization Suite (2011–14)</p>
+                </div>
+                
+                <p><strong>场域定位:</strong> ISEA/Ars Electronica (理论优先会议), Leonardo (理论优先期刊), SIGGRAPH (若有创新的可视化实验来揭示偏见)</p>
+            </div>
+            
+            <div class="research-path">
+                <h4>路径 B: 身体 + pharmakon（生物艺术/身体化媒介）</h4>
+                
+                <h5>经典文献:</h5>
+                <ol>
+                    <li>Stelarc, “Prosthetics, Robotics and Remote Existence” <span class="classic-ref">(Leonardo, 2002)</span></li>
+                    <li>Oron Catts & Ionat Zurr, “Growing Semi-Living Art” <span class="classic-ref">(Leonardo, 2002)</span></li>
+                </ol>
+                
+                <h5>新近文献:</h5>
+                <ol start="3">
+                    <li>Drew Leder, “Recovery as Re-attunement: Repairing the Body-World Relationship” <span class="recent-ref">(收录于 Phenomenology of the Broken Body, 2019)</span></li>
+                    <li>一篇关于 Marco Donnarumma 作品的评论或其博士研究介绍（例如，其关于生物物理音乐和身体理论的研究）</li>
+                </ol>
+                
+                <div class="case-analysis">
+                    <h5>案例分析</h5>
+                    <p>Marco Donnarumma 的 Corpus Nil 表演, Tissue Culture & Art Project 的 Victimless Leather</p>
+                </div>
+                
+                <p><strong>场域定位:</strong> 这是一个典型的<strong>“实践作为研究”</strong>路径。适合 Ars Electronica (实践+理论), Leonardo (理论), Journal for Artistic Research (实践+阐释), 通常不适合 SIGGRAPH。</p>
+            </div>
+            
+            <div class="research-path">
+                <h4>路径 C: 民族志 + 非遗叙事</h4>
+                
+                <h5>经典文献:</h5>
+                <ol>
+                    <li>Barbara Kirshenblatt-Gimblett, “Intangible Heritage as Metacultural Production” <span class="classic-ref">(Museum International, 2004)</span></li>
+                    <li>Sarah Pink, “Visual Ethnography and the Internet” <span class="classic-ref">(Visual Studies, 2001)</span></li>
+                </ol>
+                
+                <h5>新近文献:</h5>
+                <ol start="3">
+                    <li>Sarah Pink et al., “Digital Ethnography: Principles for Practice” <span class="recent-ref">(Qualitative Research, 2016)</span></li>
+                    <li>Haidy Geismar, “Digital Anthropology and Heritage” <span class="recent-ref">(Anthropology Today, 2018)</span></li>
+                </ol>
+                
+                <div class="case-analysis">
+                    <h5>案例分析</h5>
+                    <p>数字敦煌 (Digital Dunhuang), 城市之歌生活档案馆 (Living Archive of Urban Song)</p>
+                </div>
+                
+                <p><strong>场域定位:</strong> Museum International, International Journal of Heritage Studies (理论优先期刊); ISEA (会议-理论)。</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 引入导航脚本 -->
+    <script src="nav-script.js"></script>
+    
+    <script>
+        // 简单的页面交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为所有卡片添加点击效果
+            const cards = document.querySelectorAll('.field-quadrant, .research-path, .case-analysis');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.01)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+艺术研究路径导读
+________________
+
+
+Part 1: 导入与核心问题 
+
+
+* 开场提问:
+   * 为什么有的学术会议（如SIGGRAPH）强调发表成果必须包含可复现的实验，而有的会议（如ISEA）则更侧重理论思辨？
+   * 为什么有的学术期刊偏爱纯理论推演，而有的则只接收包含详尽实验数据的论文？
+* 引出核心概念:
+   * 这些差异背后，是不同学术场域（Academic Fields）对**“知识合法性”（Knowledge Legitimacy）**的不同标准。换言之，它们对“什么才能算作有效证据”有着不同的评判体系。
+________________
+
+
+Part 2: 学术场域的五类逻辑 
+
+
+* 核心工具： 使用“学术场域二维地图”进行讲解，以“会议 vs. 期刊”为横轴，以“理论优先 vs. 实验优先”为纵轴，定位四种典型的学术场域，并引入第五种核心模式。
+* 象限一：会议 - 理论优先 (Conference - Theory-first)
+   * 典型场域： ISEA, Ars Electronica
+   * 评判标准： 强调观念的原创性、理论框架的深度、以及对社会文化议题的批判性反思。
+   * 经典案例： Oliver Grau, “Media Art Histories” (ISEA 2004 主旨演讲)。
+* 象限二：会议 - 实验优先 (Conference - Experiment-first)
+   * 典型场域： SIGGRAPH, CHI (部分Track)
+   * 评判标准： 强调技术实现的创新性、实验结果的可复现性、以及对现有技术的显著改进。
+   * 经典案例： Paul Debevec, “Rendering synthetic objects into real scenes” (SIGGRAPH, 1998)。
+* 象限三：期刊 - 理论优先 (Journal - Theory-first)
+   * 典型场域： Leonardo, Theory, Culture & Society
+   * 评判标准： 强调论证的严密性、理论体系的完整性、以及对学科历史的深入梳理。
+   * 经典案例： Roy Ascott, “Is There Love in the Telematic Embrace?” (Leonardo, 1990)。
+* 象限四：期刊 - 实验优先 (Journal - Experiment-first)
+   * 典型场域： ACM Transactions on Graphics (TOG), IEEE Transactions on Visualization and Computer Graphics (TVCG)
+   * 评判标准： 强调实验设计的严谨性、数据的详尽性、以及结论的普适性。（注：SIGGRAPH的论文通常直接被 ACM TOG 收录，本质上是同一类成果）。
+* 类别五：实践作为研究 (Practice-as-Research, PaR)
+   * 定义： 核心模式中，艺术作品本身就是研究的核心“实验” 1。知识并非通过传统的科学实验产生，而是
+在创作过程中被生成和发现的 3。这种研究模式的最终成果通常是一个双重结构：一件（或一系列）
+创意作品 + 一篇书面分析（在学术界常被称为“研究阐释”或“Exegesis”）4。创意作品是知识的主要载体，而书面部分则负责提供理论语境、阐释创作过程、并论证作品所蕴含的知识贡献。
+   * 典型场域： Journal for Artistic Research (JAR) 6, Ars Electronica Festival, 以及众多艺术类院校的博士项目。
+   * 经典案例： 以你之前的研究计划为例，一位研究者将体内的医疗钢丝摩擦声转化为声音艺术装置 8。这件艺术作品本身就是研究的核心“实验”，它探索了身体、技术与创伤的现象学体验。而附带的分析文章，则从理论层面（如斯蒂格勒的“药/毒”概念）阐释了这一实践过程所生成的独特知识 8。
+   * 📍 阶段总结： 学术场域的核心差异，在于它们各自的共同体认为什么才能构成“知识贡献”的有效“证据”——它可以是理论论证、实验数据，也可以是一件艺术作品及其深刻的自我阐释。
+________________
+
+
+Part 3: 三条前沿研究路径
+
+
+🔹 路径 A: 算法：偏见 + 排他性
+   * 经典文献:
+   1. Safiya Umoja Noble, “Google Search: Hyper-Visibility as a Means of Rendering Black Women and Girls Invisible” (InVisible Culture, 2012)。
+   2. Ruha Benjamin, “Catching Our Breath: Critical Race STS and the Carceral Imagination” (Engaging STS, 2016)。
+   * 新近文献:
+3. Kate Crawford & Trevor Paglen, “Excavating AI: The Politics of Images in Machine Learning Training Sets” (在线文章, 2019)。
+4. Thilo Hagendorff et al., “Speciesist bias in AI: How AI applications perpetuate discrimination and unfair outcomes against animals” (AI and Ethics, 2023) 9。
+   * 案例分析: ImageNet Roulette (2019), Zach Blas 的 Facial Weaponization Suite (2011–14)。
+   * 场域定位: ISEA/Ars Electronica (理论优先会议), Leonardo (理论优先期刊), SIGGRAPH (若有创新的可视化实验来揭示偏见)。
+🔹 路径 B: 身体 + pharmakon（生物艺术/身体化媒介）
+      * 经典文献:
+      1. Stelarc, “Prosthetics, Robotics and Remote Existence” (Leonardo, 2002)。
+      2. Oron Catts & Ionat Zurr, “Growing Semi-Living Art” (Leonardo, 2002)。
+      * 新近文献:
+3. Drew Leder, “Recovery as Re-attunement: Repairing the Body-World Relationship” (收录于 Phenomenology of the Broken Body, 2019) 12。
+
+4. 一篇关于 Marco Donnarumma 作品的评论或其博士研究介绍（例如，其关于生物物理音乐和身体理论的研究）14。
+      * 案例分析: Marco Donnarumma 的 Corpus Nil 表演, Tissue Culture & Art Project 的 Victimless Leather。
+      * 场域定位: 这是一个典型的**“实践作为研究”**路径。适合 Ars Electronica (实践+理论), Leonardo (理论), Journal for Artistic Research (实践+阐释), 通常不适合 SIGGRAPH。
+🔹 路径 C: 民族志 + 非遗叙事 
+         * 经典文献:
+         1. Barbara Kirshenblatt-Gimblett, “Intangible Heritage as Metacultural Production” (Museum International, 2004)。
+         2. Sarah Pink, “Visual Ethnography and the Internet” (Visual Studies, 2001)。
+         * 新近文献:
+3. Sarah Pink et al., “Digital Ethnography: Principles for Practice” (Qualitative Research, 2016)。
+4. Haidy Geismar, “Digital Anthropology and Heritage” (Anthropology Today, 2018)。
+         * 案例分析: 数字敦煌 (Digital Dunhuang), 城市之歌生活档案馆 (Living Archive of Urban Song)。
+         * 场域定位: Museum International, International Journal of Heritage Studies (理论优先期刊); ISEA (会议-理论)。
