@@ -1589,6 +1589,64 @@
                                         <button id="view-brain-research" style="background: #5a7c8a; color: white; border: none; padding: 15px 30px; border-radius: 4px; cursor: pointer; font-size: 16px;">查看研究方案</button>
                                     </div>
                                 </div>
+                                
+                                <!-- 完整研究内容，默认隐藏 -->
+                                <div id="full-research-content" style="display: none; margin-top: 40px;">
+                                    <!-- 项目摘要 -->
+                                    <section class="section">
+                                        <h2>项目摘要</h2>
+                                        <p>"被测度的心智"是一个跨学科研究项目，致力于在神经科学、哲学和人机交互设计的交叉点上，探索脑机接口技术(BCI)的理论假设、权力关系和社会影响。本项目以价值敏感性设计方法论为指导，通过批判性设计策略，审视技术与人类认知、主体性之间的复杂关系。</p>
+                                        
+                                        <div class="highlight">
+                                            <p><strong>项目核心问题：</strong>在神经技术快速发展的背景下，我们如何批判性地审视脑机接口技术对人类主体性、认知自由和隐私的影响？如何通过设计干预，挑战和重构技术与心智的关系？</p>
+                                        </div>
+                                        
+                                        <p>本项目采用多学科交叉的研究方法，结合理论探究、实证研究和设计实践，旨在开发一系列思辨性原型，揭示脑机接口技术背后的权力结构，并探索更具包容性和反思性的技术设计路径。</p>
+                                    </section>
+                                    
+                                    <!-- 引言：BCI技术的权力本质分析 -->
+                                    <section class="section">
+                                        <h2>引言：BCI技术的权力本质分析</h2>
+                                        <p>脑机接口技术的发展不仅仅是一个技术进步的过程，更是一个权力关系重构的过程。本项目从批判理论的视角出发，分析BCI技术背后的权力结构和意识形态。</p>
+                                        
+                                        <h3>1. 理论视角</h3>
+                                        <ul>
+                                            <li><strong>福柯的生命权力：</strong>BCI技术如何成为现代生物权力的延伸，实现对个体思想和行为的精确测量与控制</li>
+                                            <li><strong>韩炳哲的精神政治：</strong>在数字时代，如何从肉体规训转向精神治理，BCI技术如何成为精神政治的技术支撑</li>
+                                            <li><strong>德勒兹的控制社会：</strong>BCI技术如何促成从禁闭式规训社会向开放式控制社会的转变</li>
+                                            <li><strong>斯蒂格勒的普遍无产阶级化：</strong>数字技术如何导致认知无产阶级化，BCI技术如何加剧这一趋势</li>
+                                            <li><strong>普列西亚多的药物-色情政体：</strong>神经技术如何成为新型权力技术，塑造主体性和欲望</li>
+                                        </ul>
+                                        
+                                        <div class="quote">
+                                            "当技术能够读取和写入我们的思想时，我们需要重新思考自由、隐私和主体性的概念。" — 项目理论顾问 李哲教授
+                                        </div>
+                                    </section>
+                                    
+                                    <!-- 理论基础 -->
+                                    <section class="section">
+                                        <h2>理论基础</h2>
+                                        
+                                        <h3>1. 大脑政治学视角</h3>
+                                        <p>本项目从大脑政治学的理论框架出发，探讨神经技术与权力的关系，分析BCI技术如何成为新型权力技术，塑造主体性和认知方式。</p>
+                                        
+                                        <h3>2. 神经权力的三种表现形式</h3>
+                                        <ul>
+                                            <li><strong>神经监视：</strong>通过BCI技术实现对神经活动的实时监测和记录</li>
+                                            <li><strong>神经优化：</strong>基于神经数据对个体认知和情感状态进行干预和优化</li>
+                                            <li><strong>神经标准化：</strong>建立神经活动的正常标准，定义和管理异常状态</li>
+                                        </ul>
+                                        
+                                        <h3>3. 监视资本主义与神经数据</h3>
+                                        <p>在监视资本主义的框架下，神经数据成为新的价值来源，BCI技术如何成为数据提取和价值创造的工具，以及这一过程对个体自主权的影响。</p>
+                                        
+                                        <h3>4. 可塑性与灵活性理论</h3>
+                                        <p>探讨神经可塑性如何被技术利用，以及灵活性如何成为新的规训手段，分析BCI技术如何塑造和限制人类认知的可塑性。</p>
+                                        
+                                        <h3>5. 价值敏感性设计与HCI框架</h3>
+                                        <p>本项目采用价值敏感性设计方法论，将伦理和社会价值整合到技术设计过程中。同时，借鉴思辨性设计和批判性设计的理论框架，开发具有反思性的技术原型。</p>
+                                    </section>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1990,6 +2048,7 @@
             courseOptions.forEach(option => {
                 option.addEventListener('click', function() {
                     const courseType = this.getAttribute('data-course');
+                    const researchType = this.getAttribute('data-research');
                     
                     // 如果是AI写作1期，需要密码验证
                     if (courseType === 'ai-writing-1') {
@@ -2005,7 +2064,13 @@
                     this.classList.add('active');
                     
                     // 显示对应内容
-                    const targetSection = document.getElementById(courseType + '-content');
+                    let targetSection;
+                    if (courseType) {
+                        targetSection = document.getElementById(courseType + '-content');
+                    } else if (researchType) {
+                        targetSection = document.getElementById(researchType + '-content');
+                    }
+                    
                     if (targetSection) {
                         targetSection.classList.add('active');
                     }
