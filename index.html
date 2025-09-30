@@ -1178,7 +1178,7 @@
                     <a href="#" class="nav-link" data-page="artists">艺术家参考</a>
                     <a href="#" class="nav-link" data-page="about">关于</a>
                     <a href="#" class="nav-link nav-subdued" id="paid-courses-link" data-page="paid-courses">付费课程</a>
-                    <a href="brain-research.html" class="nav-link">祂的研究</a>
+                    <a href="#" class="nav-link nav-subdued" id="brain-research-link" data-page="brain-research">祂的研究</a>
                 </nav>
             
             <div class="nav-controls">
@@ -1552,6 +1552,48 @@
 
             <!-- 付费课程内容 -->
             <div id="paid-courses" class="page-content">
+            </div>
+            
+            <!-- 祂的研究内容 -->
+            <div id="brain-research" class="page-content">
+                <div class="hero-dot"></div>
+
+                <div class="course-detail-layout">
+                    <div class="course-sidebar">
+                        <div class="course-option active" data-research="brain-research">
+                            <div class="course-card">
+                                <div class="course-title">脑机研究项目方案</div>
+                                <div class="course-description">被测度的心智：探索心智与技术的交汇点</div>
+                                <ul class="course-features">
+                                    <li>Prof.Yu 专属研究内容</li>
+                                    <li>脑机接口技术探索</li>
+                                    <li>心智测量方法论</li>
+                                    <li>前沿交叉研究</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-detail-content">
+                        <div class="content-box">
+                            <div id="brain-research-content" class="course-content-section active">
+                                <div class="bio">
+                                    <p class="bioname">
+                                        <span>脑机研究项目方案：被测度的心智</span>
+                                    </p>
+                                    <p class="biobracket">[探索心智与技术的交汇点]</p>
+                                    <p>本研究项目聚焦于脑机接口技术与心智测量的交叉领域，旨在探索如何通过技术手段理解、测量和干预人类认知过程。</p>
+                                    <br>
+                                    <p>点击下方按钮查看完整研究内容：</p>
+                                    <br>
+                                    <div style="text-align: center;">
+                                        <button id="view-brain-research" style="background: #5a7c8a; color: white; border: none; padding: 15px 30px; border-radius: 4px; cursor: pointer; font-size: 16px;">查看研究方案</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
                 <div class="hero-dot"></div>
 
                 <div class="course-detail-layout">
@@ -1867,27 +1909,32 @@
                     link.addEventListener('click', function(e) {
                         e.preventDefault();
                         const pageId = this.getAttribute('data-page');
-                        if (pageId === 'paid-courses') {
-                            // 对于付费课程页面，显示密码框
-                            showPasswordModal();
-                        } else if (pageId) {
+                        if (pageId) {
+                            // 直接切换到对应的页面
                             switchPage(pageId);
                         }
                     });
                 });
             });
 
-        // 付费课程开关功能（全局函数）
+        // 付费内容开关功能（同时控制付费课程和祂的研究）
         window.togglePaidCourses = function(element) {
             element.classList.toggle('active');
             const paidCoursesLink = document.getElementById('paid-courses-link');
+            const brainResearchLink = document.getElementById('brain-research-link');
             if (element.classList.contains('active')) {
+                // 显示两个链接
                 paidCoursesLink.style.display = 'block';
                 paidCoursesLink.style.opacity = '1';
+                brainResearchLink.style.display = 'block';
+                brainResearchLink.style.opacity = '1';
                 localStorage.setItem('paidCoursesEnabled', 'true');
             } else {
+                // 隐藏两个链接
                 paidCoursesLink.style.display = 'none';
                 paidCoursesLink.style.opacity = '0';
+                brainResearchLink.style.display = 'none';
+                brainResearchLink.style.opacity = '0';
                 localStorage.setItem('paidCoursesEnabled', 'false');
             }
         }
@@ -1896,6 +1943,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const toggleSwitch = document.getElementById('paid-courses-toggle');
             const paidCoursesLink = document.getElementById('paid-courses-link');
+            const brainResearchLink = document.getElementById('brain-research-link');
             const toggleCircle = toggleSwitch.querySelector('.toggle-circle');
             
             // 从localStorage读取状态，如果没有设置过则默认为false（关闭状态）
@@ -1903,22 +1951,30 @@
             
             // 确保没有过渡动画
             paidCoursesLink.style.transition = 'none';
+            brainResearchLink.style.transition = 'none';
             toggleCircle.style.transition = 'none';
             
             // 直接设置最终状态，不播放动画
             if (isEnabled) {
                 toggleSwitch.classList.add('active');
+                // 显示两个链接
                 paidCoursesLink.style.display = 'block';
                 paidCoursesLink.style.opacity = '1';
+                brainResearchLink.style.display = 'block';
+                brainResearchLink.style.opacity = '1';
             } else {
                 toggleSwitch.classList.remove('active');
+                // 隐藏两个链接
                 paidCoursesLink.style.display = 'none';
                 paidCoursesLink.style.opacity = '0';
+                brainResearchLink.style.display = 'none';
+                brainResearchLink.style.opacity = '0';
             }
             
             // 延迟恢复过渡动画，用于后续的点击操作
             setTimeout(() => {
                 paidCoursesLink.style.transition = 'all 0.3s ease';
+                brainResearchLink.style.transition = 'all 0.3s ease';
                 toggleCircle.style.transition = 'transform 0.3s ease';
             }, 300);
             
@@ -1935,7 +1991,7 @@
                 option.addEventListener('click', function() {
                     const courseType = this.getAttribute('data-course');
                     
-                    // 如果是AI写作1期，直接显示密码框
+                    // 如果是AI写作1期，需要密码验证
                     if (courseType === 'ai-writing-1') {
                         showPasswordModal();
                         return;
@@ -1990,8 +2046,10 @@
         }
 
         // 密码相关功能
-        function showPasswordModal() {
-            document.getElementById('passwordModal').style.display = 'flex';
+        function showPasswordModal(type = 'ai-writing') {
+            const modal = document.getElementById('passwordModal');
+            modal.style.display = 'flex';
+            modal.dataset.type = type; // 存储当前验证类型
             document.getElementById('passwordInput').focus();
             document.getElementById('passwordError').style.display = 'none';
         }
@@ -2004,14 +2062,31 @@
 
         function checkPassword() {
             const password = document.getElementById('passwordInput').value;
-            const correctPassword = '20250921';
+            const modal = document.getElementById('passwordModal');
+            const type = modal.dataset.type || 'ai-writing';
             
-            if (password === correctPassword) {
-                closePasswordModal();
-                window.open('ai-writing-course.html', '_blank');
+            // 根据验证类型使用不同的密码
+            if (type === 'research') {
+                // 脑机研究的密码
+                if (password === 'profyu') {
+                    closePasswordModal();
+                    // 跳转到脑机研究页面
+                    window.location.href = 'brain-research.html';
+                } else {
+                    document.getElementById('passwordError').style.display = 'block';
+                    document.getElementById('passwordInput').value = '';
+                }
             } else {
-                document.getElementById('passwordError').style.display = 'block';
-                document.getElementById('passwordInput').value = '';
+                // AI写作课程的密码
+                const correctPassword = '20250921';
+                if (password === correctPassword) {
+                    closePasswordModal();
+                    // 跳转到AI写作课程页面
+                    window.location.href = 'ai-writing-course.html';
+                } else {
+                    document.getElementById('passwordError').style.display = 'block';
+                    document.getElementById('passwordInput').value = '';
+                }
             }
         }
 
@@ -2022,6 +2097,14 @@
                     checkPassword();
                 }
             });
+            
+            // 查看研究方案按钮点击事件
+            const viewResearchBtn = document.getElementById('view-brain-research');
+            if (viewResearchBtn) {
+                viewResearchBtn.addEventListener('click', function() {
+                    showPasswordModal('research');
+                });
+            }
         });
 
     </script>
