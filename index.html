@@ -2039,7 +2039,7 @@
                     
                     // 如果是AI写作1期，需要密码验证
                     if (courseType === 'ai-writing-1') {
-                        showPasswordModal();
+                        showPasswordModal('ai-writing');
                         return;
                     }
                     
@@ -2117,6 +2117,8 @@
             const modal = document.getElementById('passwordModal');
             const type = modal.dataset.type || 'ai-writing';
             
+            console.log('Password check:', password, 'Type:', type); // 调试信息
+            
             // 根据验证类型使用不同的密码
             if (type === 'research') {
                 // 脑机研究的密码
@@ -2134,7 +2136,11 @@
                 if (password === correctPassword) {
                     closePasswordModal();
                     // 跳转到AI写作课程页面
-                    window.location.href = 'ai-writing-course.html';
+                    console.log('Password correct, redirecting...'); // 调试信息
+                    // 使用多种方法确保跳转成功
+                    setTimeout(() => {
+                        window.location.href = 'ai-writing-course.html';
+                    }, 100);
                 } else {
                     document.getElementById('passwordError').style.display = 'block';
                     document.getElementById('passwordInput').value = '';
