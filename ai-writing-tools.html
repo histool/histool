@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>祂的AI写作1期 - 写作辅助工具</title>
+    <meta name="description" content="基于写作辅助工具的专业课程内容">
+    
+    <!-- 引入jQuery，因为nav-script.js需要它 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- 引入导航脚本 -->
+    <script src="nav-script.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            background: white;
+            color: #000;
+            letter-spacing: -0.01em;
+            overflow-x: hidden;
+        }
+        
+        /* 左侧导航栏样式 - 修改为中间白色带线框 */
+        nav.main {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 16.666%;
+            max-height: 80vh;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #333;
+            padding: 20px;
+            z-index: 998;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav.main.hidden {
+            transform: translate(-100%, -50%);
+        }
+        
+        nav.main h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 400;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            color: #3a5a6b;
+        }
+        
+        nav.main ul {
+            list-style: none;
+        }
+        
+        nav.main li {
+            margin-bottom: 10px;
+        }
+        
+        nav.main a {
+            color: #555;
+            text-decoration: none;
+            display: block;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav.main a:hover,
+        nav.main a.active {
+            background: #f0f0f0;
+            color: #3a5a6b;
+            font-weight: 500;
+        }
+        
+        /* 触发区域样式 */
+        .nav-trigger-left {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 100vh;
+            background: rgba(58, 90, 107, 0.1);
+            z-index: 997;
+            cursor: pointer;
+        }
+        
+        /* 主内容区域样式 - 调整为居中显示 */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px 40px 20px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        /* 当导航栏隐藏时，内容区域保持居中 */
+        .nav-hidden .container {
+            margin: 0 auto;
+        }
+        
+        /* 返回链接样式 */
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            color: #3a5a6b;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .back-link:hover {
+            color: #2c4a5b;
+        }
+        
+        /* 标题样式 */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #5a7c8a;
+        }
+        
+        .header h1 {
+            font-size: 48px;
+            font-weight: 300;
+            color: #3a5a6b;
+            margin-bottom: 20px;
+        }
+        
+        .header .subtitle {
+            font-size: 20px;
+            color: #666;
+        }
+        
+        /* 内容区域样式 */
+        .content-section {
+            margin-bottom: 50px;
+            text-align: left;
+        }
+        
+        .content-section h2 {
+            font-size: 32px;
+            font-weight: 400;
+            color: #3a5a6b;
+            margin-bottom: 25px;
+            border-left: 4px solid #5a7c8a;
+            padding-left: 20px;
+        }
+        
+        .content-section h3 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #2c3e50;
+            margin: 30px 0 15px 0;
+        }
+        
+        .content-section h4 {
+            font-size: 20px;
+            font-weight: 500;
+            color: #34495e;
+            margin: 25px 0 10px 0;
+        }
+        
+        .content-section p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            text-align: left;
+            max-width: 100%;
+            display: inline-block;
+        }
+        
+        /* 高亮框样式 */
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid #5a7c8a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .highlight-box h4 {
+            color: #5a7c8a;
+            margin-top: 0;
+        }
+        
+        /* 工具介绍卡片样式 */
+        .tool-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .tool-card h4 {
+            color: #3a5a6b;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .tool-card .tool-link {
+            display: inline-block;
+            background: #3a5a6b;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-card .tool-link:hover {
+            background: #2c4a5b;
+            transform: translateY(-1px);
+        }
+        
+        /* 功能列表样式 */
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #3a5a6b;
+            font-weight: bold;
+        }
+        
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        
+        /* 使用步骤样式 */
+        .steps {
+            counter-reset: step-counter;
+        }
+        
+        .step {
+            counter-increment: step-counter;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            position: relative;
+            padding-left: 60px;
+        }
+        
+        .step:before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            background: #3a5a6b;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            nav.main {
+                width: 200px;
+            }
+            
+            .container {
+                margin-left: 200px;
+            }
+            
+            .back-link {
+                left: 200px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav.main {
+                width: 100%;
+            }
+            
+            .container {
+                padding: 20px 15px;
+                margin-left: 0;
+            }
+            
+            .header h1 {
+                font-size: 36px;
+            }
+            
+            .content-section h2 {
+                font-size: 28px;
+            }
+            
+            .content-section h3 {
+                font-size: 22px;
+            }
+            
+            .back-link {
+                position: static;
+                display: inline-block;
+                margin-bottom: 20px;
+                left: auto;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 左侧导航栏 -->
+    <nav class="main">
+        <h3>课程导航</h3>
+        <ul>
+            <li><a href="ai-writing-course.html">第一课：艺术写作入门与课程设计</a></li>
+            <li><a href="ai-writing-research.html">第二课：艺术研究路径导读</a></li>
+            <li><a href="ai-writing-contemporary.html">第三课：当代艺术前沿议题分析</a></li>
+            <li><a href="ai-writing-tools.html" class="active">第四课：写作辅助工具</a></li>
+        </ul>
+    </nav>
+    
+    <!-- 导航触发区域 -->
+    <div class="nav-trigger-left"></div>
+    
+    <!-- 返回链接 -->
+    <a href="index.html" class="back-link">← 返回主页</a>
+    
+    <div class="container">
+        <div class="header">
+            <h1>祂的AI写作1期</h1>
+            <div class="subtitle">写作辅助工具</div>
+        </div>
+
+        <div class="content-section">
+            <h2>第四课：写作辅助工具</h2>
+            <p>在学术写作过程中，合适的工具能够显著提升我们的研究效率和写作质量。本节课将介绍三个重要的写作辅助工具：秘塔AI、Zotero和Consensus，帮助您建立完整的学术写作工作流。</p>
+        </div>
+
+        <div class="content-section">
+            <h3>1. 秘塔AI - 学术论文搜索</h3>
+            
+            <div class="tool-card">
+                <h4>秘塔AI (MetaSo) - 学术论文搜索</h4>
+                <p>秘塔AI是一个专业的学术论文搜索引擎，特别适合中文和英文论文的搜索与发现。它能够帮助您快速找到相关的研究文献和学术资源。</p>
+                
+                <h4>主要功能：</h4>
+                <ul class="feature-list">
+                    <li>智能学术论文搜索</li>
+                    <li>中英文论文数据库覆盖</li>
+                    <li>相关论文推荐</li>
+                    <li>论文摘要和关键信息提取</li>
+                    <li>引用关系分析</li>
+                    <li>研究趋势追踪</li>
+                </ul>
+                
+                <a href="https://metaso.cn/study" class="tool-link" target="_blank">访问秘塔AI</a>
+            </div>
+            
+            <h4>使用步骤：</h4>
+            <div class="steps">
+                <div class="step">
+                    <h5>注册和登录</h5>
+                    <p>访问秘塔AI官网，注册账号并完成登录。建议使用学术邮箱注册以获得更好的服务体验。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>输入搜索关键词</h5>
+                    <p>在搜索框中输入您的研究主题、关键词或具体问题，系统会返回相关的学术论文。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>筛选和排序结果</h5>
+                    <p>根据发表时间、引用次数、期刊影响因子等条件筛选搜索结果，找到最相关的文献。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>获取论文信息</h5>
+                    <p>查看论文摘要、关键词、引用信息，决定是否需要下载完整论文进行深入阅读。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>2. Zotero - 文献管理工具</h3>
+            
+            <div class="tool-card">
+                <h4>Zotero</h4>
+                <p>Zotero是一个免费、开源的文献管理工具，能够帮助您收集、整理、引用和管理研究文献。它是学术写作中不可或缺的工具。</p>
+                
+                <h4>主要功能：</h4>
+                <ul class="feature-list">
+                    <li>一键保存网页文献和PDF</li>
+                    <li>自动生成引用格式</li>
+                    <li>文献分类和标签管理</li>
+                    <li>团队协作和文献共享</li>
+                    <li>与Word、Google Docs集成</li>
+                    <li>云端同步和备份</li>
+                </ul>
+                
+                <a href="https://www.zotero.org/download/" class="tool-link" target="_blank">下载Zotero</a>
+            </div>
+            
+            <h4>安装和设置：</h4>
+            <div class="steps">
+                <div class="step">
+                    <h5>下载安装</h5>
+                    <p>访问Zotero官网，下载适合您操作系统的版本。同时安装浏览器插件以便快速保存文献。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>创建账号</h5>
+                    <p>注册Zotero账号，这样可以在不同设备间同步您的文献库。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>配置引用格式</h5>
+                    <p>根据您的学科要求，设置合适的引用格式（如APA、MLA、Chicago等）。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>安装Word插件</h5>
+                    <p>安装Zotero的Word插件，这样可以直接在文档中插入引用和生成参考文献列表。</p>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>使用技巧</h4>
+                <p>• 使用标签和文件夹对文献进行分类管理<br>
+                • 定期备份您的文献库<br>
+                • 利用Zotero的搜索功能快速找到相关文献<br>
+                • 使用笔记功能记录阅读心得和关键观点</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>3. Consensus - 研究搜索引擎</h3>
+            
+            <div class="tool-card">
+                <h4>Consensus</h4>
+                <p>Consensus是一个基于AI的研究搜索引擎，专门用于查找和总结学术研究。它能够快速找到相关研究并提取关键发现。</p>
+                
+                <h4>主要功能：</h4>
+                <ul class="feature-list">
+                    <li>AI驱动的学术搜索</li>
+                    <li>研究结果智能总结</li>
+                    <li>多角度研究对比</li>
+                    <li>研究质量评估</li>
+                    <li>直接链接到原始文献</li>
+                </ul>
+                
+                <a href="https://consensus.app/" class="tool-link" target="_blank">访问Consensus</a>
+            </div>
+            
+            <h4>使用流程：</h4>
+            <div class="steps">
+                <div class="step">
+                    <h5>输入研究问题</h5>
+                    <p>在搜索框中输入您的研究问题或关键词，Consensus会基于AI理解您的查询意图。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>浏览研究结果</h5>
+                    <p>系统会返回相关的研究论文，并提供每篇论文的关键发现摘要。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>分析研究共识</h5>
+                    <p>Consensus会分析多个研究的结果，告诉您学术界对某个问题的共识程度。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>获取详细文献</h5>
+                    <p>点击感兴趣的研究，可以获取完整的论文信息和引用链接。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>4. 进阶写作工具</h3>
+            
+            <div class="tool-card">
+                <h4>Tropy - 研究照片管理</h4>
+                <p>Tropy是专为档案研究设计的开源工具，能够帮助您管理和组织研究照片，将照片转化为可搜索的研究项目。</p>
+                
+                <h4>主要功能：</h4>
+                <ul class="feature-list">
+                    <li>将照片转化为研究项目</li>
+                    <li>自定义元数据模板</li>
+                    <li>照片标注和转录</li>
+                    <li>标签和列表组织</li>
+                    <li>多格式导出（JSON-LD、CSV、Omeka S）</li>
+                    <li>与Zotero集成</li>
+                </ul>
+                
+                <a href="https://tropy.org/" class="tool-link" target="_blank">访问Tropy</a>
+            </div>
+            
+            <h4>使用场景：</h4>
+            <div class="steps">
+                <div class="step">
+                    <h5>档案研究</h5>
+                    <p>在档案馆拍摄的文档照片，使用Tropy进行整理和标注，建立个人研究数据库。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>视觉材料分析</h5>
+                    <p>对艺术作品、设计作品等视觉材料进行分类、标注和比较分析。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>研究项目管理</h5>
+                    <p>将分散的照片资源整合为结构化的研究项目，便于后续写作和引用。</p>
+                </div>
+            </div>
+            
+            <div class="tool-card">
+                <h4>Google NotebookLM - AI研究助手</h4>
+                <p>Google NotebookLM是一个基于AI的研究助手，能够帮助您分析文档、生成摘要、回答问题，并创建个性化的研究笔记本。</p>
+                
+                <h4>主要功能：</h4>
+                <ul class="feature-list">
+                    <li>文档智能分析</li>
+                    <li>自动生成摘要</li>
+                    <li>基于文档回答问题</li>
+                    <li>研究思路梳理</li>
+                    <li>多语言支持</li>
+                    <li>云端同步</li>
+                </ul>
+                
+                <a href="https://notebooklm.google.com/" class="tool-link" target="_blank">访问NotebookLM</a>
+            </div>
+            
+            <h4>使用流程：</h4>
+            <div class="steps">
+                <div class="step">
+                    <h5>上传研究材料</h5>
+                    <p>将PDF文档、网页内容或文本材料上传到NotebookLM。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>AI分析处理</h5>
+                    <p>系统自动分析文档内容，提取关键信息和主题。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>智能问答</h5>
+                    <p>基于上传的材料，向AI提问获取深度见解和答案。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>生成研究笔记</h5>
+                    <p>AI帮助生成摘要、大纲和研究笔记，加速写作过程。</p>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="content-section">
+            <h3>5. 工具整合工作流</h3>
+            
+            <div class="highlight-box">
+                <h4>完整的学术写作流程</h4>
+                <p>将五个工具结合使用，可以建立一个高效的学术写作工作流：</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <h5>研究阶段</h5>
+                    <p>使用秘塔AI和Consensus搜索相关研究，了解领域现状和研究空白。使用Google NotebookLM分析重要文档。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>文献收集</h5>
+                    <p>将找到的文献保存到Zotero中，进行分类和标签管理。使用Tropy管理研究照片和视觉材料。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>内容创作</h5>
+                    <p>使用Google NotebookLM帮助梳理思路、优化表达和生成初稿。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>引用管理</h5>
+                    <p>在写作过程中，使用Zotero插入引用，自动生成参考文献列表。</p>
+                </div>
+                
+                <div class="step">
+                    <h5>最终优化</h5>
+                    <p>使用Google NotebookLM进行最后的语言润色和内容优化。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h3>6. 实践建议</h3>
+            
+            <div class="highlight-box">
+                <h4>工具使用的最佳实践</h4>
+                <p>• <strong>保持批判性思维：</strong>AI工具是辅助，不是替代，始终保持对内容的独立思考<br>
+                • <strong>定期更新工具：</strong>关注工具更新，学习新功能<br>
+                • <strong>建立个人工作流：</strong>根据个人习惯调整工具使用顺序<br>
+                • <strong>数据安全：</strong>注意保护研究数据和个人隐私<br>
+                • <strong>持续学习：</strong>关注新工具和新技术的发展</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 导航栏显示/隐藏功能
+        let navVisible = false;
+        
+        document.querySelector('.nav-trigger-left').addEventListener('click', function() {
+            const nav = document.querySelector('nav.main');
+            const container = document.querySelector('.container');
+            const backLink = document.querySelector('.back-link');
+            
+            navVisible = !navVisible;
+            
+            if (navVisible) {
+                nav.classList.remove('hidden');
+                container.classList.remove('full-width');
+                backLink.style.left = 'calc(16.666% + 20px)';
+            } else {
+                nav.classList.add('hidden');
+                container.classList.add('full-width');
+                backLink.style.left = '20px';
+            }
+        });
+        
+        // 响应式处理
+        function handleResize() {
+            const nav = document.querySelector('nav.main');
+            const container = document.querySelector('.container');
+            const backLink = document.querySelector('.back-link');
+            
+            if (window.innerWidth <= 768) {
+                nav.classList.add('hidden');
+                container.classList.add('full-width');
+                backLink.style.left = '20px';
+                navVisible = false;
+            } else if (window.innerWidth <= 1200) {
+                if (!navVisible) {
+                    nav.classList.add('hidden');
+                    container.classList.add('full-width');
+                    backLink.style.left = '20px';
+                }
+            }
+        }
+        
+        window.addEventListener('resize', handleResize);
+        handleResize(); // 初始调用
+    </script>
+</body>
+</html>
