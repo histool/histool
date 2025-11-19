@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>教程区 - 祂的工具箱</title>
+    <meta name="description" content="为艺术实践者提供高质量的工具资源、教程内容和学术支持">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <style>
+        /* Ensure the active link is highlighted */
+        .nav a[data-page="tutorials"] {
+            opacity: 0.6 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <!-- 顶部导航 -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; width: 100%;">
+                <nav class="nav">
+                    <a href="index.html" class="nav-link" data-page="home">Home</a>
+                    <a href="tools.html" class="nav-link" data-page="tools">资源库</a>
+                    <a href="tutorials.html" class="nav-link active" data-page="tutorials">教程区</a>
+                    <a href="artists.html" class="nav-link" data-page="artists">艺术家参考</a>
+                    <a href="about.html" class="nav-link" data-page="about">关于</a>
+                    <a href="paid-courses.html" class="nav-link nav-subdued" id="paid-courses-link"
+                        data-page="paid-courses">付费课程</a>
+                    <a href="brain-research.html" class="nav-link nav-subdued" id="brain-research-link"
+                        data-page="brain-research">祂的研究</a>
+                </nav>
+                <div class="nav-controls">
+                    <div class="toggle-switch" id="paid-courses-toggle" onclick="togglePaidCourses(this)">
+                        <div class="toggle-circle"></div>
+                    </div>
+                    <div class="control-dot"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main class="main-content">
+            <div class="page-content">
+                <div class="hero-dot"></div>
+
+                <div class="tutorials-grid">
+                    <div class="tutorial-column">
+                        <h3>Blender教程</h3>
+
+                        <div class="tutorial-item">
+                            <div class="tutorial-title">渲染课程</div>
+                            <div class="tutorial-description">掌握Blender渲染技术和材质制作</div>
+                        </div>
+
+                        <div class="tutorial-item">
+                            <div class="tutorial-title"><a
+                                    href="https://www.bilibili.com/video/BV1Yx421U7g8/?spm_id_from=333.1387.homepage.video_card.click"
+                                    target="_blank">玉石渲染</a></div>
+                            <div class="tutorial-description">学习玉石材质的渲染技巧和参数设置</div>
+                            <div class="tutorial-image">
+                                <img src="pic/tutorial/rendering/jade rendering.jpg" alt="玉石渲染效果图">
+                            </div>
+                        </div>
+
+                        <div class="tutorial-item">
+                            <div class="tutorial-title"><a
+                                    href="https://www.bilibili.com/video/BV1Yx421U7g8/?spm_id_from=333.1387.homepage.video_card.click"
+                                    target="_blank">珍珠渲染</a></div>
+                            <div class="tutorial-description">掌握珍珠材质的渲染方法和光泽效果</div>
+                            <div class="tutorial-image">
+                                <img src="pic/tutorial/rendering/pearl rendering.jpg" alt="珍珠渲染效果图">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="tutorial-column">
+                        <h3>高校课程</h3>
+
+                        <div class="tutorial-item">
+                            <div class="tutorial-title"><a
+                                    href="https://www.bilibili.com/video/BV171pKzxEdG?spm_id_from=333.788.videopod.sections&vd_source=ee4738dc87d41f1fb918f5345c352da5"
+                                    target="_blank">厦门大学 & UCA 网页设计workshop</a></div>
+                            <div class="tutorial-description">使用git上传静态html到GitHub/Gitee</div>
+                            <div class="tutorial-image">
+                                <img src="pic/tutorial/web deisgn/web-design.jpg" alt="厦门大学 & UCA 网页设计workshop">
+                            </div>
+                        </div>
+
+                        <div class="tutorial-item">
+                            <div class="tutorial-title">北服/央美（2023-2025）GenAI辅助下的文化遗产训练</div>
+                            <div class="tutorial-description">人工智能在文化遗产保护中的应用</div>
+                            <div class="tutorial-image">
+                                <div
+                                    style="width: 100%; height: 200px; background: #f5f5f5; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999;">
+                                    课程图片</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

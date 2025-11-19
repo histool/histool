@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>资源库 - 祂的工具箱</title>
+    <meta name="description" content="为艺术实践者提供高质量的工具资源、教程内容和学术支持">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <style>
+        /* Ensure the active link is highlighted */
+        .nav a[data-page="tools"] {
+            opacity: 0.6 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <!-- 顶部导航 -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; width: 100%;">
+                <nav class="nav">
+                    <a href="index.html" class="nav-link" data-page="home">Home</a>
+                    <a href="tools.html" class="nav-link active" data-page="tools">资源库</a>
+                    <a href="news.html" class="nav-link" data-page="news">无聊的世界</a>
+                    <a href="artists.html" class="nav-link" data-page="artists">艺术家参考</a>
+                    <a href="about.html" class="nav-link" data-page="about">关于</a>
+                    <a href="paid-courses.html" class="nav-link nav-subdued" id="paid-courses-link"
+                        data-page="paid-courses">付费课程</a>
+                    <a href="brain-research.html" class="nav-link nav-subdued" id="brain-research-link"
+                        data-page="brain-research">祂的研究</a>
+                </nav>
+                <div class="nav-controls">
+                    <div class="toggle-switch" id="paid-courses-toggle" onclick="togglePaidCourses(this)">
+                        <div class="toggle-circle"></div>
+                    </div>
+                    <div class="control-dot"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main class="main-content">
+            <div class="page-content">
+                <div class="hero-dot"></div>
+
+                <div class="tools-grid">
+                    <div class="tool-category">
+                        <h3>在线免费工具包</h3>
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://www.photopea.com/" target="_blank">Photopea</a>
+                                </div>
+                                <div class="tool-description">免费的在线Photoshop替代品，支持PSD格式</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://www.remove.bg/zh/upload"
+                                        target="_blank">Remove.bg</a></div>
+                                <div class="tool-description">AI智能背景移除工具，一键抠图</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://stephaneginier.com/sculptgl/"
+                                        target="_blank">SculptGL</a></div>
+                                <div class="tool-description">免费的在线3D雕刻工具</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://www.ilovepdf.com/" target="_blank">ILovePDF</a>
+                                </div>
+                                <div class="tool-description">全面的PDF在线处理工具集</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://www.iloveimg.com/" target="_blank">I Love IMG</a>
+                                </div>
+                                <div class="tool-description">批量裁剪、压缩、转换等图片处理工具合集</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://www.convertpdftoautocad.com/"
+                                        target="_blank">Pdf2DWG (CAD)</a></div>
+                                <div class="tool-description">将PDF图纸快速转换为DWG/CAD源文件，便于进一步编辑</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://freesound.org/" target="_blank">Freesound.org</a>
+                                </div>
+                                <div class="tool-description">免费音效与环境声素材库，支持检索和下载多种格式</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tool-category">
+                        <h3>文献区</h3>
+                        <h4 class="sub-category-title">最近更新：Not Here, Not Now, Speculative Thought, Impossibility, and
+                            the Design Imagination.</h4>
+                        <h4 class="sub-category-title">书籍区：</h4>
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <div class="tool-name"><a
+                                        href="https://drive.google.com/drive/folders/1bxg0ec9Kqa4dd_cYmm84KhoJEIEN6_c4?usp=sharing"
+                                        target="_blank">设计理论文献库</a></div>
+                                <div class="tool-description">包含《Not Here, Not Now》等设计理论经典著作</div>
+                            </li>
+                        </ul>
+                        <h4 class="sub-category-title">论文区：</h4>
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <div class="tool-name"><a
+                                        href="https://drive.google.com/drive/folders/1yv3PPhNlUt6RiohWOeokEIHqJ9r5NXw4?usp=sharing"
+                                        target="_blank">学术论文分类库</a></div>
+                                <div class="tool-description">技术批判、文化遗产等主题论文</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tool-category">
+                        <h3>3D软件教程区</h3>
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <div class="tool-name"><a
+                                        href="https://space.bilibili.com/35723238?spm_id_from=333.337.0.0"
+                                        target="_blank">辣椒酱Blender开源课程</a></div>
+                                <div class="tool-description">专业的Blender 3D建模和动画开源教程系列</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a
+                                        href="https://www.bilibili.com/video/BV1vf421S7rF?spm_id_from=333.788.videopod.episodes&vd_source=ee4738dc87d41f1fb918f5345c352da5&p=12"
+                                        target="_blank">Rhino8 品创设计</a></div>
+                                <div class="tool-description">Rhino8产品设计教程，从基础到高级应用</div>
+                            </li>
+                            <!-- Merged from Tutorials -->
+                            <li class="tool-item">
+                                <div class="tool-name">Blender渲染课程</div>
+                                <div class="tool-description">掌握Blender渲染技术和材质制作</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a
+                                        href="https://www.bilibili.com/video/BV1Yx421U7g8/?spm_id_from=333.1387.homepage.video_card.click"
+                                        target="_blank">玉石渲染</a></div>
+                                <div class="tool-description">学习玉石材质的渲染技巧和参数设置</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a
+                                        href="https://www.bilibili.com/video/BV1Yx421U7g8/?spm_id_from=333.1387.homepage.video_card.click"
+                                        target="_blank">珍珠渲染</a></div>
+                                <div class="tool-description">掌握珍珠材质的渲染方法和光泽效果</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a
+                                        href="https://www.bilibili.com/video/BV171pKzxEdG?spm_id_from=333.788.videopod.sections&vd_source=ee4738dc87d41f1fb918f5345c352da5"
+                                        target="_blank">厦门大学 & UCA 网页设计workshop</a></div>
+                                <div class="tool-description">使用git上传静态html到GitHub/Gitee</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name">北服/央美（2023-2025）GenAI辅助下的文化遗产训练</div>
+                                <div class="tool-description">人工智能在文化遗产保护中的应用</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tool-category">
+                        <h3>讲座</h3>
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <div class="tool-name"><a
+                                        href="https://search.bilibili.com/all?vt=56983877&keyword=%E5%AE%9E%E9%AA%8B%E7%BC%96%E7%A8%8B&from_source=webtop_search&spm_id_from=333.788&search_source=5"
+                                        target="_blank">实验编程公开课</a></div>
+                                <div class="tool-description">探索编程与艺术结合的创新实践</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name">等待更新</div>
+                                <div class="tool-description">更多讲座内容即将上线</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tool-category">
+                        <h3>开源项目区</h3>
+                        <ul class="tool-list">
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://github.com/adafruit/Adafruit_NeoPixel"
+                                        target="_blank">NeoPixel机械臂</a></div>
+                                <div class="tool-description">开源机械臂项目，支持LED灯带控制</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://github.com/OpenKinect/libfreenect"
+                                        target="_blank">Kinect交互</a></div>
+                                <div class="tool-description">体感交互设备，用于动作捕捉和手势识别</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://github.com/processing/processing"
+                                        target="_blank">Processing创意编程</a></div>
+                                <div class="tool-description">艺术与代码结合的交互创作平台</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://github.com/openframeworks/openFrameworks"
+                                        target="_blank">openFrameworks</a></div>
+                                <div class="tool-description">C++创意编程框架，适合交互艺术创作</div>
+                            </li>
+                            <li class="tool-item">
+                                <div class="tool-name"><a href="https://github.com/arduino/Arduino"
+                                        target="_blank">Arduino交互</a></div>
+                                <div class="tool-description">开源硬件平台，制作各种交互装置</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

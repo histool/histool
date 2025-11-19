@@ -145,3 +145,17 @@ jQuery(document).ready(function($) {
         });
     }
 });
+
+// 游戏艺术家展开/收起功能
+function toggleGameArtists() {
+    const artistList = document.getElementById('game-artists');
+    const expandBtn = artistList.querySelector('.expand-btn');
+    
+    if (artistList.classList.contains('expanded')) {
+        artistList.classList.remove('expanded');
+        expandBtn.textContent = '查看更多艺术家';
+    } else {
+        artistList.classList.add('expanded');
+        expandBtn.textContent = '收起艺术家';
+    }
+}

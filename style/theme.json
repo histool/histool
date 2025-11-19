@@ -1,0 +1,43 @@
+{
+  "name": "Histool Theme — Light Mode",
+  "version": "1.1",
+  "description": "Design tokens for the light-mode Histool visual system — archival clarity and rational minimalism",
+  "colors": {
+    "background": "#FFFFFF",
+    "foreground": "#0A0A0A",
+    "accent": "#3B7EFF",
+    "muted": "#777777",
+    "line": "#EAEAEA"
+  },
+  "typography": {
+    "fontFamily": "Inter, 'Neue Haas Grotesk', 'Suisse Int’l', sans-serif",
+    "heading": {
+      "h1": { "fontSize": "56px", "fontWeight": 600, "lineHeight": 1.2 },
+      "h2": { "fontSize": "32px", "fontWeight": 500, "lineHeight": 1.4 }
+    },
+    "body": { "fontSize": "16px", "fontWeight": 400, "lineHeight": 1.7 },
+    "caption": { "fontSize": "12px", "fontWeight": 300, "lineHeight": 1.6 },
+    "code": { "fontFamily": "'JetBrains Mono', monospace", "fontSize": "14px", "lineHeight": 1.6 }
+  },
+  "layout": {
+    "gridColumns": 12,
+    "gutter": "24px",
+    "sectionPadding": "100px",
+    "maxWidth": "1400px",
+    "marginHorizontal": "10vw"
+  },
+  "motion": {
+    "transition": "opacity 0.3s ease-in-out",
+    "imageTransition": "opacity 0.4s cubic-bezier(0.25, 0.1, 0.25, 1.0)"
+  },
+  "texture": {
+    "grain": "1%",
+    "surface": "matte",
+    "finish": "flat"
+  },
+  "mood": {
+    "tone": "archival clarity",
+    "temperature": "neutral-light",
+    "tempo": "slow"
+  }
+}

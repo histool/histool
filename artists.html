@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>艺术家参考 - 祂的工具箱</title>
+    <meta name="description" content="为艺术实践者提供高质量的工具资源、教程内容和学术支持">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <style>
+        /* Ensure the active link is highlighted */
+        .nav a[data-page="artists"] {
+            opacity: 0.6 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <!-- 顶部导航 -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; width: 100%;">
+                <nav class="nav">
+                    <a href="index.html" class="nav-link" data-page="home">Home</a>
+                    <a href="tools.html" class="nav-link" data-page="tools">资源库</a>
+                    <a href="news.html" class="nav-link" data-page="news">无聊的世界</a>
+                    <a href="artists.html" class="nav-link active" data-page="artists">艺术家参考</a>
+                    <a href="about.html" class="nav-link" data-page="about">关于</a>
+                    <a href="paid-courses.html" class="nav-link nav-subdued" id="paid-courses-link"
+                        data-page="paid-courses">付费课程</a>
+                    <a href="brain-research.html" class="nav-link nav-subdued" id="brain-research-link"
+                        data-page="brain-research">祂的研究</a>
+                </nav>
+                <div class="nav-controls">
+                    <div class="toggle-switch" id="paid-courses-toggle" onclick="togglePaidCourses(this)">
+                        <div class="toggle-circle"></div>
+                    </div>
+                    <div class="control-dot"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main class="main-content">
+            <div class="page-content">
+                <div class="hero-dot"></div>
+
+                <div class="artist-reference-section">
+                    <!-- 艺术家左侧导览行 -->
+                    <div class="artist-nav">
+                        <div class="artist-nav-title">艺术家分类</div>
+                        <div class="artist-nav-list">
+                            <div class="artist-nav-item active" data-category="graphic-artists">平面艺术家</div>
+                            <div class="artist-nav-item" data-category="radical-artists">激进艺术</div>
+                            <div class="artist-nav-item" data-category="game-artists">游戏艺术家</div>
+                        </div>
+                    </div>
+
+                    <div class="artist-categories">
+                        <div class="artist-category">
+                            <h4 class="artist-category-title">平面艺术家</h4>
+                            <div class="artist-scroll-container">
+                                <div class="artist-list" id="graphic-artists">
+                                    <div class="artist-item">
+                                        <div class="artist-name"><a href="https://bb-bureau.fr/" target="_blank">Benoît
+                                                Bodhuin</a></div>
+                                        <div class="artist-description">法国平面设计师，专注于实验性排版和视觉传达</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/Benoît Bodhuin.jpg" alt="Benoît Bodhuin作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item">
+                                        <div class="artist-name"><a href="https://postdigitalgraphicdesign.com/"
+                                                target="_blank">GDP-DA</a></div>
+                                        <div class="artist-description">德国平面设计工作室，以极简主义和功能性设计著称</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/GDP-DA.jpg" alt="GDP-DA作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item">
+                                        <div class="artist-name"><a href="https://chantaljahchan.work/"
+                                                target="_blank">Chantal Jahchan</a></div>
+                                        <div class="artist-description">黎巴嫩平面设计师，专注于文化身份和视觉叙事</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/Chantal Jahchan.jpg" alt="Chantal Jahchan作品">
+                                        </div>
+                                    </div>
+
+                                    <!-- 隐藏的艺术家项目 -->
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name"><a href="https://naranjoetxeberria.com"
+                                                target="_blank">Naranjo-Etxeberria</a></div>
+                                        <div class="artist-description">西班牙设计工作室，专注于品牌设计和视觉识别</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/httpsnaranjoetxeberria.com.jpg"
+                                                alt="Naranjo-Etxeberria作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name"><a href="https://hubertus-design.ch/home/"
+                                                target="_blank">Hubertus Design</a></div>
+                                        <div class="artist-description">德国设计工作室，专注于编辑设计和印刷工艺</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/hubertus-design.jpg" alt="Hubertus Design作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name"><a href="https://jonasriemersma.com/"
+                                                target="_blank">Jonas Riemersma</a></div>
+                                        <div class="artist-description">荷兰平面设计师，专注于实验性设计和艺术指导</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/jonasriemersma.jpg" alt="Jonas Riemersma作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name"><a href="https://marcelsaidov.de/"
+                                                target="_blank">Marcel Saidov</a></div>
+                                        <div class="artist-description">俄罗斯平面设计师，专注于数字艺术和视觉实验</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/marcelsaidov.jpg" alt="Marcel Saidov作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name"><a href="https://dolphinsonline.gr/"
+                                                target="_blank">Dolphins</a></div>
+                                        <div class="artist-description">平面设计工作室，专注于创意视觉传达</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/Grahic/dolphins.jpg" alt="Dolphins作品">
+                                        </div>
+                                    </div>
+                                    <button class="expand-btn" onclick="toggleArtists()">查看更多艺术家</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="artist-category">
+                            <h4 class="artist-category-title">激进艺术</h4>
+                            <div class="artist-scroll-container">
+                                <div class="artist-list" id="radical-artists">
+                                    <div class="artist-item">
+                                        <div class="artist-name"><a href="https://www.boudry-lorenz.de/recent/"
+                                                target="_blank">Pauline Boudry & Renate Lorenz</a></div>
+                                        <div class="artist-description">德国艺术家组合，专注于酷儿理论和后殖民主义艺术实践</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/激进艺术/Pauline Boudry  Renate Lorenz.jpg"
+                                                alt="Pauline Boudry & Renate Lorenz作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item">
+                                        <div class="artist-name"><a href="https://paglen.studio/" target="_blank">Trevor
+                                                Paglen</a></div>
+                                        <div class="artist-description">美国艺术家，专注于监控、数据隐私和人工智能批判</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/激进艺术/Trevor Paglen.jpg" alt="Trevor Paglen作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item">
+                                        <div class="artist-name"><a href="https://zachblas.info/works/"
+                                                target="_blank">Zach Blas</a></div>
+                                        <div class="artist-description">美国艺术家，专注于技术政治学和数字监控批判</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/激进艺术/Zachblas.jpg" alt="Zach Blas作品">
+                                        </div>
+                                    </div>
+
+                                    <!-- 隐藏的艺术家项目 -->
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name"><a href="https://rednoise.org/daniel/"
+                                                target="_blank">Daniel Howe</a></div>
+                                        <div class="artist-description">美国艺术家，专注于算法艺术和计算美学</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/激进艺术/Daniel Howe.jpg" alt="Daniel Howe作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name"><a href="https://www.walidraad.com/artworks"
+                                                target="_blank">Walid Raad</a></div>
+                                        <div class="artist-description">黎巴嫩艺术家，专注于档案、历史和记忆政治</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/激进艺术/Walidraaf.jpg" alt="Walid Raad作品">
+                                        </div>
+                                    </div>
+
+                                    <button class="expand-btn" onclick="toggleRadicalArtists()">查看更多艺术家</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="artist-category">
+                            <h4 class="artist-category-title">游戏艺术家</h4>
+                            <div class="artist-scroll-container">
+                                <div class="artist-list" id="game-artists">
+                                    <div class="artist-item">
+                                        <div class="artist-name"><a href="https://keiken.cloud" target="_blank">Keiken</a>
+                                        </div>
+                                        <div class="artist-description">来自伦敦与柏林的跨学科艺术团体，利用游戏引擎与虚拟叙事探索沉浸式社群体验</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/game/Keiken.jpg" alt="Keiken 项目作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item">
+                                        <div class="artist-name"><a href="https://www.davidoreilly.com" target="_blank">David
+                                                OReilly</a></div>
+                                        <div class="artist-description">爱尔兰裔艺术家与导演，游戏《Everything》《Mountain》把程序生成与哲学叙事结合</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/game/David Oreilly.jpg" alt="David OReilly 作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item">
+                                        <div class="artist-name"><a href="https://iancheng.com" target="_blank">Ian
+                                                Cheng</a></div>
+                                        <div class="artist-description">兰成（Ian Cheng）以实时生成的模拟生态著称，探索人工智能、宗教与叙事的关系</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/game/Lan Cheng.jpg" alt="Ian Cheng 作品">
+                                        </div>
+                                    </div>
+
+                                    <!-- 隐藏的艺术家项目 -->
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name"><a
+                                                href="https://www.federicosolmi.com/the-painter-and-the-model"
+                                                target="_blank">Federico Solmi</a></div>
+                                        <div class="artist-description">意大利裔艺术家，结合游戏引擎与手绘动画揭示权力、殖民与消费文化的荒诞</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/game/Federico Solmi.jpg" alt="Federico Solmi 作品">
+                                        </div>
+                                    </div>
+                                    <div class="artist-item hidden-artist">
+                                        <div class="artist-name">更多艺术家正在整理</div>
+                                        <div class="artist-description">持续收集互动叙事与游戏艺术案例，欢迎推荐</div>
+                                        <div class="artist-image">
+                                            <img src="pic/artist/game/Keiken.jpg" alt="更多艺术家即将上线" style="opacity: 0;">
+                                        </div>
+                                    </div>
+
+                                    <button class="expand-btn" onclick="toggleGameArtists()">查看更多艺术家</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        function toggleArtists() {
+            const list = document.getElementById('graphic-artists');
+            list.classList.toggle('expanded');
+            const btn = list.querySelector('.expand-btn');
+            if (list.classList.contains('expanded')) {
+                btn.textContent = '收起';
+            } else {
+                btn.textContent = '查看更多艺术家';
+            }
+        }
+
+        function toggleRadicalArtists() {
+            const list = document.getElementById('radical-artists');
+            list.classList.toggle('expanded');
+            const btn = list.querySelector('.expand-btn');
+            if (list.classList.contains('expanded')) {
+                btn.textContent = '收起';
+            } else {
+                btn.textContent = '查看更多艺术家';
+            }
+        }
+
+        function toggleGameArtists() {
+            const list = document.getElementById('game-artists');
+            list.classList.toggle('expanded');
+            const btn = list.querySelector('.expand-btn');
+            if (list.classList.contains('expanded')) {
+                btn.textContent = '收起';
+            } else {
+                btn.textContent = '查看更多艺术家';
+            }
+        }
+    </script>
+</body>
+
+</html>

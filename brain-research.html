@@ -1,539 +1,113 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <title>脑机研究项目方案：被测度的心智 - 祂的工具箱</title>
-    <meta name="description" content="脑机研究项目方案：被测度的心智 - 探索心智与技术的交汇点">
-    
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>祂的研究 - 祂的工具箱</title>
+    <meta name="description" content="为艺术实践者提供高质量的工具资源、教程内容和学术支持">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        /* 隐藏可能的进度条效果 */
-        ::-webkit-progress-bar {
-            display: none;
-        }
-        
-        progress {
-            display: none;
-        }
-        
-        /* 防止任何闪烁效果 */
-        * {
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-        }
-        
-        html {
-            width: 100%;
-            height: 100%;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            background: white;
-            color: #000;
-            letter-spacing: -0.01em;
-            width: 100%;
-            min-height: 100vh;
-            padding-top: 80px;
-        }
-        
-        a {
-            text-decoration: none;
-            color: #5a7c8a;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
-        
-        /* 主布局 */
-        .container {
-            width: 100%;
-            padding: 0 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        /* 顶部导航 */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-        }
-        
-        .back-link {
-            position: fixed;
-            top: 120px;
-            left: 40px;
-            z-index: 999;
-            color: #5a7c8a;
-            font-size: 14px;
-            text-decoration: none;
-            padding: 10px 15px;
-            border: 1px solid #5a7c8a;
-            border-radius: 20px;
-            background: white;
-            transition: all 0.3s ease;
-        }
-        
-        .back-link:hover {
-            background: #5a7c8a;
-            color: white;
-            text-decoration: none;
-        }
-        
-        /* 研究内容样式 */
-        .research-header {
-            text-align: center;
-            margin-bottom: 80px;
-            padding: 40px 0;
-        }
-        
-        .research-title {
-            font-size: clamp(32px, 6vw, 60px);
-            font-weight: 300;
-            letter-spacing: -0.02em;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .research-subtitle {
-            font-size: 18px;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .research-content {
-            max-width: 900px;
-            margin: 0 auto 100px;
-        }
-        
-        .section {
-            margin-bottom: 60px;
-            padding: 40px;
-            background: #fafafa;
-            border-radius: 12px;
-            border: 1px solid #e8e8e8;
-        }
-        
-        .section h2 {
-            font-size: 28px;
-            font-weight: 400;
-            margin-bottom: 25px;
-            color: #2c2c2c;
-            border-bottom: 2px solid #5a7c8a;
-            padding-bottom: 10px;
-            display: inline-block;
-        }
-        
-        .section h3 {
-            font-size: 22px;
-            font-weight: 400;
-            margin: 30px 0 15px 0;
-            color: #333;
-        }
-        
-        .section p {
-            margin-bottom: 20px;
-            line-height: 1.8;
-            color: #444;
-        }
-        
-        .section ul {
-            margin: 20px 0;
-            padding-left: 25px;
-        }
-        
-        .section li {
-            margin-bottom: 15px;
-            line-height: 1.6;
-            color: #444;
-        }
-        
-        .highlight {
-            background-color: #f0f7fa;
-            padding: 20px;
-            border-left: 4px solid #5a7c8a;
-            margin: 25px 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        .highlight p {
-            margin-bottom: 10px;
-        }
-        
-        .highlight p:last-child {
-            margin-bottom: 0;
-        }
-        
-        .quote {
-            font-style: italic;
-            color: #666;
-            padding: 15px 20px;
-            border-left: 3px solid #ccc;
-            margin: 20px 0;
-        }
-        
-        /* 方法论框架 */
-        .methodology-framework {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
-        
-        .framework-item {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .framework-item h4 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #5a7c8a;
-        }
-        
-        .framework-item ul {
-            padding-left: 20px;
-        }
-        
-        /* 技术实现 */
-        .tech-implementation {
-            margin: 30px 0;
-        }
-        
-        .tech-component {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .tech-component:last-child {
-            border-bottom: none;
-        }
-        
-        .tech-component h4 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
-            
-            body {
-                padding-top: 60px;
-            }
-            
-            .back-link {
-                position: static;
-                display: inline-block;
-                margin: 20px 0;
-            }
-            
-            .research-header {
-                margin-bottom: 40px;
-                padding: 20px 0;
-            }
-            
-            .research-title {
-                font-size: 28px;
-            }
-            
-            .section {
-                padding: 25px;
-                margin-bottom: 40px;
-            }
-            
-            .section h2 {
-                font-size: 24px;
-            }
-            
-            .section h3 {
-                font-size: 20px;
-            }
-            
-            .methodology-framework {
-                grid-template-columns: 1fr;
-            }
+        /* Ensure the active link is highlighted */
+        .nav a[data-page="brain-research"] {
+            opacity: 0.6 !important;
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <!-- 返回链接 -->
-        <a href="index.html" class="back-link">返回首页</a>
-        
-        <!-- 研究标题部分 -->
-        <div class="research-header">
-            <h1 class="research-title">脑机研究项目方案：被测度的心智</h1>
-            <p class="research-subtitle">探索心智与技术的交汇点，通过脑机接口技术测量与解读人类思维</p>
+    <header class="header">
+        <div class="container">
+            <!-- 顶部导航 -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; width: 100%;">
+                <nav class="nav">
+                    <a href="index.html" class="nav-link" data-page="home">Home</a>
+                    <a href="tools.html" class="nav-link" data-page="tools">资源库</a>
+                    <a href="news.html" class="nav-link" data-page="news">无聊的世界</a>
+                    <a href="artists.html" class="nav-link" data-page="artists">艺术家参考</a>
+                    <a href="about.html" class="nav-link" data-page="about">关于</a>
+                    <a href="paid-courses.html" class="nav-link nav-subdued" id="paid-courses-link"
+                        data-page="paid-courses">付费课程</a>
+                    <a href="brain-research.html" class="nav-link active" id="brain-research-link"
+                        data-page="brain-research">祂的研究</a>
+                </nav>
+                <div class="nav-controls">
+                    <div class="toggle-switch" id="paid-courses-toggle" onclick="togglePaidCourses(this)">
+                        <div class="toggle-circle"></div>
+                    </div>
+                    <div class="control-dot"></div>
+                </div>
+            </div>
         </div>
-        
-        <!-- 研究内容部分 -->
-        <div class="research-content">
-            <!-- 项目摘要 -->
-            <section class="section">
-                <h2>项目摘要</h2>
-                <p>"被测度的心智"是一个跨学科研究项目，致力于在神经科学、哲学和人机交互设计的交叉点上，探索脑机接口技术(BCI)的理论假设、权力关系和社会影响。本项目以价值敏感性设计方法论为指导，通过批判性设计策略，审视技术与人类认知、主体性之间的复杂关系。</p>
-                
-                <div class="highlight">
-                    <p><strong>项目核心问题：</strong>在神经技术快速发展的背景下，我们如何批判性地审视脑机接口技术对人类主体性、认知自由和隐私的影响？如何通过设计干预，挑战和重构技术与心智的关系？</p>
-                </div>
-                
-                <p>本项目采用多学科交叉的研究方法，结合理论探究、实证研究和设计实践，旨在开发一系列思辨性原型，揭示脑机接口技术背后的权力结构，并探索更具包容性和反思性的技术设计路径。</p>
-            </section>
-            
-            <!-- 引言：BCI技术的权力本质分析 -->
-            <section class="section">
-                <h2>引言：BCI技术的权力本质分析</h2>
-                <p>脑机接口技术的发展不仅仅是一个技术进步的过程，更是一个权力关系重构的过程。本项目从批判理论的视角出发，分析BCI技术背后的权力结构和意识形态。</p>
-                
-                <h3>1. 理论视角</h3>
-                <ul>
-                    <li><strong>福柯的生命权力：</strong>BCI技术如何成为现代生物权力的延伸，实现对个体思想和行为的精确测量与控制</li>
-                    <li><strong>韩炳哲的精神政治：</strong>在数字时代，如何从肉体规训转向精神治理，BCI技术如何成为精神政治的技术支撑</li>
-                    <li><strong>德勒兹的控制社会：</strong>BCI技术如何促成从禁闭式规训社会向开放式控制社会的转变</li>
-                    <li><strong>斯蒂格勒的普遍无产阶级化：</strong>数字技术如何导致认知无产阶级化，BCI技术如何加剧这一趋势</li>
-                    <li><strong>普列西亚多的药物-色情政体：</strong>神经技术如何成为新型权力技术，塑造主体性和欲望</li>
-                </ul>
-                
-                <div class="quote">
-                    "当技术能够读取和写入我们的思想时，我们需要重新思考自由、隐私和主体性的概念。" — 项目理论顾问 李哲教授
-                </div>
-            </section>
-            
-            <!-- 理论基础 -->
-            <section class="section">
-                <h2>理论基础</h2>
-                
-                <h3>1. 大脑政治学视角</h3>
-                <p>本项目从大脑政治学的理论框架出发，探讨神经技术与权力的关系，分析BCI技术如何成为新型权力技术，塑造主体性和认知方式。</p>
-                
-                <h3>2. 神经权力的三种表现形式</h3>
-                <ul>
-                    <li><strong>神经监视：</strong>通过BCI技术实现对神经活动的实时监测和记录</li>
-                    <li><strong>神经优化：</strong>基于神经数据对个体认知和情感状态进行干预和优化</li>
-                    <li><strong>神经标准化：</strong>建立神经活动的正常标准，定义和管理异常状态</li>
-                </ul>
-                
-                <h3>3. 监视资本主义与神经数据</h3>
-                <p>在监视资本主义的框架下，神经数据成为新的价值来源，BCI技术如何成为数据提取和价值创造的工具，以及这一过程对个体自主权的影响。</p>
-                
-                <h3>4. 可塑性与灵活性理论</h3>
-                <p>探讨神经可塑性如何被技术利用，以及灵活性如何成为新的规训手段，分析BCI技术如何塑造和限制人类认知的可塑性。</p>
-                
-                <h3>5. 价值敏感性设计与HCI框架</h3>
-                <p>本项目采用价值敏感性设计方法论，将伦理和社会价值整合到技术设计过程中。同时，借鉴思辨性设计和批判性设计的理论框架，开发具有反思性的技术原型。</p>
-            </section>
-            
-            <!-- 研究计划 -->
-            <section class="section">
-                <h2>研究计划</h2>
-                <p>本项目分为三个主要研究阶段，每个阶段对应不同的研究目标和方法。</p>
-                
-                <h3>1. 概念探究阶段（第1-6个月）</h3>
-                <p><strong>目标：</strong>深入理解BCI技术的理论基础、伦理问题和社会影响，建立批判性研究框架。</p>
-                <p><strong>方法：</strong></p>
-                <ul>
-                    <li>文献综述：系统梳理神经科学、哲学、批判理论和HCI领域的相关研究</li>
-                    <li>理论建构：整合不同学科的理论视角，构建BCI技术的批判分析框架</li>
-                    <li>案例研究：分析现有的BCI技术应用案例，识别其中的权力关系和价值预设</li>
-                </ul>
-                <p><strong>预期产出：</strong>研究报告、理论框架、概念设计草图</p>
-                
-                <h3>2. 实证探究阶段（第7-18个月）</h3>
-                <p><strong>目标：</strong>通过实验研究，探索BCI技术对用户体验、认知和主体性的影响。</p>
-                <p><strong>方法：</strong></p>
-                <ul>
-                    <li>用户研究：招募不同背景的参与者，进行深度访谈和焦点小组讨论</li>
-                    <li>实验设计：设计一系列受控实验，测量BCI技术使用过程中的生理和心理反应</li>
-                    <li>数据分析：采用混合研究方法，结合量化和质性分析技术</li>
-                </ul>
-                <p><strong>预期产出：</strong>实验数据、研究论文、用户洞察报告</p>
-                
-                <h3>3. 技术探究阶段（第19-36个月）</h3>
-                <p><strong>目标：</strong>开发一系列思辨性原型，挑战传统BCI技术的假设和局限。</p>
-                <p><strong>方法：</strong></p>
-                <ul>
-                    <li>设计研究：采用价值敏感性设计和思辨性设计方法，开发概念原型</li>
-                    <li>技术实现：结合EEG技术和创意编程，实现原型系统</li>
-                    <li>用户测试：邀请用户参与原型测试，收集反馈和洞察</li>
-                </ul>
-                <p><strong>预期产出：</strong>思辨性原型、设计文档、演示视频</p>
-            </section>
-            
-            <!-- 思辨性原型设计 -->
-            <section class="section">
-                <h2>思辨性原型设计</h2>
-                <p>本项目将开发三个思辨性原型，旨在挑战传统BCI技术的假设，揭示其背后的权力关系，并探索更具包容性和反思性的技术设计路径。</p>
-                
-                <h3>1. 神经噪音界面（NeuroNoise Interface）</h3>
-                <p><strong>设计理念：</strong>传统BCI技术追求信号的清晰度和准确性，而神经噪音界面故意放大和呈现脑电信号中的"噪音"，将其视为有意义的表达。</p>
-                <p><strong>技术实现：</strong></p>
-                <ul>
-                    <li>使用低分辨率EEG设备采集脑电信号</li>
-                    <li>开发算法，识别和放大传统BCI技术视为"噪声"的信号成分</li>
-                    <li>将这些信号转化为视觉和听觉表达</li>
-                </ul>
-                <p><strong>设计意图：</strong>挑战技术理性对"有效"和"无效"信号的区分，强调认知的复杂性和多样性，反思技术对人类体验的简化。</p>
-                
-                <h3>2. 无用神谕（Useless Oracle）</h3>
-                <p><strong>设计理念：</strong>无用神谕是一个基于BCI技术的装置，它不提供实用功能，而是随机解释用户的神经活动，生成看似有意义但实则无目的的预测和建议。</p>
-                <p><strong>技术实现：</strong></p>
-                <ul>
-                    <li>结合EEG技术和随机算法</li>
-                    <li>开发生成式AI系统，基于用户的神经数据生成文本和图像</li>
-                    <li>设计互动界面，呈现这些随机生成的内容</li>
-                </ul>
-                <p><strong>设计意图：</strong>批判技术决定论和预测主义，质疑技术对未来的确定性承诺，揭示技术解释的主观性和偶然性。</p>
-                
-                <h3>3. 可塑性训练器（Plasticity Trainer）</h3>
-                <p><strong>设计理念：</strong>可塑性训练器是一个交互式装置，它不试图优化或标准化用户的神经活动，而是鼓励用户探索和实验自己的认知边界。</p>
-                <p><strong>技术实现：</strong></p>
-                <ul>
-                    <li>开发实时反馈系统，可视化用户的神经活动模式</li>
-                    <li>设计一系列互动任务，鼓励用户尝试不同的思维方式</li>
-                    <li>记录和分析用户的学习曲线和认知变化</li>
-                </ul>
-                <p><strong>设计意图：</strong>挑战神经优化的主导叙事，强调认知多样性和可塑性的价值，探索技术支持下的认知自由。</p>
-            </section>
-            
-            <!-- 项目实施计划 -->
-            <section class="section">
-                <h2>项目实施计划</h2>
-                <h3>1. 项目周期</h3>
-                <p>本项目预计实施周期为36个月，从2024年7月至2027年6月。</p>
-                
-                <h3>2. 阶段划分与任务</h3>
-                <ul>
-                    <li>
-                        <strong>第一阶段（第1-6个月）：概念探究阶段</strong>
-                        <ul>
-                            <li>项目团队组建</li>
-                            <li>文献综述与理论框架构建</li>
-                            <li>案例研究与实地考察</li>
-                            <li>概念设计工作坊</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <strong>第二阶段（第7-18个月）：实证探究阶段</strong>
-                        <ul>
-                            <li>研究伦理审查</li>
-                            <li>用户招募与深度访谈</li>
-                            <li>实验设计与实施</li>
-                            <li>数据收集与初步分析</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <strong>第三阶段（第19-30个月）：技术探究阶段</strong>
-                        <ul>
-                            <li>原型设计与迭代</li>
-                            <li>技术实现与测试</li>
-                            <li>用户评估与反馈收集</li>
-                            <li>设计调整与优化</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <strong>第四阶段（第31-36个月）：成果总结与推广阶段</strong>
-                        <ul>
-                            <li>研究成果整理</li>
-                            <li>学术论文撰写与发表</li>
-                            <li>展览策划与实施</li>
-                            <li>工作坊与研讨会组织</li>
-                        </ul>
-                    </li>
-                </ul>
-                
-                <h3>3. 里程碑设置</h3>
-                <ul>
-                    <li>理论框架完成（第6个月）</li>
-                    <li>用户研究报告完成（第12个月）</li>
-                    <li>第一个原型开发完成（第20个月）</li>
-                    <li>三个原型全部完成（第30个月）</li>
-                    <li>研究成果展览（第34个月）</li>
-                    <li>项目总结与结题（第36个月）</li>
-                </ul>
-            </section>
-            
-            <!-- 预期贡献 -->
-            <section class="section">
-                <h2>预期贡献</h2>
-                
-                <h3>1. 理论贡献</h3>
-                <ul>
-                    <li>构建BCI技术的批判分析框架，整合神经科学、哲学和HCI的理论视角</li>
-                    <li>深化对神经权力、认知自由和技术伦理的理解</li>
-                    <li>提出"神经主体性"的概念，探讨技术如何塑造和重构人类主体性</li>
-                </ul>
-                
-                <h3>2. 实证贡献</h3>
-                <ul>
-                    <li>提供关于BCI技术用户体验和社会影响的实证数据</li>
-                    <li>识别用户在使用BCI技术过程中的认知、情感和伦理挑战</li>
-                    <li>分析不同社会文化背景下对BCI技术的接受度和理解差异</li>
-                </ul>
-                
-                <h3>3. 实践贡献</h3>
-                <ul>
-                    <li>开发3个具有批判性和反思性的BCI技术原型</li>
-                    <li>提出价值敏感性设计在神经技术领域的应用框架</li>
-                    <li>为神经技术的伦理设计和负责任创新提供实践案例</li>
-                </ul>
-            </section>
-            
-            <!-- 研究团队 -->
-            <section class="section">
-                <h2>研究团队</h2>
-                <p>本项目由来自神经科学、哲学、人机交互设计和艺术领域的专家组成，形成跨学科研究团队。</p>
-                
-                <div class="methodology-framework">
-                    <div class="framework-item">
-                        <h4>李哲教授</h4>
-                        <p>项目负责人，哲学与科技研究专家，专注于技术哲学和批判理论，拥有15年相关领域经验。</p>
+    </header>
+    <div class="container">
+        <main class="main-content">
+            <div class="page-content">
+                <div class="hero-dot"></div>
+                <div class="course-detail-layout">
+                    <div class="course-sidebar">
+                        <div class="course-option active" data-research="brain-computer">
+                            <div class="course-card">
+                                <div class="course-title">脑机接口艺术研究</div>
+                                <div class="course-description">探索脑电波与艺术创作的结合</div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="framework-item">
-                        <h4>王神经博士</h4>
-                        <p>神经科学顾问，专注于认知神经科学和脑机接口技术研究，负责实验设计和数据分析。</p>
-                    </div>
-                    
-                    <div class="framework-item">
-                        <h4>陈交互教授</h4>
-                        <p>设计指导，人机交互设计专家，价值敏感性设计和思辨性设计领域权威，负责原型设计。</p>
-                    </div>
-                    
-                    <div class="framework-item">
-                        <h4>林艺术博士</h4>
-                        <p>艺术指导，新媒体艺术专家，探索科技与艺术的批判性融合，负责视觉表达设计。</p>
+                    <div class="course-detail-content">
+                        <div id="brain-computer-content" class="course-content-section active">
+                            <div class="content-box">
+                                <h2>脑机接口艺术研究计划</h2>
+                                <p>这是一个关于脑机接口（BCI）技术在艺术创作中应用的研究项目。我们试图探索直接通过脑电波进行艺术表达的可能性。</p>
+
+                                <div style="margin-top: 30px; text-align: center;">
+                                    <p style="margin-bottom: 20px;">该研究内容包含未发表的实验数据和技术细节，仅对特定研究合作伙伴开放。</p>
+                                    <button id="view-brain-research"
+                                        style="background: #5a7c8a; color: white; border: none; padding: 12px 30px; border-radius: 4px; cursor: pointer; font-size: 16px; transition: background 0.3s;">查看研究方案</button>
+                                </div>
+
+                                <div id="full-research-content" style="display: none; margin-top: 40px;">
+                                    <h3>研究背景</h3>
+                                    <p>随着神经科学和生物工程的发展，脑机接口技术已经从医疗康复领域逐渐扩展到增强人类能力和艺术表达领域。本项目旨在构建一个基于情绪识别的生成式艺术系统。</p>
+
+                                    <h3>技术路线</h3>
+                                    <p>1. 信号采集：使用OpenBCI设备采集脑电信号（EEG）</p>
+                                    <p>2. 数据处理：通过Python进行信号滤波和特征提取</p>
+                                    <p>3. 情绪分类：利用机器学习算法识别情绪状态</p>
+                                    <p>4. 视觉生成：将情绪数据映射为生成艺术的参数</p>
+
+                                    <h3>实验进展</h3>
+                                    <p>目前已完成初步的信号采集系统搭建，正在进行情绪分类模型的训练。初步实验表明，Alpha波和Theta波的特征组合可以有效区分专注和放松状态。</p>
+
+                                    <h3>合作机会</h3>
+                                    <p>我们正在寻找具有神经科学背景的合作伙伴，共同推进下一阶段的实验。如果您感兴趣，请联系：hermeit@outlook.com</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- 密码输入模态框 -->
+    <div id="passwordModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; justify-content: center; align-items: center;">
+        <div
+            style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); max-width: 300px; width: 90%; text-align: center;">
+            <h3 style="margin-bottom: 15px; color: #333;">输入密码</h3>
+            <input type="password" id="passwordInput" placeholder="请输入密码"
+                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 15px; font-size: 16px;">
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button onclick="checkPassword()"
+                    style="background: #5a7c8a; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px;">确认</button>
+                <button onclick="closePasswordModal()"
+                    style="background: #ccc; color: #333; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px;">取消</button>
+            </div>
+            <div id="passwordError" style="color: #e74c3c; margin-top: 10px; display: none; font-size: 12px;">密码错误</div>
         </div>
     </div>
 </body>
+
 </html>

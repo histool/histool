@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>人工智能 - 祂的工具箱</title>
+    <meta name="description" content="为艺术实践者提供高质量的工具资源、教程内容和学术支持">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <!-- 顶部导航 -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; width: 100%;">
+                <nav class="nav">
+                    <a href="index.html" class="nav-link" data-page="home">Home</a>
+                    <a href="tools.html" class="nav-link" data-page="tools">资源库</a>
+                    <a href="news.html" class="nav-link" data-page="news">无聊的世界</a>
+                    <a href="artists.html" class="nav-link" data-page="artists">艺术家参考</a>
+                    <a href="about.html" class="nav-link" data-page="about">关于</a>
+                    <a href="paid-courses.html" class="nav-link nav-subdued" id="paid-courses-link"
+                        data-page="paid-courses">付费课程</a>
+                    <a href="brain-research.html" class="nav-link nav-subdued" id="brain-research-link"
+                        data-page="brain-research">祂的研究</a>
+                </nav>
+                <div class="nav-controls">
+                    <div class="toggle-switch" id="paid-courses-toggle" onclick="togglePaidCourses(this)">
+                        <div class="toggle-circle"></div>
+                    </div>
+                    <div class="control-dot"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main class="main-content">
+            <div class="page-content">
+                <div class="ai-content">
+                    <h1 class="ai-title">人工智能</h1>
+                    <p class="ai-description">探索人工智能在创作领域的应用与实践，为艺术家和创作者提供AI辅助工具与方法论。</p>
+
+                    <div class="ai-categories">
+                        <div class="ai-category">
+                            <h3>AI写作研究</h3>
+                            <p>深入探讨AI在学术和艺术写作中的应用，提供研究方法与实践指南。</p>
+                            <a href="ai-writing-research.html" class="ai-category-link">查看详情</a>
+                        </div>
+
+                        <div class="ai-category">
+                            <h3>AI当代艺术写作</h3>
+                            <p>利用AI技术辅助当代艺术评论与写作，探索新的表达形式与思路。</p>
+                            <a href="ai-writing-contemporary.html" class="ai-category-link">查看详情</a>
+                        </div>
+
+                        <div class="ai-category">
+                            <h3>AI写作工具</h3>
+                            <p>精选实用的AI写作工具集，帮助创作者提升写作效率与质量。</p>
+                            <a href="ai-writing-tools.html" class="ai-category-link">查看详情</a>
+                        </div>
+
+                        <div class="ai-category">
+                            <h3>AI写作课程</h3>
+                            <p>系统化的AI写作培训课程，从入门到精通，掌握AI辅助创作的核心技能。</p>
+                            <a href="ai-writing-course.html" class="ai-category-link">查看详情</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
