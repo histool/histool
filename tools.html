@@ -25,7 +25,7 @@
                 <nav class="nav">
                     <a href="index.html" class="nav-link" data-page="home">Home</a>
                     <a href="tools.html" class="nav-link active" data-page="tools">资源库</a>
-                    <a href="news.html" class="nav-link" data-page="news">无聊的世界</a>
+                    <a href="news.html" class="nav-link" data-page="news">无聊的今天</a>
                     <a href="artists.html" class="nav-link" data-page="artists">艺术家参考</a>
                     <a href="about.html" class="nav-link" data-page="about">关于</a>
                     <a href="paid-courses.html" class="nav-link nav-subdued" id="paid-courses-link"
@@ -71,22 +71,28 @@
                                 </div>
                                 <div class="tool-description">全面的PDF在线处理工具集</div>
                             </li>
-                            <li class="tool-item">
-                                <div class="tool-name"><a href="https://www.iloveimg.com/" target="_blank">I Love IMG</a>
-                                </div>
+                            <li class="tool-item hidden-tool">
+                                <div class="tool-name"><a href="https://www.autotracer.org/zh.html"
+                                        target="_blank">AutoTracer</a></div>
+                                <div class="tool-description">免费像素转矢量图</div>
+                            </li>
+                            <li class="tool-item hidden-tool">
+                                <div class="tool-name"><a href="https://www.iloveimg.com/" target="_blank">I Love
+                                        IMG</a></div>
                                 <div class="tool-description">批量裁剪、压缩、转换等图片处理工具合集</div>
                             </li>
-                            <li class="tool-item">
+                            <li class="tool-item hidden-tool">
                                 <div class="tool-name"><a href="https://www.convertpdftoautocad.com/"
                                         target="_blank">Pdf2DWG (CAD)</a></div>
                                 <div class="tool-description">将PDF图纸快速转换为DWG/CAD源文件，便于进一步编辑</div>
                             </li>
-                            <li class="tool-item">
-                                <div class="tool-name"><a href="https://freesound.org/" target="_blank">Freesound.org</a>
-                                </div>
+                            <li class="tool-item hidden-tool">
+                                <div class="tool-name"><a href="https://freesound.org/"
+                                        target="_blank">Freesound.org</a></div>
                                 <div class="tool-description">免费音效与环境声素材库，支持检索和下载多种格式</div>
                             </li>
                         </ul>
+                        <button class="tool-expand-btn" onclick="toggleAllTools()">展开更多工具</button>
                     </div>
 
                     <div class="tool-category">
@@ -124,11 +130,10 @@
                             </li>
                             <li class="tool-item">
                                 <div class="tool-name"><a
-                                        href="https://www.bilibili.com/video/BV1vf421S7rF?spm_id_from=333.788.videopod.episodes&vd_source=ee4738dc87d41f1fb918f5345c352da5&p=12"
+                                        href="https://www.bilibili.com/video/BV1vf421S7rF?spm_id_from=333.788.videopod.episodes\u0026vd_source=ee4738dc87d41f1fb918f5345c352da5\u0026p=12"
                                         target="_blank">Rhino8 品创设计</a></div>
                                 <div class="tool-description">Rhino8产品设计教程，从基础到高级应用</div>
                             </li>
-                            <!-- Merged from Tutorials -->
                             <li class="tool-item">
                                 <div class="tool-name">Blender渲染课程</div>
                                 <div class="tool-description">掌握Blender渲染技术和材质制作</div>
@@ -147,8 +152,8 @@
                             </li>
                             <li class="tool-item">
                                 <div class="tool-name"><a
-                                        href="https://www.bilibili.com/video/BV171pKzxEdG?spm_id_from=333.788.videopod.sections&vd_source=ee4738dc87d41f1fb918f5345c352da5"
-                                        target="_blank">厦门大学 & UCA 网页设计workshop</a></div>
+                                        href="https://www.bilibili.com/video/BV171pKzxEdG?spm_id_from=333.788.videopod.sections\u0026vd_source=ee4738dc87d41f1fb918f5345c352da5"
+                                        target="_blank">厦门大学 \u0026 UCA 网页设计workshop</a></div>
                                 <div class="tool-description">使用git上传静态html到GitHub/Gitee</div>
                             </li>
                             <li class="tool-item">
@@ -163,7 +168,7 @@
                         <ul class="tool-list">
                             <li class="tool-item">
                                 <div class="tool-name"><a
-                                        href="https://search.bilibili.com/all?vt=56983877&keyword=%E5%AE%9E%E9%AA%8B%E7%BC%96%E7%A8%8B&from_source=webtop_search&spm_id_from=333.788&search_source=5"
+                                        href="https://search.bilibili.com/all?vt=56983877\u0026keyword=%E5%AE%9E%E9%AA%8B%E7%BC%96%E7%A8%8B\u0026from_source=webtop_search\u0026spm_id_from=333.788\u0026search_source=5"
                                         target="_blank">实验编程公开课</a></div>
                                 <div class="tool-description">探索编程与艺术结合的创新实践</div>
                             </li>
@@ -208,6 +213,8 @@
             </div>
         </main>
     </div>
+    <script>
+        function toggleFreeTools() { \n            const hiddenTools = document.querySelectorAll('.tool-category:first-of-type .hidden-tool'); \n            const btn = document.querySelector('.tool-expand-btn'); \n            \n            // 检查第一个隐藏工具是否可见\n            const firstTool = hiddenTools[0];\n            const isExpanded = firstTool && window.getComputedStyle(firstTool).display !== 'none';\n            \n            hiddenTools.forEach(tool => {\n                if (isExpanded) {\n                    tool.style.display = 'none';\n                } else {\n                    tool.style.display = 'block';\n                }\n            });\n            \n            if (isExpanded) {\n                btn.textContent = '展开更多工具';\n            } else {\n                btn.textContent = '收起';\n            }\n        }\n    </script>
 </body>
 
 </html>

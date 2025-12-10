@@ -650,6 +650,29 @@ a[data-page="brain-research"] {
     line-height: 1.4;
 }
 
+/* 工具展开/收起功能 */
+.hidden-tool {
+    display: none;
+}
+
+.tool-expand-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid #5a7c8a;
+    color: #5a7c8a;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.tool-expand-btn:hover {
+    background: #5a7c8a;
+    color: white;
+}
+
 /* 教程区样式 */
 .tutorials-grid {
     display: grid;
