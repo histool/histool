@@ -107,6 +107,7 @@ a {
 .nav a[data-page="home"].active,
 .nav a[data-page="tools"].active,
 .nav a[data-page="tutorials"].active,
+.nav a[data-page="his-tutorials"].active,
 .nav a[data-page="ai"].active,
 .nav a[data-page="artists"].active,
 .nav a[data-page="about"].active,

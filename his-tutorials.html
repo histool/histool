@@ -5,10 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <title>人工智能 - 祂的工具箱</title>
+    <title>祂的教程 - 祂的工具箱</title>
     <meta name="description" content="为艺术实践者提供高质量的工具资源、教程内容和学术支持">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <style>
+        /* Ensure the active link is highlighted */
+        .nav a[data-page="his-tutorials"] {
+            opacity: 0.6 !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,7 +25,7 @@
                 <nav class="nav">
                     <a href="index.html" class="nav-link" data-page="home">Home</a>
                     <a href="tools.html" class="nav-link" data-page="tools">资源库</a>
-                    <a href="his-tutorials.html" class="nav-link" data-page="his-tutorials">祂的教程</a>
+                    <a href="his-tutorials.html" class="nav-link active" data-page="his-tutorials">祂的教程</a>
                     <a href="news.html" class="nav-link" data-page="news">无聊的今天</a>
                     <a href="artists.html" class="nav-link" data-page="artists">艺术家参考</a>
                     <a href="about.html" class="nav-link" data-page="about">关于</a>
@@ -40,33 +46,37 @@
     <div class="container">
         <main class="main-content">
             <div class="page-content">
-                <div class="ai-content">
-                    <h1 class="ai-title">人工智能</h1>
-                    <p class="ai-description">探索人工智能在创作领域的应用与实践，为艺术家和创作者提供AI辅助工具与方法论。</p>
+                <div class="hero-dot"></div>
 
-                    <div class="ai-categories">
-                        <div class="ai-category">
-                            <h3>AI写作研究</h3>
-                            <p>深入探讨AI在学术和艺术写作中的应用，提供研究方法与实践指南。</p>
-                            <a href="ai-writing-research.html" class="ai-category-link">查看详情</a>
+                <div class="tutorials-grid">
+                    <div class="tutorial-column">
+                        <h3>艺术写作</h3>
+
+                        <div class="tutorial-item">
+                            <div class="tutorial-title">艺术写作入门</div>
+                            <div class="tutorial-description">掌握艺术写作的基础方法和写作框架</div>
                         </div>
 
-                        <div class="ai-category">
-                            <h3>AI当代艺术写作</h3>
-                            <p>利用AI技术辅助当代艺术评论与写作，探索新的表达形式与思路。</p>
-                            <a href="ai-writing-contemporary.html" class="ai-category-link">查看详情</a>
+                        <div class="tutorial-item">
+                            <div class="tutorial-title">行文框架</div>
+                            <div class="tutorial-description">学习如何构建清晰、有力的艺术写作结构</div>
+                            <div class="tutorial-image">
+                                <img src="pic/writing/行文框架.jpg" alt="行文框架示意图">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tutorial-column">
+                        <h3>研究方法</h3>
+
+                        <div class="tutorial-item">
+                            <div class="tutorial-title">艺术研究路径导读</div>
+                            <div class="tutorial-description">探索艺术研究的多种路径和方法论</div>
                         </div>
 
-                        <div class="ai-category">
-                            <h3>AI写作工具</h3>
-                            <p>精选实用的AI写作工具集，帮助创作者提升写作效率与质量。</p>
-                            <a href="ai-writing-tools.html" class="ai-category-link">查看详情</a>
-                        </div>
-
-                        <div class="ai-category">
-                            <h3>AI写作课程</h3>
-                            <p>系统化的AI写作培训课程，从入门到精通，掌握AI辅助创作的核心技能。</p>
-                            <a href="ai-writing-course.html" class="ai-category-link">查看详情</a>
+                        <div class="tutorial-item">
+                            <div class="tutorial-title">批判性思维</div>
+                            <div class="tutorial-description">培养对艺术作品的批判性分析和思考能力</div>
                         </div>
                     </div>
                 </div>
