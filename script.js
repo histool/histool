@@ -1,4 +1,4 @@
-// 艺术家参考左侧导航功能
+// 作品参考左侧导航功能
 document.addEventListener('DOMContentLoaded', function () {
     // 获取所有导航项
     const navItems = document.querySelectorAll('.artist-nav-item');
@@ -43,6 +43,44 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             }
         });
+    }
+});
+
+// 资源库/工具页面子导航平滑滚动
+document.addEventListener('DOMContentLoaded', function () {
+    const subLinks = document.querySelectorAll('.nav-sub a');
+
+    subLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href.includes('#')) {
+                const [path, hash] = href.split('#');
+                const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+                const targetPage = path || currentPage;
+
+                // 如果点击的是当前页面的锚点
+                if (targetPage === currentPage || (targetPage === 'tools.html' && currentPage === 'tools.html')) {
+                    const targetElement = document.getElementById(hash);
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                        // 更新 URL hash
+                        window.history.pushState(null, null, `#${hash}`);
+                    }
+                }
+            }
+        });
+    });
+
+    // 处理页面加载时的 Hash
+    if (window.location.hash) {
+        const hash = window.location.hash.substring(1);
+        const targetElement = document.getElementById(hash);
+        if (targetElement) {
+            setTimeout(() => {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }, 500); // 稍微延迟确保内容加载
+        }
     }
 });
 
