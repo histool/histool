@@ -7,426 +7,568 @@
         content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <title>付费课程 - 祂的工具箱</title>
     <meta name="description" content="为艺术实践者提供高质量的工具资源、教程内容和学术支持">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_gallery.css">
     <script src="script.js" defer></script>
     <style>
-        /* Ensure the active link is highlighted */
-        .nav a[data-page="paid-courses"] {
-            opacity: 0.6 !important;
+        /* 付费课程画廊布局的特定样式覆盖 */
+        .course-detail-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        @media (min-width: 1024px) {
+            .course-detail-layout {
+                flex-direction: row;
+                gap: 60px;
+            }
+        }
+
+        .course-sidebar {
+            width: 100%;
+        }
+
+        @media (min-width: 1024px) {
+            .course-sidebar {
+                width: 300px;
+                flex-shrink: 0;
+            }
+        }
+
+        .course-card {
+            border: 1px solid #000;
+            padding: 25px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .course-option.active .course-card {
+            background: #f9f9f9;
+            border-width: 2px;
+        }
+
+        .course-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .course-description {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .course-features {
+            list-style: none;
+            padding: 0;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .course-features li {
+            margin-bottom: 5px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .course-features li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+        }
+
+        .course-price {
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+        }
+
+        .course-detail-content {
+            flex: 1;
+        }
+
+        .course-content-section {
+            display: none;
+        }
+
+        .course-content-section.active {
+            display: block;
+        }
+
+        .content-box h2 {
+            font-size: 24px;
+            font-style: italic;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 15px;
+        }
+
+        .content-box h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 40px 0 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .content-box p {
+            font-size: 15px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .highlight-conference {
+            background: #eee;
+            padding: 0 4px;
+        }
+
+        .course-schedule {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .course-schedule th,
+        .course-schedule td {
+            border: 1px solid #eee;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .course-schedule th {
+            background: #fdfdfd;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+        }
+
+        /* Password Modal */
+        #passwordModal {
+            font-family: inherit;
         }
     </style>
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-            <!-- 顶部导航 -->
-            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; width: 100%;">
-                <nav class="nav">
-                    <a href="index.html" class="nav-link" data-page="home">Home</a>
-                    <a href="tools.html" class="nav-link" data-page="tools">资源库</a>
-                    <a href="his-tutorials.html" class="nav-link" data-page="his-tutorials">祂的教程</a>
-                    <a href="news.html" class="nav-link" data-page="news">无聊的今天</a>
-                    <a href="artists.html" class="nav-link" data-page="artists">艺术家参考</a>
-                    <a href="about.html" class="nav-link" data-page="about">关于</a>
-                    <a href="paid-courses.html" class="nav-link active" id="paid-courses-link"
-                        data-page="paid-courses">付费课程</a>
-                    <a href="brain-research.html" class="nav-link nav-subdued" id="brain-research-link"
-                        data-page="brain-research">祂的研究</a>
-                </nav>
-                <div class="nav-controls">
-                    <div class="toggle-switch" id="paid-courses-toggle" onclick="togglePaidCourses(this)">
-                        <div class="toggle-circle"></div>
-                    </div>
-                    <div class="control-dot"></div>
+    <button id="menu-btn" onclick="toggleMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+
+    <header class="header" id="sidebar">
+        <div class="logo">
+            <h1 onclick="location.href='index.html'" style="cursor: pointer;">HIS<br>TOOLBOX</h1>
+        </div>
+
+        <!-- 导航控制 (切换开关) -->
+        <div class="nav-controls" style="margin-bottom: 40px;">
+            <div class="toggle-switch" id="paid-courses-toggle" onclick="togglePaidCourses(this)">
+                <div class="toggle-circle"></div>
+            </div>
+            <span
+                style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #666;">显示/隐藏付费内容</span>
+        </div>
+
+        <nav class="nav">
+            <a href="index.html" class="nav-link" data-page="home">无聊的今天</a>
+
+            <div class="nav-sub-group">
+                <a href="tools.html" class="nav-link italic" data-page="tools">资源库</a>
+                <div class="nav-sub">
+                    <a href="tools.html">在线工具</a>
+                    <a href="tools.html">文献资料</a>
+                    <a href="tools.html">交互参考</a>
                 </div>
+            </div>
+
+            <a href="his-tutorials.html" class="nav-link" data-page="his-tutorials">祂的教程</a>
+            <a href="news.html" class="nav-link" data-page="news">归档</a>
+            <a href="artists.html" class="nav-link" data-page="artists">艺术家参考</a>
+            <a href="about.html" class="nav-link" data-page="about">关于</a>
+            <a href="paid-courses.html" class="nav-link active" id="paid-courses-link" data-page="paid-courses">付费课程</a>
+            <a href="brain-research.html" class="nav-link nav-subdued" id="brain-research-link"
+                data-page="brain-research">祂的研究</a>
+        </nav>
+
+        <div class="footer-info">
+            <div style="font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 0.1em;">
+                &copy; 2026 HIS TOOLBOX<br>
+                版权所有
             </div>
         </div>
     </header>
-    <div class="container">
-        <main class="main-content">
-            <div class="page-content">
-                <div class="hero-dot"></div>
-                <div class="course-detail-layout">
-                    <div class="course-sidebar">
-                        <div class="course-option active" data-course="ai-writing">
-                            <div class="course-card">
-                                <div class="course-title">艺术实践者的AI写作入门课程</div>
-                                <div class="course-description">深度整合AI工具到学术写作流程，提升写作效率和质量</div>
-                                <ul class="course-features">
-                                    <li>小班教学，每期不超过10人</li>
-                                    <li>理论与实践相结合</li>
-                                    <li>提供完整的学习资料</li>
-                                    <li>专业导师指导</li>
-                                </ul>
-                                <div class="course-price">¥1,500</div>
-                            </div>
+
+    <main class="main-content">
+        <div class="page-content">
+            <h1 class="page-title">付费课程</h1>
+
+            <div class="course-detail-layout">
+                <div class="course-sidebar">
+                    <div class="course-option active" data-course="ai-writing">
+                        <div class="course-card">
+                            <div class="course-title">艺术实践者的AI写作入门课程</div>
+                            <div class="course-description">深度整合AI工具到学术写作流程，提升写作效率和质量</div>
+                            <ul class="course-features">
+                                <li>小班教学，每期不超过10人</li>
+                                <li>理论与实践相结合</li>
+                                <li>提供完整的学习资料</li>
+                                <li>专业导师指导</li>
+                            </ul>
+                            <div class="course-price">¥1,500</div>
                         </div>
-                        <div class="course-option" data-course="ai-writing-1">
-                            <div class="course-card">
-                                <div class="course-title">一期会员入口</div>
-                            </div>
+                    </div>
+                    <div class="course-option" data-course="ai-writing-1">
+                        <div class="course-card">
+                            <div class="course-title">一期会员入口</div>
+                            <div class="course-description">课程资料及往期回放</div>
                         </div>
-                        <div class="course-option" data-course="portfolio">
-                            <div class="course-card">
-                                <div class="course-title">作品集辅导</div>
-                                <div class="course-description">1对1专业指导，专注海内外硕士升学</div>
-                                <ul class="course-features">
-                                    <li>1对1专业指导</li>
-                                    <li>海内外硕士升学</li>
-                                    <li>作品集结构优化</li>
-                                    <li>申请策略制定</li>
-                                </ul>
-                                <div class="course-price">¥5,000</div>
+                    </div>
+                    <div class="course-option" data-course="portfolio">
+                        <div class="course-card">
+                            <div class="course-title">作品集辅导</div>
+                            <div class="course-description">1对1专业指导，专注海内外硕士升学</div>
+                            <ul class="course-features">
+                                <li>1对1专业指导</li>
+                                <li>海内外硕士升学</li>
+                                <li>作品集结构优化</li>
+                                <li>申请策略制定</li>
+                            </ul>
+                            <div class="course-price">¥5,000</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-detail-content">
+                    <div id="ai-writing-content" class="course-content-section active">
+                        <div class="content-box">
+                            <h2>艺术实践者的AI写作入门课程</h2>
+                            <p>当我们谈论艺术时，我们谈论的远不止视觉呈现，在一些创作背后，往往有一整套观察、分析、阐释和论证的思维系统。学习如何撰写学术性的创作文章，是培养这种思维系统最直接也是最凝练的训练方式。
+                            </p>
+
+                            <p><strong>作为创作者，你是否有感觉到：</strong></p>
+                            <p>1. 一些能够用文字精确表述创作逻辑的创作者，能更好地掌握自己的创作？<br>
+                                2. 那些被称为"经典"的作品，似乎都有一套自洽且深刻的理论支撑？<br>
+                                3. 在学术场域中，写作能力已经成为检验创作者思考深度的重要标准？<br>
+                                4. 无论是海外或国内考研，写作与论述能力都可能成为你脱颖而出的关键？</p>
+
+                            <div class="course-objectives">
+                                <h3>课程目标</h3>
+                                <p>本课程将从基础开始，循序渐进地辅助参与者建立学术思维——将感性经验转化为理性认知，将视觉语言翻译为文字论述的能力。通过<span
+                                        class="highlight-conference">AI工具</span>的深度整合，让学术写作变得更加高效和精准。</p>
+                                <p>帮助<span class="highlight-conference">刚毕业</span>或<span
+                                        class="highlight-conference">在读的实践者们</span>掌握<span
+                                        class="highlight-conference">AI辅助写作</span>技能，提升研究与写作能力，在技术时代保持创作优势。</p>
+                                <p>尽管有的参与者会是为了完成研究计划（RP）参与我们的课程，但每一个同学的写作结果都能在结束后投递一个与艺术设计相关的会议（如<span
+                                        class="highlight-conference">Cumulus</span>、<span
+                                        class="highlight-conference">DRS2026</span>），并被录用<span
+                                        class="highlight-conference">是我们的目标</span>。</p>
+                                <p style="font-size: 0.8em; color: #666; font-style: italic;">
+                                    <strong>PS：</strong>Cumulus（国际艺术、设计与媒体教育联盟）；DRS2026（Design Research
+                                    Society设计研究学会举办的第2026年度双年会，设计研究领域一个非常重要的国际学术会议）
+                                </p>
+                                <p><strong>课程时长：</strong>总计10小时（8小时集体课程 + 2小时一对一辅导）</p>
+                            </div>
+
+                            <div class="course-features-detail">
+                                <h3>课程特色</h3>
+                                <p>• AI工具深度整合——从文献检索到论文润色<br>
+                                    • 理论与实践结合——真实案例+AI辅助练习<br>
+                                    • 一对一AI写作指导——个性化AI使用策略<br>
+                                    • 从创作到论文的完整AI工作流</p>
+                            </div>
+
+                            <div class="course-modules">
+                                <h3>模块一：学术写作通识课</h3>
+                                <p>建立学术写作的基础认知，从感性创作转向理性研究。通过AI工具深度分析个人创作脉络，找到独特的研究定位，掌握学术资源的高效使用方法，建立系统的知识管理体系。</p>
+
+                                <h3>模块二：论述的框架——结构与逻辑的构建</h3>
+                                <p>掌握艺术研究的底层逻辑，学会构建自主的论证体系。通过分析优秀案例，掌握文献综述的写作方法，确立个人理论立场。结合AI工具进行深度分析，让学术论述更加精准有力。</p>
+                                <p
+                                    style="font-size: 0.9em; background: #f5f5f5; padding: 15px; border-left: 2px solid #000;">
+                                    <strong>案例分析环节：</strong>针对纯艺类、设计类分别开设专项讲解，具体主题由学员课前投票决定，确保内容贴合实际需求。
+                                </p>
+
+                                <h3>模块三：技术时代的学术生产——AI与写作的新关系</h3>
+                                <p>探索AI时代的学术写作新模式，将AI工具转化为"学术助手"。从文献梳理到语言润色，掌握完整的AI辅助写作流程。在技术辅助下保持独立思考，探索真正不可替代的"创造力"。
+                                </p>
+
+                                <h3>模块四：从文本到呈现——AI辅助的应用与扩展</h3>
+                                <p>完成从文本到呈现的最后一环，掌握学术写作的规范要求和发表策略。通过AI辅助的格式检查、语言润色和投稿优化，学会将研究成果有效传播到不同平台，提升学术影响力。</p>
+                            </div>
+
+                            <div class="course-schedule-section">
+                                <h3>详细课程安排表</h3>
+                                <table class="course-schedule">
+                                    <thead>
+                                        <tr>
+                                            <th>周次</th>
+                                            <th>模块主题</th>
+                                            <th>时长</th>
+                                            <th>主要内容</th>
+                                            <th>特别环节</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>第1周</td>
+                                            <td>模块一：学术写作通识课</td>
+                                            <td>2小时</td>
+                                            <td>• 研究计划、个人陈述、期刊论文、会议论文、博士论文的区别和特点<br>
+                                                • 使用AI分析过往作品，找到垂直赛道<br>
+                                                • 学术资源使用（JSTOR, SAGE, LEONARDO等）<br>
+                                                • 国内考研研究计划书写作</td>
+                                            <td>使用AI工具为个人作品提出3个研究问题，并建立个人文献库</td>
+                                        </tr>
+                                        <tr>
+                                            <td>第2周</td>
+                                            <td>模块二：论述的框架</td>
+                                            <td>2小时</td>
+                                            <td>• 艺术研究的底层逻辑<br>
+                                                • 分析优秀艺术论文、创作报告、学术文章<br>
+                                                • 文献综述写作方法，确立理论立场<br>
+                                                • 结合AI工具进行文献分析、观点提炼和逻辑结构优化</td>
+                                            <td>使用AI辅助完成一篇800字文献综述初稿</td>
+                                        </tr>
+                                        <tr>
+                                            <td>第3周</td>
+                                            <td>模块三：AI协作实战</td>
+                                            <td>2小时</td>
+                                            <td>• 介绍好用的AI工具的特点和使用场景<br>
+                                                • 将AI工具转化为"学术助手"<br>
+                                                • 探索AI时代真正不可替代的"创造力"<br>
+                                                • 现场演示AI辅助写作的完整流程</td>
+                                            <td>使用AI工具完善个人研究框架，现场生成写作大纲</td>
+                                        </tr>
+                                        <tr>
+                                            <td>第4周</td>
+                                            <td>模块四：规范与呈现</td>
+                                            <td>2小时</td>
+                                            <td>• 安装插件Zotero<br>
+                                                • 讲解引用规范<br>
+                                                • 润色自己的写作<br>
+                                                • 汇报展示写作成果</td>
+                                            <td>完成汇报展示，展示自己在课程中的写作成果</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="coaching-section">
+                                <h3>一对一辅导的环节</h3>
+                                <p>我们相信，真正的学习发生在具体的实践中。工作坊将包含两次关键的一对一交流环节：</p>
+
+                                <div class="coaching-sessions"
+                                    style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                    <div class="session" style="border: 1px solid #eee; padding: 20px;">
+                                        <h4 style="margin-bottom: 10px;">第一次（概念打磨，1小时）</h4>
+                                        <p style="font-size: 14px; color: #666;">
+                                            针对个人的研究主题或创作计划，帮助你厘清核心问题，确立理论框架，无论是RP还是毕业论文选题，都能获得针对性指导。</p>
+                                    </div>
+                                    <div class="session" style="border: 1px solid #eee; padding: 20px;">
+                                        <h4 style="margin-bottom: 10px;">第二次（文本讨论，1小时）</h4>
+                                        <p style="font-size: 14px; color: #666;">
+                                            在你完成初稿后，我们将从学术规范、论证逻辑和表达清晰度三个维度进行专业点评，提出具体的修改建议。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="target-audience">
+                                <h3>谁适合这门课程？</h3>
+                                <p>• 正在准备<span class="highlight-conference">初审论文</span>，<span
+                                        class="highlight-conference">毕业论文</span>，以实践为主的艺术设计类在读生</p>
+                                <p>• 正在申请国际以及部分国内硕士，对<span class="highlight-conference">个人陈述</span>以及<span
+                                        class="highlight-conference">研究计划</span>感到棘手的申请人</p>
+                                <p>• 觉得当前的机构整理的RP/PS有限，并且希望<span
+                                        class="highlight-conference">通过自己的努力</span>提升学术能力的艺术设计类从业者</p>
+                                <p>• 对视觉文化研究有兴趣，希望掌握<span class="highlight-conference">AI辅助学术写作</span>方法的文化创意领域从业者
+                                </p>
+                                <p style="font-size: 0.8em; line-height: 1.4; color: #666; margin-top: 20px;">
+                                    <strong>特别说明：</strong>为保障名誉，不被挂在小红书，本课程采用限量招生，每期招收7-10名学员。一对一沟通和作业批注需要投入大量精力，我们希望为每位参与者提供个人程度上最优质的交流体验。
+                                </p>
+                            </div>
+
+                            <div class="course-price-section">
+                                <h3>价格信息</h3>
+                                <div style="margin-bottom: 20px;">
+                                    <p><strong>早鸟价格：</strong>￥1200/人（9.14前）</p>
+                                    <p><strong>正常价格：</strong>￥1500/人</p>
+                                    <p><strong>预计开课：</strong>9.20</p>
+                                </div>
+                                <div style="padding: 20px; background: #fdfdfd; border: 1px solid #eee;">
+                                    <p style="font-weight: bold; margin-bottom: 5px;">报名咨询</p>
+                                    <p>添加微信 mysterych924 咨询报名</p>
+                                </div>
+                            </div>
+
+                            <div class="instructor-info"
+                                style="margin-top: 60px; padding-top: 40px; border-top: 1px solid #eee;">
+                                <h3>主持人介绍</h3>
+                                <p><strong>CANHE能祂</strong></p>
+                                <p style="font-size: 14px; color: #666;">硕士毕业于中央圣马丁，实践作品获LVMH集团2025 MAISON/0 THIS EARTH
+                                    AWARD 提名，学术作品已被期刊Leonardo（MIT
+                                    PRESS）接收，曾在央美、北服担任客座讲师，教授GenAI与文化遗产创作以及技术基础的创作课程。在CSM就读期间，受纯艺部门讲师Clem
+                                    Crosby委托，辅导华语学生撰写研究计划，并帮助一名中国籍博士候选人获得AHRC全额奖学金。</p>
+                                <p style="font-size: 14px; color: #666;">2024年起，能祂从多媒介创作转向<span
+                                        class="highlight-conference">艺术研究</span>，将艺术实践作为理论研究的可视化方式。作为<span
+                                        class="highlight-conference">技术研究</span>的实践者，他深谙实践类学生在面对写作时的困难，然而，他也敏锐地意识到，<span
+                                        class="highlight-conference">AI工具</span>的引入能够为实践类学生提供强大的支持，不仅能够解决写作的困难，更能帮助他们在表达层面建立另一种<span
+                                        class="highlight-conference">信心与方法</span>。</p>
+                                <p style="font-size: 14px; color: #666;">现在，能祂即将加入厦门大学创意与创新学院，协助英国UCA教师团队教授媒体艺术课程。</p>
+                            </div>
+
+                            <div class="disclaimer" style="margin-top: 60px; font-size: 12px; color: #888;">
+                                <h3>免责声明与补充说明</h3>
+                                <p><strong>课程定位：</strong>本工坊并非策展学或艺术批评理论的专业课程，而是面向刚毕业及在读的艺术实践者，帮助大家梳理个人创作脉络、提升写作清晰度，并获取更优质的阅读与研究资源。
+                                </p>
+                                <p><strong>非学术认证课程：</strong>本工坊不等同于正规高校的学术写作训练，不提供完整的学科方法论体系。</p>
+                                <p><strong>学习成果差异：</strong>每位学员的收获取决于其个人投入、研究兴趣与写作实践，本工坊无法保证产出符合特定院校或期刊的全部标准。</p>
+                                <p><strong>AI 使用说明：</strong>课程中涉及的 AI 工具仅为辅助方法，学员需对最终成果的逻辑性与学术责任独立负责。</p>
+                                <p><strong>非代写声明：</strong>我们不提供任何形式的论文、申请材料代写或代投。本工坊提供的是思路梳理、资源引导与文本修改建议。</p>
+                                <p><strong>版权与隐私：</strong>学员提交的文本与创作内容归学员本人所有，未经许可不会对外公开或使用。</p>
                             </div>
                         </div>
                     </div>
-                    <div class="course-detail-content">
-                        <div id="ai-writing-content" class="course-content-section active">
-                            <div class="content-box">
-                                <h2><span class="highlight-conference">艺术实践者的AI写作入门课程</span></h2>
-                                <p>当我们谈论艺术时，我们谈论的远不止视觉呈现，在一些创作背后，往往有一整套观察、分析、阐释和论证的思维系统。学习如何撰写学术性的创作文章，是培养这种思维系统最直接也是最凝练的训练方式。
-                                </p>
-                                <br>
-                                <p><strong>作为创作者，你是否有感觉到：</strong></p>
-                                <p>1. 一些能够用文字精确表述创作逻辑的创作者，能更好地掌握自己的创作？</p>
-                                <p>2. 那些被称为"经典"的作品，似乎都有一套自洽且深刻的理论支撑？</p>
-                                <p>3. 在学术场域中，写作能力已经成为检验创作者思考深度的重要标准？</p>
-                                <p>4. 无论是海外或国内考研，写作与论述能力都可能成为你脱颖而出的关键？</p>
-                                <br>
 
-                                <div class="course-objectives">
-                                    <h3 style="font-size: 1.2em; font-weight: 600; margin-bottom: 0.8em;"><span
-                                            class="highlight-conference">课程目标</span></h3>
-                                    <p style="font-size: 0.9em; line-height: 1.6; margin-bottom: 0.8em;">
-                                        本课程将从基础开始，循序渐进地辅助参与者建立学术思维——将感性经验转化为理性认知，将视觉语言翻译为文字论述的能力。通过<span
-                                            class="highlight-conference">AI工具</span>的深度整合，让学术写作变得更加高效和精准。</p>
-                                    <p style="font-size: 0.9em; line-height: 1.6; margin-bottom: 0.8em;">帮助<span
-                                            class="highlight-conference">刚毕业</span>或<span
-                                            class="highlight-conference">在读的实践者们</span>掌握<span
-                                            class="highlight-conference">AI辅助写作</span>技能，提升研究与写作能力，在技术时代保持创作优势。</p>
-                                    <p style="font-size: 0.9em; line-height: 1.6; margin-bottom: 0.8em;">
-                                        尽管有的参与者会是为了完成研究计划（RP）参与我们的课程，但每一个同学的写作结果都能在结束后投递一个与艺术设计相关的会议（如<span
-                                            class="highlight-conference">Cumulus</span>、<span
-                                            class="highlight-conference">DRS2026</span>），并被录用<span
-                                            class="highlight-conference">是我们的目标</span>。</p>
-                                    <p class="conference-note"
-                                        style="font-size: 0.8em; color: #666; margin-bottom: 0.8em;">
-                                        <strong>PS：</strong>Cumulus（国际艺术、设计与媒体教育联盟）；DRS2026（Design Research
-                                        Society设计研究学会举办的第2026年度双年会，设计研究领域一个非常重要的国际学术会议）
-                                    </p>
-                                    <p style="font-size: 0.9em; line-height: 1.6;"><strong>课程时长：</strong>总计10小时（8小时集体课程
-                                        + 2小时一对一辅导）</p>
-                                </div>
+                    <div id="portfolio-content" class="course-content-section">
+                        <div class="content-box">
+                            <h2>作品集辅导</h2>
+                            <p>专业的一对一作品集辅导服务，助力艺术设计类学生申请海内外顶尖院校硕士项目。</p>
 
-                                <div class="course-features">
-                                    <h3 style="font-size: 1.2em; font-weight: 600; margin-bottom: 0.8em;"><span
-                                            class="highlight-conference">课程特色</span></h3>
-                                    <p style="font-size: 0.9em; line-height: 1.6;">• <span
-                                            class="highlight-conference">AI工具深度整合</span>——从文献检索到论文润色<br>
-                                        • <span class="highlight-conference">理论与实践结合</span>——真实案例+AI辅助练习<br>
-                                        • <span class="highlight-conference">一对一AI写作指导</span>——个性化AI使用策略<br>
-                                        • <span class="highlight-conference">从创作到论文的完整AI工作流</span></p>
-                                </div>
-
-                                <div class="course-modules">
-                                    <div class="module">
-                                        <div class="module-content">
-                                            <h3 class="module-title"
-                                                style="font-size: 1.1em; font-weight: 600; margin-bottom: 0.6em;">
-                                                模块一：学术写作通识课</h3>
-                                            <p class="module-description" style="font-size: 0.85em; line-height: 1.5;">
-                                                建立学术写作的基础认知，从<span class="highlight-conference">感性创作</span>转向<span
-                                                    class="highlight-conference">理性研究</span>。通过<span
-                                                    class="highlight-conference">AI工具</span>深度分析个人创作脉络，找到独特的<span
-                                                    class="highlight-conference">研究定位</span>，掌握学术资源的高效使用方法，建立系统的知识管理体系。
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="module">
-                                        <div class="module-content">
-                                            <h3 class="module-title"
-                                                style="font-size: 1.1em; font-weight: 600; margin-bottom: 0.6em;">
-                                                模块二：论述的框架——结构与逻辑的构建</h3>
-                                            <p class="module-description" style="font-size: 0.85em; line-height: 1.5;">
-                                                掌握<span
-                                                    class="highlight-conference">艺术研究</span>的底层逻辑，学会构建自主的论证体系。通过分析优秀案例，掌握文献综述的写作方法，确立个人理论立场。结合<span
-                                                    class="highlight-conference">AI工具</span>进行深度分析，让学术论述更加精准有力。</p>
-                                            <div class="case-analysis">
-                                                <h4 style="font-size: 0.9em; font-weight: 600; margin-bottom: 0.4em;">
-                                                    案例分析环节</h4>
-                                                <p style="font-size: 0.8em; line-height: 1.4;">
-                                                    <strong>案例分析环节：</strong>针对<span
-                                                        class="highlight-conference">纯艺类</span>、<span
-                                                        class="highlight-conference">设计类</span>分别开设专项讲解，具体主题由学员课前投票决定，确保内容贴合实际需求。
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="module">
-                                        <div class="module-content">
-                                            <h3 class="module-title"
-                                                style="font-size: 1.1em; font-weight: 600; margin-bottom: 0.6em;">
-                                                模块三：技术时代的学术生产——AI与写作的新关系</h3>
-                                            <p class="module-description" style="font-size: 0.85em; line-height: 1.5;">
-                                                探索<span
-                                                    class="highlight-conference">AI时代</span>的学术写作新模式，将AI工具转化为"学术助手"。从文献梳理到语言润色，掌握完整的AI辅助写作流程。在技术辅助下保持<span
-                                                    class="highlight-conference">独立思考</span>，探索真正不可替代的"创造力"。</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="module">
-                                        <div class="module-content">
-                                            <h3 class="module-title"
-                                                style="font-size: 1.1em; font-weight: 600; margin-bottom: 0.6em;">
-                                                模块四：从文本到呈现——AI辅助的应用与扩展</h3>
-                                            <p class="module-description" style="font-size: 0.85em; line-height: 1.5;">
-                                                完成从文本到呈现的最后一环，掌握学术写作的规范要求和发表策略。通过<span
-                                                    class="highlight-conference">AI辅助</span>的格式检查、语言润色和投稿优化，学会将研究成果有效传播到不同平台，提升学术影响力。
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="course-schedule-section">
-                                    <h3 style="font-size: 1.2em; font-weight: 600; margin-bottom: 0.8em;"><span
-                                            class="highlight-conference">详细课程安排表</span></h3>
-                                    <table class="course-schedule" style="font-size: 0.8em;">
-                                        <thead>
-                                            <tr>
-                                                <th style="font-size: 0.8em; font-weight: 600;">周次</th>
-                                                <th style="font-size: 0.8em; font-weight: 600;">模块主题</th>
-                                                <th style="font-size: 0.8em; font-weight: 600;">时长</th>
-                                                <th style="font-size: 0.8em; font-weight: 600;">主要内容</th>
-                                                <th style="font-size: 0.8em; font-weight: 600;">特别环节</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>第1周</td>
-                                                <td>模块一：学术写作通识课</td>
-                                                <td>2小时</td>
-                                                <td>• 研究计划、个人陈述、期刊论文、会议论文、博士论文的区别和特点<br>
-                                                    • 使用AI分析过往作品，找到垂直赛道<br>
-                                                    • 学术资源使用（JSTOR, SAGE, LEONARDO-MIT PRESS等）<br>
-                                                    • 国内考研研究计划书写作</td>
-                                                <td>使用AI工具为个人作品提出3个研究问题，并建立个人文献库</td>
-                                            </tr>
-                                            <tr>
-                                                <td>第2周</td>
-                                                <td>模块二：论述的框架——结构与逻辑的构建</td>
-                                                <td>2小时</td>
-                                                <td>• 艺术研究的底层逻辑<br>
-                                                    • 分析优秀艺术论文、创作报告、学术文章<br>
-                                                    • 文献综述写作方法，确立理论立场<br>
-                                                    • 结合AI工具进行文献分析、观点提炼和逻辑结构优化</td>
-                                                <td>使用AI辅助完成一篇800字文献综述初稿</td>
-                                            </tr>
-                                            <tr>
-                                                <td>第3周</td>
-                                                <td>模块三：技术时代的学术生产——AI与写作的新关系</td>
-                                                <td>2小时</td>
-                                                <td>• 介绍好用的AI工具的特点和使用场景<br>
-                                                    • 将AI工具转化为"学术助手"<br>
-                                                    • 探索AI时代真正不可替代的"创造力"<br>
-                                                    • 现场演示AI辅助写作的完整流程</td>
-                                                <td>使用AI工具完善个人研究框架，现场生成写作大纲</td>
-                                            </tr>
-                                            <tr>
-                                                <td>第4周</td>
-                                                <td>模块四：从文本到呈现——AI辅助的应用与扩展</td>
-                                                <td>2小时</td>
-                                                <td>• 安装插件Zotero<br>
-                                                    • 讲解引用规范<br>
-                                                    • 润色自己的写作<br>
-                                                    • 汇报展示写作成果</td>
-                                                <td>完成汇报展示，展示自己在课程中的写作成果</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="coaching-section">
-                                    <h3 style="font-size: 1.2em; font-weight: 600; margin-bottom: 0.8em;"><span
-                                            class="highlight-conference">一对一辅导的环节</span></h3>
-                                    <p style="font-size: 0.9em; line-height: 1.6; margin-bottom: 1em;">
-                                        我们相信，真正的学习发生在具体的实践中。工作坊将包含两次关键的一对一交流环节：</p>
-
-                                    <div class="coaching-sessions">
-                                        <div class="session">
-                                            <h4 style="font-size: 1em; font-weight: 600; margin-bottom: 0.4em;">
-                                                第一次（概念打磨，1小时）</h4>
-                                            <p style="font-size: 0.85em; line-height: 1.5;">
-                                                针对个人的研究主题或创作计划，帮助你厘清核心问题，确立理论框架，无论是RP还是毕业论文选题，都能获得针对性指导。</p>
-                                        </div>
-
-                                        <div class="session">
-                                            <h4 style="font-size: 1em; font-weight: 600; margin-bottom: 0.4em;">
-                                                第二次（文本讨论，1小时）</h4>
-                                            <p style="font-size: 0.85em; line-height: 1.5;">
-                                                在你完成初稿后，我们将从学术规范、论证逻辑和表达清晰度三个维度进行专业点评，提出具体的修改建议。</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <br>
-
-                                <div class="target-audience">
-                                    <h3 style="font-size: 1.2em; font-weight: 600; margin-bottom: 0.8em;"><span
-                                            class="highlight-conference">谁适合这门课程？</span></h3>
-                                    <p style="font-size: 0.85em; line-height: 1.5; margin-bottom: 0.6em;">• 正在准备<span
-                                            class="highlight-conference">初审论文</span>，<span
-                                            class="highlight-conference">毕业论文</span>，以实践为主的艺术设计类在读生</p>
-                                    <p style="font-size: 0.85em; line-height: 1.5; margin-bottom: 0.6em;">•
-                                        正在申请国际以及部分国内硕士，对<span class="highlight-conference">个人陈述</span>以及<span
-                                            class="highlight-conference">研究计划</span>感到棘手的申请人</p>
-                                    <p style="font-size: 0.85em; line-height: 1.5; margin-bottom: 0.6em;">•
-                                        觉得当前的机构整理的RP/PS有限，并且希望<span
-                                            class="highlight-conference">通过自己的努力</span>提升学术能力的艺术设计类从业者</p>
-                                    <p style="font-size: 0.85em; line-height: 1.5; margin-bottom: 0.8em;">•
-                                        对视觉文化研究有兴趣，希望掌握<span class="highlight-conference">AI辅助学术写作</span>方法的文化创意领域从业者
-                                    </p>
-                                    <p style="font-size: 0.8em; line-height: 1.4; color: #666;">
-                                        <strong>特别说明：</strong>为保障名誉，不被挂在小红书，本课程采用限量招生，每期招收7-10名学员。一对一沟通和作业批注需要投入大量精力，我们希望为每位参与者提供个人程度上最优质的交流体验。
-                                    </p>
-                                </div>
-
-                                <div class="course-price">
-                                    <h3 style="font-size: 1.2em; font-weight: 600; margin-bottom: 0.8em;"><span
-                                            class="highlight-conference">价格信息</span></h3>
-                                    <div style="margin-bottom: 1em;">
-                                        <p style="font-size: 0.85em; line-height: 1.5; margin-bottom: 0.3em;">
-                                            <strong>早鸟价格：</strong>￥1200/人（9.14前）
-                                        </p>
-                                        <p style="font-size: 0.85em; line-height: 1.5; margin-bottom: 0.3em;">
-                                            <strong>正常价格：</strong>￥1500/人
-                                        </p>
-                                        <p style="font-size: 0.85em; line-height: 1.5; margin-bottom: 0.5em;">
-                                            <strong>预计开课：</strong>9.20
-                                        </p>
-                                    </div>
-                                    <div style="margin-top: 0.8em;">
-                                        <p style="font-size: 0.8em; line-height: 1.4; margin-bottom: 0.3em;">
-                                            <strong>报名咨询</strong>
-                                        </p>
-                                        <p style="font-size: 0.8em; line-height: 1.4;">添加微信 mysterych924 咨询报名</p>
-                                    </div>
-                                </div>
-
-                                <br>
-
-                                <div class="instructor-info">
-                                    <h3 style="font-size: 1.2em; font-weight: 600; margin-bottom: 0.8em;"><span
-                                            class="highlight-conference">主持人介绍</span></h3>
-                                    <p style="font-size: 0.9em; line-height: 1.5; margin-bottom: 0.6em;"><strong
-                                            style="color: #333;">CANHE能祂</strong></p>
-                                    <p style="font-size: 0.8em; line-height: 1.4; margin-bottom: 0.6em;">
-                                        硕士毕业于中央圣马丁，实践作品获LVMH集团2025 MAISON/0 THIS EARTH AWARD 提名，学术作品已被期刊Leonardo（MIT
-                                        PRESS）接收，曾在央美、北服担任客座讲师，教授GenAI与文化遗产创作以及技术基础的创作课程。在CSM就读期间，受纯艺部门讲师Clem
-                                        Crosby委托，辅导华语学生撰写研究计划，并帮助一名中国籍博士候选人获得AHRC全额奖学金。</p>
-                                    <p style="font-size: 0.8em; line-height: 1.4; margin-bottom: 0.6em;">
-                                        2024年起，能祂从多媒介创作转向<span
-                                            class="highlight-conference">艺术研究</span>，将艺术实践作为理论研究的可视化方式。作为<span
-                                            class="highlight-conference">技术研究</span>的实践者，他深谙实践类学生在面对写作时的困难，然而，他也敏锐地意识到，<span
-                                            class="highlight-conference">AI工具</span>的引入能够为实践类学生提供强大的支持，不仅能够解决写作的困难，更能帮助他们在表达层面建立另一种<span
-                                            class="highlight-conference">信心与方法</span>。</p>
-                                    <p style="font-size: 0.8em; line-height: 1.4;">
-                                        现在，能祂即将加入厦门大学创意与创新学院，协助英国UCA教师团队教授媒体艺术课程。</p>
-                                </div>
-
-                                <br>
-
-                                <div class="disclaimer">
-                                    <h3 style="font-size: 1.1em; font-weight: 600; margin-bottom: 0.8em;"><span
-                                            class="highlight-conference">免责声明与补充说明</span></h3>
-
-                                    <p style="font-size: 0.75em; line-height: 1.4; margin-bottom: 0.6em;"><strong><span
-                                                class="highlight-conference">课程定位：</span></strong><span
-                                            class="highlight-conference">本工坊并非策展学或艺术批评理论的专业课程，而是面向刚毕业及在读的艺术实践者，帮助大家梳理个人创作脉络、提升写作清晰度，并获取更优质的阅读与研究资源。</span>
-                                    </p>
-
-                                    <p style="font-size: 0.75em; line-height: 1.4; margin-bottom: 0.6em;"><strong><span
-                                                class="highlight-conference">非学术认证课程：</span></strong><span
-                                            class="highlight-conference">本工坊不等同于正规高校的学术写作训练，不提供完整的学科方法论体系。</span></p>
-
-                                    <p style="font-size: 0.75em; line-height: 1.4; margin-bottom: 0.6em;"><strong><span
-                                                class="highlight-conference">学习成果差异：</span></strong><span
-                                            class="highlight-conference">每位学员的收获取决于其个人投入、研究兴趣与写作实践，本工坊无法保证产出符合特定院校或期刊的全部标准。</span>
-                                    </p>
-
-                                    <p style="font-size: 0.75em; line-height: 1.4; margin-bottom: 0.6em;"><strong><span
-                                                class="highlight-conference">AI 使用说明：</span></strong><span
-                                            class="highlight-conference">课程中涉及的 AI 工具（如
-                                            ChatGPT、Claude、Qwen、Gemini）仅为辅助方法，学员需对最终成果的逻辑性与学术责任独立负责。ChatGPT、Claude、Gemini为IP在国外的参与者使用，并无教唆国内参与者使用的意图。</span>
-                                    </p>
-
-                                    <p style="font-size: 0.75em; line-height: 1.4; margin-bottom: 0.6em;"><strong><span
-                                                class="highlight-conference">非代写声明：</span></strong><span
-                                            class="highlight-conference">我们不提供任何形式的论文、申请材料代写或代投。本工坊提供的是思路梳理、资源引导与文本修改建议。</span>
-                                    </p>
-
-                                    <p style="font-size: 0.75em; line-height: 1.4;"><strong><span
-                                                class="highlight-conference">版权与隐私：</span></strong><span
-                                            class="highlight-conference">学员提交的文本与创作内容归学员本人所有，未经许可不会对外公开或使用。</span></p>
-                                </div>
+                            <div class="coaching-features">
+                                <h3>服务内容</h3>
+                                <p>• <strong>作品集评估与规划：</strong>根据目标院校要求，制定个性化作品集发展计划<br>
+                                    • <strong>项目深化与优化：</strong>提升作品的概念深度和呈现效果<br>
+                                    • <strong>专业排版指导：</strong>打造符合国际标准的作品集格式与排版<br>
+                                    • <strong>申请策略制定：</strong>针对不同院校特点，定制申请策略<br>
+                                    • <strong>面试准备：</strong>提供面试模拟和专业建议</p>
                             </div>
-                        </div>
-                        <div id="portfolio-content" class="course-content-section">
-                            <div class="content-box">
-                                <h2>作品集辅导</h2>
-                                <p>专业的一对一作品集辅导服务，助力艺术设计类学生申请海内外顶尖院校硕士项目。</p>
 
-                                <div class="coaching-features">
-                                    <h3>服务内容</h3>
-                                    <ul>
-                                        <li><strong>作品集评估与规划：</strong>根据目标院校要求，制定个性化作品集发展计划</li>
-                                        <li><strong>项目深化与优化：</strong>提升作品的概念深度和呈现效果</li>
-                                        <li><strong>专业排版指导：</strong>打造符合国际标准的作品集格式与排版</li>
-                                        <li><strong>申请策略制定：</strong>针对不同院校特点，定制申请策略</li>
-                                        <li><strong>面试准备：</strong>提供面试模拟和专业建议</li>
-                                    </ul>
-                                </div>
+                            <div class="pricing-info">
+                                <h3>价格信息</h3>
+                                <p>基础套餐：￥5,000/人 (包含5次一对一辅导课程 + 作品集最终审核与排版指导)</p>
+                            </div>
 
-                                <div class="pricing-info">
-                                    <h3>价格信息</h3>
-                                    <p>基础套餐：￥5,000/人</p>
-                                    <p>包含：5次一对一辅导课程（每次1小时）</p>
-                                    <p>赠送：作品集最终审核与排版指导</p>
-                                </div>
-
-                                <div class="contact-info">
-                                    <h3>联系方式</h3>
-                                    <p>如需了解更多详情，请直接联系：</p>
-                                    <p>微信：mysterych924</p>
-                                    <p>邮箱：hermeit@outlook.com</p>
-                                </div>
+                            <div class="contact-info"
+                                style="margin-top: 40px; padding: 20px; background: #fdfdfd; border: 1px solid #eee;">
+                                <h3>联系方式</h3>
+                                <p>微信：mysterych924<br>
+                                    邮箱：hermeit@outlook.com</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
+
+    <!-- 管理控制 -->
+    <div id="admin-controls">
+        <button class="admin-btn" onclick="openAdminModal()"></button>
     </div>
 
-    <!-- 密码输入模态框 -->
-    <div id="passwordModal"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; justify-content: center; align-items: center;">
-        <div
-            style="background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); max-width: 300px; width: 90%; text-align: center;">
-            <h3 style="margin-bottom: 15px; color: #333;">输入密码</h3>
-            <input type="password" id="passwordInput" placeholder="请输入密码"
-                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 15px; font-size: 16px;">
-            <div style="display: flex; gap: 10px; justify-content: center;">
-                <button onclick="checkPassword()"
-                    style="background: #5a7c8a; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px;">确认</button>
-                <button onclick="closePasswordModal()"
-                    style="background: #ccc; color: #333; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px;">取消</button>
+    <!-- 登录/发布弹窗 -->
+    <div id="admin-modal" class="modal">
+        <div class="modal-content">
+            <div id="login-form-container">
+                <h3 class="modal-title">管理员访问</h3>
+                <div class="form-group">
+                    <input type="email" id="admin-email" placeholder="邮箱地址">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="admin-password" placeholder="密码">
+                </div>
+                <button class="submit-btn" onclick="handleAdminLogin()">授权登录</button>
+                <div style="text-align: center; margin-top: 16px;">
+                    <a href="javascript:void(0)" onclick="handleForgotPassword()"
+                        style="color: #666; font-size: 12px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em;">忘记密码？</a>
+                </div>
+                <p id="login-error"
+                    style="color: red; font-size: 12px; margin-top: 12px; display: none; text-align: center;"></p>
             </div>
-            <div id="passwordError" style="color: #e74c3c; margin-top: 10px; display: none; font-size: 12px;">密码错误</div>
+
+            <div id="reset-password-container" style="display: none;">
+                <h3 class="modal-title">设置新密码</h3>
+                <div class="form-group">
+                    <input type="password" id="new-password" placeholder="输入新密码">
+                </div>
+                <button class="submit-btn" onclick="handlePasswordUpdate()">重置密钥</button>
+                <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 30px;">
+                    <p
+                        style="font-size: 11px; color: #999; margin-bottom: 15px; text-align: center; text-transform: uppercase;">
+                        快速操作：</p>
+                    <button class="submit-btn"
+                        onclick="document.getElementById('new-password').value='ych369369C@';handlePasswordUpdate()"
+                        style="background: #eee; color: #000;">设为默认</button>
+                </div>
+            </div>
+
+            <div id="post-form-container" style="display: none;">
+                <h3 class="modal-title">新条目</h3>
+                <div class="form-group">
+                    <input type="text" id="post-title" placeholder="条目标题">
+                </div>
+                <div class="form-group">
+                    <textarea id="post-content" rows="6" placeholder="条目内容..."></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="post-link" placeholder="外部链接 (可选)">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="post-image" placeholder="图片链接 (可选)">
+                </div>
+                <button class="submit-btn" onclick="handlePostSubmit()">提交到归档</button>
+
+                <div style="border-top: 1px solid #eee; margin-top: 40px; padding-top: 40px;">
+                    <button class="submit-btn" onclick="togglePasswordUpdate(true)"
+                        style="background: transparent; color: #999; margin-bottom: 10px; border: 1px solid #eee;">更新密钥</button>
+                    <button class="submit-btn" onclick="handleLogout()"
+                        style="background: transparent; color: #000; border: 1px solid #000;">退出登录</button>
+                </div>
+            </div>
+
+            <button onclick="closeAdminModal()"
+                style="position: absolute; top: -50px; right: 0; background: transparent; border: none; color: #000; cursor: pointer; font-size: 32px;">×</button>
         </div>
     </div>
+
+    <!-- 密码输入模态框 (原有的课程验证) -->
+    <div id="passwordModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; justify-content: center; align-items: center;">
+        <div
+            style="background: white; padding: 40px; border: 1px solid #000; max-width: 350px; width: 90%; text-align: center;">
+            <h3 style="margin-bottom: 25px; font-size: 18px; text-transform: uppercase; letter-spacing: 0.1em;">身份验证
+            </h3>
+            <input type="password" id="passwordInput" placeholder="输入访问密钥"
+                style="width: 100%; padding: 12px; border: 1px solid #000; margin-bottom: 20px; font-size: 14px; outline: none; border-radius: 0;">
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <button onclick="checkPassword()"
+                    style="background: #000; color: white; border: none; padding: 10px 25px; cursor: pointer; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;">提交</button>
+                <button onclick="closePasswordModal()"
+                    style="background: #eee; color: #000; border: none; padding: 10px 25px; cursor: pointer; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;">取消</button>
+            </div>
+            <div id="passwordError"
+                style="color: #000; margin-top: 15px; display: none; font-size: 11px; font-style: italic;">访问拒绝，密钥不正确。
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="blog.js"></script>
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.style.display = sidebar.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
 </body>
 
 </html>

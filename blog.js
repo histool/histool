@@ -54,7 +54,7 @@ function renderPost(post) {
     }).toUpperCase().replace(/ /g, '-').replace(',', '');
 
     const imageHtml = post.image_url ? `<img src="${post.image_url}" class="post-image" alt="${post.title}">` : '';
-    const linkHtml = post.link_url ? `<div style="margin-top:20px;"><a href="${post.link_url}" target="_blank" style="font-size:14px; color:#fff; text-decoration:none; border-bottom:1px solid #555;">VIEW PROJECT ↗</a></div>` : '';
+    const linkHtml = post.link_url ? `<div style="margin-top:20px;"><a href="${post.link_url}" target="_blank" style="font-size:14px; color:#fff; text-decoration:none; border-bottom:1px solid #555;">查看项目 ↗</a></div>` : '';
 
     return `
         <article class="post-card">

@@ -7,189 +7,270 @@
         content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <title>资源库 - 祂的工具箱</title>
     <meta name="description" content="为艺术实践者提供高质量的工具资源、教程内容和学术支持">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_gallery.css">
     <script src="script.js" defer></script>
     <style>
-        /* Ensure the active link is highlighted */
-        .nav a[data-page="tools"] {
-            opacity: 0.6 !important;
+        /* 资源库页面特定样式 */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            max-width: 1000px;
+        }
+
+        .tool-category {
+            border-top: 1px solid #000;
+            padding-top: 30px;
+        }
+
+        .tool-category h3 {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 30px;
+        }
+
+        .tool-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .tool-item {
+            padding-bottom: 20px;
+        }
+
+        .tool-name a {
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #000;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .tool-name a:hover {
+            text-decoration: underline;
+        }
+
+        .tool-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .sub-category-title {
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 40px 0 20px 0;
+            color: #999;
+        }
+
+        .tool-expand-btn {
+            margin-top: 40px;
+            background: none;
+            border: 1px solid #000;
+            padding: 12px 24px;
+            font-family: inherit;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .tool-expand-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+
+        .hidden-tool {
+            display: none;
         }
     </style>
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-            <!-- 顶部导航 -->
-            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; width: 100%;">
-                <nav class="nav">
-                    <a href="index.html" class="nav-link" data-page="home">Home</a>
-                    <a href="tools.html" class="nav-link active" data-page="tools">资源库</a>
-                    <a href="his-tutorials.html" class="nav-link" data-page="his-tutorials">祂的教程</a>
-                    <a href="news.html" class="nav-link" data-page="news">无聊的今天</a>
-                    <a href="artists.html" class="nav-link" data-page="artists">艺术家参考</a>
-                    <a href="about.html" class="nav-link" data-page="about">关于</a>
-                    <a href="paid-courses.html" class="nav-link nav-subdued" id="paid-courses-link"
-                        data-page="paid-courses">付费课程</a>
-                    <a href="brain-research.html" class="nav-link nav-subdued" id="brain-research-link"
-                        data-page="brain-research">祂的研究</a>
-                </nav>
-                <div class="nav-controls">
-                    <div class="toggle-switch" id="paid-courses-toggle" onclick="togglePaidCourses(this)">
-                        <div class="toggle-circle"></div>
-                    </div>
-                    <div class="control-dot"></div>
+    <button id="menu-btn" onclick="toggleMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+
+    <header class="header" id="sidebar">
+        <div class="logo">
+            <h1 onclick="location.href='index.html'" style="cursor: pointer;">HIS<br>TOOLBOX</h1>
+        </div>
+
+        <!-- 导航控制 (切换开关) -->
+        <div class="nav-controls" style="margin-bottom: 40px;">
+            <div class="toggle-switch" id="paid-courses-toggle" onclick="togglePaidCourses(this)">
+                <div class="toggle-circle"></div>
+            </div>
+            <span
+                style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #666;">显示/隐藏付费内容</span>
+        </div>
+
+        <nav class="nav">
+            <a href="index.html" class="nav-link" data-page="home">无聊的今天</a>
+
+            <div class="nav-sub-group">
+                <a href="tools.html" class="nav-link active italic" data-page="tools">资源库</a>
+                <div class="nav-sub">
+                    <a href="tools.html">在线工具</a>
+                    <a href="tools.html">文献资料</a>
+                    <a href="tools.html">交互参考</a>
                 </div>
+            </div>
+
+            <a href="his-tutorials.html" class="nav-link" data-page="his-tutorials">祂的教程</a>
+            <a href="news.html" class="nav-link" data-page="news">归档</a>
+            <a href="artists.html" class="nav-link" data-page="artists">艺术家参考</a>
+            <a href="about.html" class="nav-link" data-page="about">关于</a>
+            <a href="paid-courses.html" class="nav-link nav-subdued" id="paid-courses-link"
+                data-page="paid-courses">付费课程</a>
+            <a href="brain-research.html" class="nav-link nav-subdued" id="brain-research-link"
+                data-page="brain-research">祂的研究</a>
+        </nav>
+
+        <div class="footer-info">
+            <div style="font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 0.1em;">
+                &copy; 2026 HIS TOOLBOX<br>
+                版权所有
             </div>
         </div>
     </header>
-    <div class="container">
-        <main class="main-content">
-            <div class="page-content">
-                <div class="hero-dot"></div>
 
-                <div class="tools-grid">
-                    <div class="tool-category">
-                        <h3>在线免费工具包</h3>
-                        <ul class="tool-list">
-                            <li class="tool-item">
-                                <div class="tool-name"><a href="https://www.photopea.com/" target="_blank">Photopea</a>
-                                </div>
-                                <div class="tool-description">免费的在线Photoshop替代品，支持PSD格式</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name"><a href="https://www.remove.bg/zh/upload"
-                                        target="_blank">Remove.bg</a></div>
-                                <div class="tool-description">AI智能背景移除工具，一键抠图</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name"><a href="https://stephaneginier.com/sculptgl/"
-                                        target="_blank">SculptGL</a></div>
-                                <div class="tool-description">免费的在线3D雕刻工具</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name"><a href="https://www.ilovepdf.com/" target="_blank">ILovePDF</a>
-                                </div>
-                                <div class="tool-description">全面的PDF在线处理工具集</div>
-                            </li>
-                            <li class="tool-item hidden-tool">
-                                <div class="tool-name"><a href="https://www.autotracer.org/zh.html"
-                                        target="_blank">AutoTracer</a></div>
-                                <div class="tool-description">免费像素转矢量图</div>
-                            </li>
-                            <li class="tool-item hidden-tool">
-                                <div class="tool-name"><a href="https://www.iloveimg.com/" target="_blank">I Love
-                                        IMG</a></div>
-                                <div class="tool-description">批量裁剪、压缩、转换等图片处理工具合集</div>
-                            </li>
-                            <li class="tool-item hidden-tool">
-                                <div class="tool-name"><a href="https://www.convertpdftoautocad.com/"
-                                        target="_blank">Pdf2DWG (CAD)</a></div>
-                                <div class="tool-description">将PDF图纸快速转换为DWG/CAD源文件，便于进一步编辑</div>
-                            </li>
-                            <li class="tool-item hidden-tool">
-                                <div class="tool-name"><a href="https://freesound.org/"
-                                        target="_blank">Freesound.org</a></div>
-                                <div class="tool-description">免费音效与环境声素材库，支持检索和下载多种格式</div>
-                            </li>
-                        </ul>
-                        <button class="tool-expand-btn" onclick="toggleAllTools()">展开更多工具</button>
-                    </div>
+    <main class="main-content">
+        <div class="page-content">
+            <h1 class="page-title">资源库</h1>
 
-                    <div class="tool-category">
-                        <h3>文献区</h3>
-                        <h4 class="sub-category-title">最近更新：Not Here, Not Now, Speculative Thought, Impossibility, and
-                            the Design Imagination.</h4>
-                        <h4 class="sub-category-title">书籍区：</h4>
-                        <ul class="tool-list">
-                            <li class="tool-item">
-                                <div class="tool-name"><a
-                                        href="https://drive.google.com/drive/folders/1bxg0ec9Kqa4dd_cYmm84KhoJEIEN6_c4?usp=sharing"
-                                        target="_blank">设计理论文献库</a></div>
-                                <div class="tool-description">包含《Not Here, Not Now》等设计理论经典著作</div>
-                            </li>
-                        </ul>
-                        <h4 class="sub-category-title">论文区：</h4>
-                        <ul class="tool-list">
-                            <li class="tool-item">
-                                <div class="tool-name"><a
-                                        href="https://drive.google.com/drive/folders/1yv3PPhNlUt6RiohWOeokEIHqJ9r5NXw4?usp=sharing"
-                                        target="_blank">学术论文分类库</a></div>
-                                <div class="tool-description">技术批判、文化遗产等主题论文</div>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="tools-grid">
+                <div class="tool-category">
+                    <h3>在线工具</h3>
+                    <ul class="tool-list">
+                        <li class="tool-item">
+                            <div class="tool-name"><a href="https://www.photopea.com/" target="_blank">Photopea</a>
+                            </div>
+                            <div class="tool-description">高级在线图像编辑器，兼容 PSD。</div>
+                        </li>
+                        <li class="tool-item">
+                            <div class="tool-name"><a href="https://www.remove.bg/zh/upload"
+                                    target="_blank">Remove.bg</a></div>
+                            <div class="tool-description">AI 驱动的背景移除工具。</div>
+                        </li>
+                        <li class="tool-item">
+                            <div class="tool-name"><a href="https://stephaneginier.com/sculptgl/"
+                                    target="_blank">SculptGL</a></div>
+                            <div class="tool-description">浏览器端 3D 雕刻应用。</div>
+                        </li>
+                        <li class="tool-item">
+                            <div class="tool-name"><a href="https://www.ilovepdf.com/" target="_blank">ILovePDF</a>
+                            </div>
+                            <div class="tool-description">综合性 PDF 管理套件。</div>
+                        </li>
+                        <li class="tool-item hidden-tool">
+                            <div class="tool-name"><a href="https://www.autotracer.org/zh.html"
+                                    target="_blank">AutoTracer</a></div>
+                            <div class="tool-description">位图转矢量工具。</div>
+                        </li>
+                        <li class="tool-item hidden-tool">
+                            <div class="tool-name"><a href="https://www.iloveimg.com/" target="_blank">I Love IMG</a>
+                            </div>
+                            <div class="tool-description">批量图像处理工具。</div>
+                        </li>
+                        <li class="tool-item hidden-tool">
+                            <div class="tool-name"><a href="https://www.convertpdftoautocad.com/"
+                                    target="_blank">Pdf2DWG</a></div>
+                            <div class="tool-description">技术型 PDF 转 CAD 格式。</div>
+                        </li>
+                        <li class="tool-item hidden-tool">
+                            <div class="tool-name"><a href="https://freesound.org/" target="_blank">Freesound</a></div>
+                            <div class="tool-description">创意共享协议音频素材库。
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="tool-expand-btn" onclick="toggleFreeTools()">展示更多工具</button>
+                </div>
 
-                    <div class="tool-category">
-                        <h3>3D软件教程区</h3>
-                        <ul class="tool-list">
-                            <li class="tool-item">
-                                <div class="tool-name"><a
-                                        href="https://www.bilibili.com/video/BV1vf421S7rF?spm_id_from=333.788.videopod.episodes\u0026vd_source=ee4738dc87d41f1fb918f5345c352da5\u0026p=12"
-                                        target="_blank">Rhino8 品创设计</a></div>
-                                <div class="tool-description">Rhino8产品设计教程，从基础到高级应用</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name"><a
-                                        href="https://www.bilibili.com/video/BV171pKzxEdG?spm_id_from=333.788.videopod.sections\u0026vd_source=ee4738dc87d41f1fb918f5345c352da5"
-                                        target="_blank">厦门大学 \u0026 UCA 网页设计workshop</a></div>
-                                <div class="tool-description">使用git上传静态html到GitHub/Gitee</div>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="tool-category">
+                    <h3>文献 / 书目</h3>
+                    <h4 class="sub-category-title">近期收录：Not Here, Not Now.</h4>
+                    <ul class="tool-list">
+                        <li class="tool-item">
+                            <div class="tool-name"><a
+                                    href="https://drive.google.com/drive/folders/1bxg0ec9Kqa4dd_cYmm84KhoJEIEN6_c4?usp=sharing"
+                                    target="_blank">理论归档</a></div>
+                            <div class="tool-description">设计理论与思辨想象集合。</div>
+                        </li>
+                        <li class="tool-item">
+                            <div class="tool-name"><a
+                                    href="https://drive.google.com/drive/folders/1yv3PPhNlUt6RiohWOeokEIHqJ9r5NXw4?usp=sharing"
+                                    target="_blank">学术论文</a></div>
+                            <div class="tool-description">批判性技术与文化研究。</div>
+                        </li>
+                    </ul>
+                </div>
 
-                    <div class="tool-category">
-                        <h3>讲座</h3>
-                        <ul class="tool-list">
-                            <li class="tool-item">
-                                <div class="tool-name"><a
-                                        href="https://search.bilibili.com/all?vt=56983877\u0026keyword=%E5%AE%9E%E9%AA%8B%E7%BC%96%E7%A8%8B\u0026from_source=webtop_search\u0026spm_id_from=333.788\u0026search_source=5"
-                                        target="_blank">实验编程公开课</a></div>
-                                <div class="tool-description">探索编程与艺术结合的创新实践</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name">等待更新</div>
-                                <div class="tool-description">更多讲座内容即将上线</div>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="tool-category">
+                    <h3>教学 / 视频</h3>
+                    <ul class="tool-list">
+                        <li class="tool-item">
+                            <div class="tool-name"><a href="https://www.bilibili.com/video/BV1vf421S7rF"
+                                    target="_blank">Rhino 8 高级教程</a></div>
+                            <div class="tool-description">产品设计与算法建模工作流。</div>
+                        </li>
+                        <li class="tool-item">
+                            <div class="tool-name"><a href="https://www.bilibili.com/video/BV171pKzxEdG"
+                                    target="_blank">网页工作坊</a></div>
+                            <div class="tool-description">基于 Git 的创意作品集部署。</div>
+                        </li>
+                    </ul>
+                </div>
 
-                    <div class="tool-category">
-                        <h3>开源项目区</h3>
-                        <ul class="tool-list">
-                            <li class="tool-item">
-                                <div class="tool-name"><a href="https://github.com/adafruit/Adafruit_NeoPixel"
-                                        target="_blank">NeoPixel机械臂</a></div>
-                                <div class="tool-description">开源机械臂项目，支持LED灯带控制</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name"><a href="https://github.com/OpenKinect/libfreenect"
-                                        target="_blank">Kinect交互</a></div>
-                                <div class="tool-description">体感交互设备，用于动作捕捉和手势识别</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name"><a href="https://github.com/processing/processing"
-                                        target="_blank">Processing创意编程</a></div>
-                                <div class="tool-description">艺术与代码结合的交互创作平台</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name"><a href="https://github.com/openframeworks/openFrameworks"
-                                        target="_blank">openFrameworks</a></div>
-                                <div class="tool-description">C++创意编程框架，适合交互艺术创作</div>
-                            </li>
-                            <li class="tool-item">
-                                <div class="tool-name"><a href="https://github.com/arduino/Arduino"
-                                        target="_blank">Arduino交互</a></div>
-                                <div class="tool-description">开源硬件平台，制作各种交互装置</div>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="tool-category">
+                    <h3>开源 / 硬件</h3>
+                    <ul class="tool-list">
+                        <li class="tool-item">
+                            <div class="tool-name"><a href="https://github.com/processing/processing"
+                                    target="_blank">Processing</a></div>
+                            <div class="tool-description">面向创意编程与视觉艺术的语言。</div>
+                        </li>
+                        <li class="tool-item">
+                            <div class="tool-name"><a href="https://github.com/arduino/Arduino"
+                                    target="_blank">Arduino</a></div>
+                            <div class="tool-description">开源电子原型平台与交互装置框架。
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
+
     <script>
-        function toggleFreeTools() { \n            const hiddenTools = document.querySelectorAll('.tool-category:first-of-type .hidden-tool'); \n            const btn = document.querySelector('.tool-expand-btn'); \n            \n            // 检查第一个隐藏工具是否可见\n            const firstTool = hiddenTools[0];\n            const isExpanded = firstTool && window.getComputedStyle(firstTool).display !== 'none';\n            \n            hiddenTools.forEach(tool => {\n                if (isExpanded) {\n                    tool.style.display = 'none';\n                } else {\n                    tool.style.display = 'block';\n                }\n            });\n            \n            if (isExpanded) {\n                btn.textContent = '展开更多工具';\n            } else {\n                btn.textContent = '收起';\n            }\n        }\n    </script>
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.style.display = sidebar.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function toggleFreeTools() {
+            const hiddenTools = document.querySelectorAll('.hidden-tool');
+            const btn = document.querySelector('.tool-expand-btn');
+            const isHidden = window.getComputedStyle(hiddenTools[0]).display === 'none';
+
+            hiddenTools.forEach(tool => {
+                tool.style.display = isHidden ? 'block' : 'none';
+            });
+
+            btn.textContent = isHidden ? '收起' : '展示更多工具';
+        }
+    </script>
 </body>
 
 </html>

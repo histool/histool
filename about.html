@@ -7,97 +7,158 @@
         content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <title>关于 - 祂的工具箱</title>
     <meta name="description" content="为艺术实践者提供高质量的工具资源、教程内容和学术支持">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_gallery.css">
     <script src="script.js" defer></script>
     <style>
-        /* Ensure the active link is highlighted */
-        .nav a[data-page="about"] {
-            opacity: 0.6 !important;
+        /* Biography-specific styles */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            max-width: 1000px;
+        }
+
+        @media (min-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .about-column h2 {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 10px;
+        }
+
+        .about-column p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .contact-info {
+            margin-top: 80px;
+            border-top: 1px solid #eee;
+            padding-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .contact-item h3 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .contact-item p {
+            font-size: 14px;
+            color: #000;
         }
     </style>
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-            <!-- 顶部导航 -->
-            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; width: 100%;">
-                <nav class="nav">
-                    <a href="index.html" class="nav-link" data-page="home">Home</a>
-                    <a href="tools.html" class="nav-link" data-page="tools">资源库</a>
-                    <a href="his-tutorials.html" class="nav-link" data-page="his-tutorials">祂的教程</a>
-                    <a href="news.html" class="nav-link" data-page="news">无聊的今天</a>
-                    <a href="artists.html" class="nav-link" data-page="artists">艺术家参考</a>
-                    <a href="about.html" class="nav-link active" data-page="about">关于</a>
-                    <a href="paid-courses.html" class="nav-link nav-subdued" id="paid-courses-link"
-                        data-page="paid-courses">付费课程</a>
-                    <a href="brain-research.html" class="nav-link nav-subdued" id="brain-research-link"
-                        data-page="brain-research">祂的研究</a>
-                </nav>
-                <div class="nav-controls">
-                    <div class="toggle-switch" id="paid-courses-toggle" onclick="togglePaidCourses(this)">
-                        <div class="toggle-circle"></div>
-                    </div>
-                    <div class="control-dot"></div>
+    <button id="menu-btn" onclick="toggleMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+
+    <header class="header" id="sidebar">
+        <div class="logo">
+            <h1 onclick="location.href='index.html'" style="cursor: pointer;">HIS<br>TOOLBOX</h1>
+        </div>
+
+        <!-- 导航控制 (切换开关) -->
+        <div class="nav-controls" style="margin-bottom: 40px;">
+            <div class="toggle-switch" id="paid-courses-toggle" onclick="togglePaidCourses(this)">
+                <div class="toggle-circle"></div>
+            </div>
+            <span
+                style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #666;">显示/隐藏付费内容</span>
+        </div>
+
+        <nav class="nav">
+            <a href="index.html" class="nav-link" data-page="home">无聊的今天</a>
+
+            <div class="nav-sub-group">
+                <a href="tools.html" class="nav-link italic" data-page="tools">资源库</a>
+                <div class="nav-sub">
+                    <a href="tools.html">在线工具</a>
+                    <a href="tools.html">文献资料</a>
+                    <a href="tools.html">交互参考</a>
                 </div>
+            </div>
+
+            <a href="his-tutorials.html" class="nav-link" data-page="his-tutorials">祂的教程</a>
+            <a href="news.html" class="nav-link" data-page="news">归档</a>
+            <a href="artists.html" class="nav-link" data-page="artists">艺术家参考</a>
+            <a href="about.html" class="nav-link active" data-page="about">关于</a>
+            <a href="paid-courses.html" class="nav-link nav-subdued" id="paid-courses-link"
+                data-page="paid-courses">付费课程</a>
+            <a href="brain-research.html" class="nav-link nav-subdued" id="brain-research-link"
+                data-page="brain-research">祂的研究</a>
+        </nav>
+
+        <div class="footer-info">
+            <div style="font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 0.1em;">
+                &copy; 2026 HIS TOOLBOX<br>
+                版权所有
             </div>
         </div>
     </header>
-    <div class="container">
-        <main class="main-content">
-            <div class="page-content">
-                <div class="hero-dot"></div>
 
-                <div class="about-grid">
-                    <div class="about-column">
-                        <h2>关于祂的工具箱</h2>
-                        <p>祂的工具箱是一个公益性、开放性、学习友好的艺术学习共享平台。我们致力于为艺术实践者提供高质量的工具资源、教程内容和学术支持。</p>
+    <main class="main-content">
+        <div class="page-content">
+            <h1 class="page-title">关于</h1>
 
-                        <p>平台特色：</p>
-                        <p>工具库：分类整理3D、图像处理、音频、写作等各类创作工具</p>
-                        <p>教程区：从初级到高级的完整学习路径</p>
-                        <p>艺术家参考：精选国内外优秀艺术实践案例</p>
-                        <p>最新动态：实时更新平台活动和内容</p>
-                    </div>
-
-                    <div class="about-column">
-                        <h2>关于能祂</h2>
-                        <p>能祂是一位从事技术与人类关系研究的跨媒介艺术实践者，其创作建立在批判理论与科技研究的交叉地带，关注当代技术如何介入、影响并重构个体的日常生活经验。</p>
-
-                        <p>能祂正从批判性的观察者转向积极的建构者。他提出了一种以普通人类与普通机器之间具有对抗性的协作关系为基础的想象，并计划通过实践进一步验证这一设想，以回应全球化语境下日益加剧的数字异化与科技霸权。
-                        </p>
-
-                        <p>他的艺术创作涵盖装置、影像、雕塑与首饰等多种媒介，致力于将纸本化的理论研究成果转化为可视化、可感知的表达形式。除艺术创作外，能祂长期深耕于数字艺术与文化传播领域，曾为阿迪达斯国际、中国国家博物馆、阿里巴巴、时尚COSMO等机构提供数字艺术服务。
-                        </p>
-
-                        <p>2022年，他成为OUTPUT签约数字艺术家。他正在运营实验设计工作室"反观设计R&C Design
-                            Studio"，聚焦生成式AI与物质文化交织的设计方法论。此外，能祂曾以客座教师的身份于中央美术学院与北京服装学院教授以技术为基础的艺术设计课程，现在正在厦门大学协助英国UCA的教学团队指导媒体艺术课程。
-                        </p>
-
-                        <p><strong>个人作品网站：</strong> <a href="https://yangcanhe.com" target="_blank"
-                                style="color: #4a6b7a; text-decoration: none;">yangcanhe.com</a></p>
-                    </div>
+            <div class="about-grid">
+                <div class="about-column">
+                    <h2>关于祂的工具箱</h2>
+                    <p>祂的工具箱 (HIS TOOLBOX) 是一个面向艺术实践与研究的公共协作平台。我们为当代创作者提供高质量的技术资源、教程内容和理论框架支持。</p>
                 </div>
 
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <h3>微信</h3>
-                        <p>mysterych924</p>
-                    </div>
-
-                    <div class="contact-item">
-                        <h3>邮箱</h3>
-                        <p>hermeit@outlook.com</p>
-                    </div>
-
-                    <div class="contact-item">
-                        <h3>工作室</h3>
-                        <p>反观设计R&C Design Studio</p>
-                    </div>
+                <div class="about-column">
+                    <h2>关于能祂</h2>
+                    <p>能祂 (Hermeit) 是一位跨媒介艺术家，致力于探讨技术与人类生存之间的关系。他的实践立足于批判理论与技术研究的交汇点，关注当代装置如何调解和重建日常经验。</p>
+                    <p>他从批判性观察转向主动构建，提倡“普通人”与“普通机器”之间的投机协作，以此作为对数字异化和技术霸权的回应。</p>
+                    <p><strong>个人主页：</strong> <a href="https://yangcanhe.com" target="_blank"
+                            style="color: #000; text-decoration: underline;">yangcanhe.com</a></p>
                 </div>
             </div>
-        </main>
-    </div>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>微信</h3>
+                    <p>mysterych924</p>
+                </div>
+                <div class="contact-item">
+                    <h3>邮箱</h3>
+                    <p>hermeit@outlook.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>工作室</h3>
+                    <p>R&C Design Studio</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.style.display = sidebar.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
 </body>
 
 </html>

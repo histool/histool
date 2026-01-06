@@ -227,20 +227,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
 
-                // 移除所有active类
+                // 获取所有相关的内容区域
+                const contentSections = document.querySelectorAll('.course-content-section, .research-content-section');
+
+                // 移除所有选项的active类
                 courseOptions.forEach(opt => opt.classList.remove('active'));
-                // Assuming 'contentSections' is defined elsewhere or intended to be global/passed.
-                // If 'contentSections' is not defined, this line will cause an error.
-                // For now, keeping it as is based on the instruction's context.
-                // If it's meant to be part of the course options logic, it should be defined.
-                // If it's a typo and should be related to hiddenTools, it needs clarification.
-                // Based on the original code, there is no 'contentSections' defined in this scope.
-                // The instruction implies it should be there, but it's not in the original snippet.
-                // I will assume it's a placeholder or a global variable.
-                // If 'contentSections' is meant to be the target sections for course options,
-                // it should be defined like: const contentSections = document.querySelectorAll('.course-content-section');
-                // For now, I'll comment it out to avoid a ReferenceError if it's not global.
-                // contentSections.forEach(section => section.classList.remove('active'));
+                // 移除所有内容区域的active类
+                contentSections.forEach(section => section.classList.remove('active'));
 
                 // 添加active类到当前选项
                 this.classList.add('active');

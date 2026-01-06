@@ -7,82 +7,163 @@
         content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <title>祂的教程 - 祂的工具箱</title>
     <meta name="description" content="为艺术实践者提供高质量的工具资源、教程内容和学术支持">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_gallery.css">
     <script src="script.js" defer></script>
     <style>
-        /* Ensure the active link is highlighted */
-        .nav a[data-page="his-tutorials"] {
-            opacity: 0.6 !important;
+        /* 祂的教程页面特定样式 */
+        .tutorials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            max-width: 1200px;
+        }
+
+        @media (min-width: 1024px) {
+            .tutorials-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 80px;
+            }
+        }
+
+        .tutorial-column h3 {
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 15px;
+        }
+
+        .tutorial-item {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .tutorial-title {
+            font-size: 20px;
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .tutorial-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tutorial-image img {
+            width: 100%;
+            display: block;
+            filter: grayscale(100%);
+            transition: filter 0.8s ease;
+        }
+
+        .tutorial-item:hover .tutorial-image img {
+            filter: grayscale(0%);
         }
     </style>
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-            <!-- 顶部导航 -->
-            <div style="display: flex; justify-content: center; align-items: center; gap: 20px; width: 100%;">
-                <nav class="nav">
-                    <a href="index.html" class="nav-link" data-page="home">Home</a>
-                    <a href="tools.html" class="nav-link" data-page="tools">资源库</a>
-                    <a href="his-tutorials.html" class="nav-link active" data-page="his-tutorials">祂的教程</a>
-                    <a href="news.html" class="nav-link" data-page="news">无聊的今天</a>
-                    <a href="artists.html" class="nav-link" data-page="artists">艺术家参考</a>
-                    <a href="about.html" class="nav-link" data-page="about">关于</a>
-                    <a href="paid-courses.html" class="nav-link nav-subdued" id="paid-courses-link"
-                        data-page="paid-courses">付费课程</a>
-                    <a href="brain-research.html" class="nav-link nav-subdued" id="brain-research-link"
-                        data-page="brain-research">祂的研究</a>
-                </nav>
-                <div class="nav-controls">
-                    <div class="toggle-switch" id="paid-courses-toggle" onclick="togglePaidCourses(this)">
-                        <div class="toggle-circle"></div>
-                    </div>
-                    <div class="control-dot"></div>
+    <button id="menu-btn" onclick="toggleMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+
+    <header class="header" id="sidebar">
+        <div class="logo">
+            <h1 onclick="location.href='index.html'" style="cursor: pointer;">HIS<br>TOOLBOX</h1>
+        </div>
+
+        <!-- 导航控制 (切换开关) -->
+        <div class="nav-controls" style="margin-bottom: 40px;">
+            <div class="toggle-switch" id="paid-courses-toggle" onclick="togglePaidCourses(this)">
+                <div class="toggle-circle"></div>
+            </div>
+            <span
+                style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #666;">显示/隐藏付费内容</span>
+        </div>
+
+        <nav class="nav">
+            <a href="index.html" class="nav-link" data-page="home">无聊的今天</a>
+
+            <div class="nav-sub-group">
+                <a href="tools.html" class="nav-link italic" data-page="tools">资源库</a>
+                <div class="nav-sub">
+                    <a href="tools.html">在线工具</a>
+                    <a href="tools.html">文献资料</a>
+                    <a href="tools.html">交互参考</a>
                 </div>
+            </div>
+
+            <a href="his-tutorials.html" class="nav-link active" data-page="his-tutorials">祂的教程</a>
+            <a href="news.html" class="nav-link" data-page="news">归档</a>
+            <a href="artists.html" class="nav-link" data-page="artists">艺术家参考</a>
+            <a href="about.html" class="nav-link" data-page="about">关于</a>
+            <a href="paid-courses.html" class="nav-link nav-subdued" id="paid-courses-link"
+                data-page="paid-courses">付费课程</a>
+            <a href="brain-research.html" class="nav-link nav-subdued" id="brain-research-link"
+                data-page="brain-research">祂的研究</a>
+        </nav>
+
+        <div class="footer-info">
+            <div style="font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 0.1em;">
+                &copy; 2026 HIS TOOLBOX<br>
+                版权所有
             </div>
         </div>
     </header>
-    <div class="container">
-        <main class="main-content">
-            <div class="page-content">
-                <div class="hero-dot"></div>
 
-                <div class="tutorials-grid">
-                    <div class="tutorial-column">
-                        <h3>艺术写作</h3>
+    <main class="main-content">
+        <div class="page-content">
+            <h1 class="page-title">祂的教程</h1>
 
-                        <div class="tutorial-item">
-                            <div class="tutorial-title">艺术写作入门</div>
-                            <div class="tutorial-description">掌握艺术写作的基础方法和写作框架</div>
-                        </div>
+            <div class="tutorials-grid">
+                <div class="tutorial-column">
+                    <h3>艺术写作</h3>
 
-                        <div class="tutorial-item">
-                            <div class="tutorial-title">行文框架</div>
-                            <div class="tutorial-description">学习如何构建清晰、有力的艺术写作结构</div>
-                            <div class="tutorial-image">
-                                <img src="pic/writing/行文框架.jpg" alt="行文框架示意图">
-                            </div>
-                        </div>
+                    <div class="tutorial-item">
+                        <div class="tutorial-title">艺术写作入门</div>
+                        <div class="tutorial-description">掌握当代艺术批评与技术写作的基础方法与框架。</div>
                     </div>
 
-                    <div class="tutorial-column">
-                        <h3>研究方法</h3>
-
-                        <div class="tutorial-item">
-                            <div class="tutorial-title">艺术研究路径导读</div>
-                            <div class="tutorial-description">探索艺术研究的多种路径和方法论</div>
-                        </div>
-
-                        <div class="tutorial-item">
-                            <div class="tutorial-title">批判性思维</div>
-                            <div class="tutorial-description">培养对艺术作品的批判性分析和思考能力</div>
+                    <div class="tutorial-item">
+                        <div class="tutorial-title">行文框架</div>
+                        <div class="tutorial-description">学习为跨学科艺术叙事构建清晰、有力的逻辑结构。</div>
+                        <div class="tutorial-image">
+                            <img src="pic/writing/行文框架.jpg" alt="Framework Structure">
                         </div>
                     </div>
                 </div>
+
+                <div class="tutorial-column">
+                    <h3>研究方法</h3>
+
+                    <div class="tutorial-item">
+                        <div class="tutorial-title">艺术研究路径导读</div>
+                        <div class="tutorial-description">探索将理论观察转化为视觉实践的多重方法论。</div>
+                    </div>
+
+                    <div class="tutorial-item">
+                        <div class="tutorial-title">批判性思维</div>
+                        <div class="tutorial-description">培养针对当代艺术社会技术维度的批判性分析工具。</div>
+                    </div>
+                </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.style.display = sidebar.style.display === 'flex' ? 'none' : 'flex';
+        }
+    </script>
 </body>
 
 </html>
