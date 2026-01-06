@@ -179,7 +179,7 @@
 
     <header class="header" id="sidebar">
         <div class="logo">
-            <h1 onclick="location.href='index.html'" style="cursor: pointer;">HIS<br>TOOLBOX</h1>
+            <h1 onclick="location.href='index.html'" style="cursor: pointer;">祂的<br>工具箱</h1>
         </div>
 
         <!-- 导航控制 (切换开关) -->
@@ -192,8 +192,6 @@
         </div>
 
         <nav class="nav">
-            <a href="index.html" class="nav-link" data-page="home">无聊的今天</a>
-
             <div class="nav-sub-group">
                 <a href="tools.html" class="nav-link italic" data-page="tools">资源库</a>
                 <div class="nav-sub">
@@ -203,8 +201,7 @@
                 </div>
             </div>
 
-            <a href="his-tutorials.html" class="nav-link" data-page="his-tutorials">祂的教程</a>
-            <a href="news.html" class="nav-link" data-page="news">归档</a>
+            <a href="news.html" class="nav-link" data-page="news">无趣今日</a>
             <a href="artists.html" class="nav-link active" data-page="artists">艺术家参考</a>
             <a href="about.html" class="nav-link" data-page="about">关于</a>
             <a href="paid-courses.html" class="nav-link nav-subdued" id="paid-courses-link"
@@ -215,7 +212,7 @@
 
         <div class="footer-info">
             <div style="font-size: 10px; color: #999; text-transform: uppercase; letter-spacing: 0.1em;">
-                &copy; 2026 HIS TOOLBOX<br>
+                &copy; 2026 祂的工具箱<br>
                 版权所有
             </div>
         </div>
@@ -256,7 +253,7 @@
                                     <img src="pic/artist/Grahic/GDP-DA.jpg" alt="GDP-DA">
                                 </div>
                             </div>
-                            <div class="artist-item">
+                            <div class="artist-item hidden-artist">
                                 <div class="artist-name"><a href="https://chantaljahchan.work/" target="_blank">Chantal
                                         Jahchan</a></div>
                                 <div class="artist-description">黎巴嫩图形设计师，专注于文化身份和视觉叙事。</div>
@@ -264,14 +261,46 @@
                                     <img src="pic/artist/Grahic/Chantal Jahchan.jpg" alt="Chantal Jahchan">
                                 </div>
                             </div>
+                            <div class="artist-item hidden-artist">
+                                <div class="artist-name"><a href="https://marcelsaidov.de/" target="_blank">Marcel
+                                        Saidov</a></div>
+                                <div class="artist-description">哥本哈根跨学科设计师，作品涵盖排版、品牌和视觉研究。</div>
+                                <div class="artist-image">
+                                    <img src="pic/artist/Grahic/marcelsaidov.jpg" alt="Marcel Saidov">
+                                </div>
+                            </div>
                             <!-- Hidden items -->
                             <div class="artist-item hidden-artist">
-                                <div class="artist-name"><a href="https://naranjoetxeberria.com"
+                                <div class="artist-name"><a href="https://hubertus-design.ch/home/"
+                                        target="_blank">Hubertus Design</a></div>
+                                <div class="artist-description">瑞士设计工作室，专注于书籍设计、品牌识别和复杂的信息系统。</div>
+                                <div class="artist-image">
+                                    <img src="pic/artist/Grahic/hubertus-design.jpg" alt="Hubertus Design">
+                                </div>
+                            </div>
+                            <div class="artist-item hidden-artist">
+                                <div class="artist-name"><a href="https://naranjoetxeberria.com/"
                                         target="_blank">Naranjo-Etxeberria</a></div>
                                 <div class="artist-description">西班牙设计工作室，擅长品牌设计和视觉识别。</div>
                                 <div class="artist-image">
                                     <img src="pic/artist/Grahic/httpsnaranjoetxeberria.com.jpg"
                                         alt="Naranjo-Etxeberria">
+                                </div>
+                            </div>
+                            <div class="artist-item hidden-artist">
+                                <div class="artist-name"><a href="https://jonasriemersma.com/" target="_blank">Jonas
+                                        Riemersma</a></div>
+                                <div class="artist-description">荷兰多媒体设计师，探索数字化表现与传统媒介的结合。</div>
+                                <div class="artist-image">
+                                    <img src="pic/artist/Grahic/jonasriemersma.jpg" alt="Jonas Riemersma">
+                                </div>
+                            </div>
+                            <div class="artist-item hidden-artist">
+                                <div class="artist-name"><a href="http://dolphinsonline.gr" target="_blank">Dolphins</a>
+                                </div>
+                                <div class="artist-description">希腊设计机构，以跨学科的方法和强烈的视觉实验著称。</div>
+                                <div class="artist-image">
+                                    <img src="pic/artist/Grahic/dolphins.jpg" alt="Dolphins">
                                 </div>
                             </div>
                             <button class="expand-btn" onclick="toggleArtists('graphic-artists')">展开归档</button>
@@ -298,6 +327,31 @@
                                     <img src="pic/artist/激进艺术/Trevor Paglen.jpg" alt="Trevor Paglen">
                                 </div>
                             </div>
+                            <div class="artist-item hidden-artist">
+                                <div class="artist-name"><a href="https://zachblas.info/works/" target="_blank">Zach
+                                        Blas</a></div>
+                                <div class="artist-description">艺术家与作家，探讨技术监控下的身份政治与生物识别。</div>
+                                <div class="artist-image">
+                                    <img src="pic/artist/激进艺术/Zachblas.jpg" alt="Zach Blas">
+                                </div>
+                            </div>
+                            <!-- Hidden items -->
+                            <div class="artist-item hidden-artist">
+                                <div class="artist-name"><a href="https://rednoise.org/daniel/" target="_blank">Daniel
+                                        C. Howe</a></div>
+                                <div class="artist-description">算法艺术家与学者，致力于批判性软件实践与数据分析。</div>
+                                <div class="artist-image">
+                                    <img src="pic/artist/激进艺术/Daniel Howe.jpg" alt="Daniel C. Howe">
+                                </div>
+                            </div>
+                            <div class="artist-item hidden-artist">
+                                <div class="artist-name"><a href="https://www.walidraad.com/artworks"
+                                        target="_blank">Walid Raad</a></div>
+                                <div class="artist-description">当代艺术家，以“Atlas Group”项目探索战争背景下的个人与公共记忆。</div>
+                                <div class="artist-image">
+                                    <img src="pic/artist/激进艺术/Walidraaf.jpg" alt="Walid Raad">
+                                </div>
+                            </div>
                             <button class="expand-btn" onclick="toggleArtists('radical-artists')">展开归档</button>
                         </div>
                     </div>
@@ -320,6 +374,23 @@
                                     <img src="pic/artist/game/Lan Cheng.jpg" alt="Ian Cheng">
                                 </div>
                             </div>
+                            <div class="artist-item hidden-artist">
+                                <div class="artist-name"><a href="https://www.davidoreilly.com/" target="_blank">David
+                                        OReilly</a></div>
+                                <div class="artist-description">爱尔兰视觉艺术家，以其实验性 3D 模拟和电子游戏中的独特哲学叙事而闻名。</div>
+                                <div class="artist-image">
+                                    <img src="pic/artist/game/David Oreilly.jpg" alt="David OReilly">
+                                </div>
+                            </div>
+                            <!-- Hidden items -->
+                            <div class="artist-item hidden-artist">
+                                <div class="artist-name"><a href="https://www.federicosolmi.com/"
+                                        target="_blank">Federico Solmi</a></div>
+                                <div class="artist-description">意裔美籍艺术家，通过游戏引擎和手绘纹理批判当代媒体与政治神话。</div>
+                                <div class="artist-image">
+                                    <img src="pic/artist/game/Federico Solmi.jpg" alt="Federico Solmi">
+                                </div>
+                            </div>
                             <button class="expand-btn" onclick="toggleArtists('game-artists')">展开归档</button>
                         </div>
                     </div>
@@ -340,6 +411,55 @@
             const btn = list.querySelector('.expand-btn');
             btn.textContent = list.classList.contains('expanded') ? '收起' : '展开归档';
         }
+
+        // 分类导航逻辑
+        const navItems = document.querySelectorAll('.artist-nav-item');
+        const categories = document.querySelectorAll('.artist-category');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const categoryId = item.getAttribute('data-category');
+                const targetList = document.getElementById(categoryId);
+                const targetSection = targetList.closest('.artist-category');
+
+                if (targetSection) {
+                    // 使用相对位移计算，确保标题与点击的导航项水平对齐
+                    const navItemRect = item.getBoundingClientRect();
+                    const titleElement = targetSection.querySelector('.artist-category-title');
+                    const titleRect = titleElement.getBoundingClientRect();
+
+                    // 计算标题（h4）相对于导航项的垂直距离
+                    const offset = titleRect.top - navItemRect.top;
+
+                    window.scrollBy({
+                        top: offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 滚动同步 (ScrollSpy)
+        window.addEventListener('scroll', () => {
+            let current = '';
+
+            categories.forEach(section => {
+                const title = section.querySelector('.artist-category-title');
+                const rect = title.getBoundingClientRect();
+
+                // 当标题滚动到侧边栏区域（约视口顶部100px-400px范围）时触发切换
+                if (rect.top < 400) {
+                    current = section.querySelector('.artist-list').id;
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-category') === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
     </script>
 </body>
 
